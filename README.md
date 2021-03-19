@@ -18,7 +18,10 @@
 ```
 ### 3. hyyeungaf(YEUNG, Ho Yu)
 ```
+ - Email: hyyeungaf@connect.ust.hk
  - Github: Andy9934
+ - Dev ID: andy_feature1
+ - responsible for task 2 and task 5
 ```
 ***
 ### Task todo before 30/March
