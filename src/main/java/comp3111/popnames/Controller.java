@@ -3,11 +3,13 @@
  */
 package comp3111.popnames;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
 public class Controller {
@@ -38,11 +40,15 @@ public class Controller {
 
     @FXML
     private Button buttonSummary;
+<<<<<<< Upstream, based on paul_feature1
 
     @FXML
     private Tab tabReport1;
+=======
+>>>>>>> 08ace7d added some button for task6
 
     @FXML
+<<<<<<< Upstream, based on paul_feature1
     private TextField Text1_year;
 
     @FXML
@@ -50,6 +56,9 @@ public class Controller {
 
     @FXML
     private TextField Text1_name;
+=======
+    private Tab tabReport1;
+>>>>>>> 08ace7d added some button for task6
 
     @FXML
     private Tab tabReport2;
@@ -67,7 +76,24 @@ public class Controller {
     private Tab tabApp3;
     
     @FXML
+    private Button task_six_btn_getresult;
+
+    @FXML
     private TextArea textAreaConsole;
+<<<<<<< Upstream, based on paul_feature1
+=======
+
+    @FXML
+    private ToggleGroup tsk6;
+    @FXML
+    private ToggleButton T6X1;
+    @FXML
+    private ToggleButton T6X2;
+
+    
+
+
+>>>>>>> 08ace7d added some button for task6
     /**
      *  Task Zero
      *  To be triggered by the "Summary" button on the Task Zero Tab 
@@ -152,6 +178,7 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
     /**
+<<<<<<< Upstream, based on paul_feature1
 	 * Task one
 	 * To be triggered by the generate report button on the Task one Tab
 	 *
@@ -176,5 +203,23 @@ public class Controller {
     	textAreaConsole.setText(oReport);    	
     	
     }
+=======
+     *  Task Six klluiaf
+     *  To be triggered get result button
+     *  
+     */
+    @FXML
+    void task_six_getresult() {
+    	ToggleButton selected_algor = (ToggleButton)tsk6.getSelectedToggle();
+    	if(selected_algor==null) {
+    		textAreaConsole.setText("please select alogrithm");
+    		return;
+    	}
+    	String salgor = selected_algor.getText();
+//    	System.out.print(salgor);
+    	textAreaConsole.setText(salgor);
+    }
+
+>>>>>>> 08ace7d added some button for task6
 }
 
