@@ -72,6 +72,12 @@ public class Controller {
     @FXML
     private ToggleButton T6X2;
 
+    @FXML
+    private ToggleGroup T1;
+    @FXML
+    private ToggleGroup T11;
+    @FXML
+    private ToggleGroup T111;
     
 
 
