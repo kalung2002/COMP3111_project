@@ -3,11 +3,13 @@
  */
 package comp3111.popnames;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
 public class Controller {
@@ -38,24 +40,15 @@ public class Controller {
 
     @FXML
     private Button buttonSummary;
-    
-    @FXML
-    private Tab tabReport1;
 
     @FXML
-    private ToggleGroup T1;
+    private Tab tabReport1;
 
     @FXML
     private Tab tabReport2;
 
     @FXML
-    private ToggleGroup T11;
-
-    @FXML
     private Tab tabReport3;
-
-    @FXML
-    private ToggleGroup T111;
 
     @FXML
     private Tab tabApp1;
@@ -67,8 +60,26 @@ public class Controller {
     private Tab tabApp3;
 
     @FXML
+    private Button task_six_btn_getresult;
+
+    @FXML
     private TextArea textAreaConsole;
+
+    @FXML
+    private ToggleGroup tsk6;
+    @FXML
+    private ToggleButton T6X1;
+    @FXML
+    private ToggleButton T6X2;
+
+    @FXML
+    private ToggleGroup T1;
+    @FXML
+    private ToggleGroup T11;
+    @FXML
+    private ToggleGroup T111;
     
+
 
     /**
      *  Task Zero
@@ -153,7 +164,22 @@ public class Controller {
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
     }
-    
+    /**
+     *  Task Six klluiaf
+     *  To be triggered get result button
+     *  
+     */
+    @FXML
+    void task_six_getresult() {
+    	ToggleButton selected_algor = (ToggleButton)tsk6.getSelectedToggle();
+    	if(selected_algor==null) {
+    		textAreaConsole.setText("please select alogrithm");
+    		return;
+    	}
+    	String salgor = selected_algor.getText();
+//    	System.out.print(salgor);
+    	textAreaConsole.setText(salgor);
+    }
 
 }
 
