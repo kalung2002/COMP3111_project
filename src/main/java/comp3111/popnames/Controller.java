@@ -89,15 +89,13 @@ public class Controller {
     private ToggleButton T6X1;
     @FXML
     private ToggleButton T6X2;
-
+    
     @FXML
     private ToggleGroup T1;
     @FXML
     private ToggleGroup T11;
     @FXML
     private ToggleGroup T111;
-    
-
 
 >>>>>>> 08ace7d added some button for task6
     /**
