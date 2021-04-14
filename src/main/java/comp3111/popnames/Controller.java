@@ -38,24 +38,24 @@ public class Controller {
 
     @FXML
     private Button buttonSummary;
-    
+
     @FXML
     private Tab tabReport1;
 
     @FXML
-    private ToggleGroup T1;
+    private TextField Text1_year;
+
+    @FXML
+    private Button Task1button;
+
+    @FXML
+    private TextField Text1_name;
 
     @FXML
     private Tab tabReport2;
 
     @FXML
-    private ToggleGroup T11;
-
-    @FXML
     private Tab tabReport3;
-
-    @FXML
-    private ToggleGroup T111;
 
     @FXML
     private Tab tabApp1;
@@ -65,11 +65,9 @@ public class Controller {
 
     @FXML
     private Tab tabApp3;
-
+    
     @FXML
     private TextArea textAreaConsole;
-    
-
     /**
      *  Task Zero
      *  To be triggered by the "Summary" button on the Task Zero Tab 
@@ -153,7 +151,30 @@ public class Controller {
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
     }
-    
-
+    /**
+	 * Task one
+	 * To be triggered by the generate report button on the Task one Tab
+	 *
+	 *
+	*/
+    @FXML
+    void GenerateReport() {
+    	String oReport = "";
+    	int iYear = Integer.parseInt(Text1_year.getText());
+    	int topN = Integer.parseInt(Text1_name.getText());
+    	
+    	
+    	oReport = String.format("Top %d most popular names in the year %d:\n", topN, iYear);
+    	for (int i=1; i<=topN; i++)
+    		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i,"M"));
+    	
+    	oReport += String.format("#####################################################\n");
+    	oReport += String.format("#####################################################\n");
+    	oReport += String.format("For Female:\n");
+    	for (int i=1; i<=topN; i++)
+    		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i,"F"));
+    	textAreaConsole.setText(oReport);    	
+    	
+    }
 }
 
