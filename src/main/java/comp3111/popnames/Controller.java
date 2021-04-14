@@ -40,25 +40,9 @@ public class Controller {
 
     @FXML
     private Button buttonSummary;
-<<<<<<< Upstream, based on paul_feature1
 
     @FXML
     private Tab tabReport1;
-=======
->>>>>>> 08ace7d added some button for task6
-
-    @FXML
-<<<<<<< Upstream, based on paul_feature1
-    private TextField Text1_year;
-
-    @FXML
-    private Button Task1button;
-
-    @FXML
-    private TextField Text1_name;
-=======
-    private Tab tabReport1;
->>>>>>> 08ace7d added some button for task6
 
     @FXML
     private Tab tabReport2;
@@ -74,14 +58,12 @@ public class Controller {
 
     @FXML
     private Tab tabApp3;
-    
+
     @FXML
     private Button task_six_btn_getresult;
 
     @FXML
     private TextArea textAreaConsole;
-<<<<<<< Upstream, based on paul_feature1
-=======
 
     @FXML
     private ToggleGroup tsk6;
@@ -97,7 +79,6 @@ public class Controller {
     @FXML
     private ToggleGroup T111;
 
->>>>>>> 08ace7d added some button for task6
     /**
      *  Task Zero
      *  To be triggered by the "Summary" button on the Task Zero Tab 
@@ -182,32 +163,6 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
     /**
-<<<<<<< Upstream, based on paul_feature1
-	 * Task one
-	 * To be triggered by the generate report button on the Task one Tab
-	 *
-	 *
-	*/
-    @FXML
-    void GenerateReport() {
-    	String oReport = "";
-    	int iYear = Integer.parseInt(Text1_year.getText());
-    	int topN = Integer.parseInt(Text1_name.getText());
-    	
-    	
-    	oReport = String.format("Top %d most popular names in the year %d:\n", topN, iYear);
-    	for (int i=1; i<=topN; i++)
-    		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i,"M"));
-    	
-    	oReport += String.format("#####################################################\n");
-    	oReport += String.format("#####################################################\n");
-    	oReport += String.format("For Female:\n");
-    	for (int i=1; i<=topN; i++)
-    		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i,"F"));
-    	textAreaConsole.setText(oReport);    	
-    	
-    }
-=======
      *  Task Six klluiaf
      *  To be triggered get result button
      *  
@@ -224,6 +179,5 @@ public class Controller {
     	textAreaConsole.setText(salgor);
     }
 
->>>>>>> 08ace7d added some button for task6
 }
 
