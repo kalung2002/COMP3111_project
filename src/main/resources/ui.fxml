@@ -10,7 +10,9 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="679.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp3111.popnames.Controller">
@@ -45,14 +47,36 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="719.0">
                            <children>
                               <Label layoutX="79.0" layoutY="44.0" />
-                              <TextArea layoutX="103.0" layoutY="24.0" prefHeight="107.0" prefWidth="463.0" text="Task #1: Most Popular Names (data reporting)&#10;&#10;Generate a report in response to the queries on the most popular names in a given year.&#10;" wrapText="true" />
-                              <TextField fx:id="Text1_year" layoutX="210.0" layoutY="150.0" prefHeight="25.0" prefWidth="87.0" text="2010" />
-                              <Label layoutX="103.0" layoutY="150.0" prefHeight="24.0" prefWidth="110.0" text="Year of interest" />
-                              <Label layoutX="103.0" layoutY="195.0" prefHeight="17.0" prefWidth="95.0" text="Top N pop names" />
-                              <Button fx:id="Task1button" layoutX="302.0" layoutY="231.0" mnemonicParsing="false" onAction="#GenerateReport" text="Generate" />
-                              <Text layoutX="103.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report" wrappingWidth="43.0" />
-                              <TextField fx:id="Text1_name" layoutX="210.0" layoutY="191.0" prefHeight="25.0" prefWidth="87.0" text="1" />
-                              <Label layoutX="327.0" layoutY="154.0" prefHeight="17.0" prefWidth="154.0" text="Range: 1880 - 2019" />
+                              <TextArea layoutX="66.0" layoutY="4.0" prefHeight="80.0" prefWidth="587.0" text="Just Click the Buttons below to get the name report!" wrapText="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font></TextArea>
+                              <TextField fx:id="Text1_year" layoutX="117.0" layoutY="148.0" prefHeight="32.0" prefWidth="440.0" promptText="Enter Year of interest" />
+                              <TextField fx:id="Text1_name" layoutX="117.0" layoutY="184.0" prefHeight="32.0" prefWidth="440.0" promptText="Enter Top N interest" />
+                              <HBox layoutX="93.0" layoutY="93.0" prefHeight="67.0" prefWidth="592.0">
+                                 <children>
+                                    <Button fx:id="Task1BarButton" mnemonicParsing="false" onAction="#Generate_BarChart" text="Bart Chart">
+                                       <font>
+                                          <Font name="System Bold Italic" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="Task1PieButton" mnemonicParsing="false" onAction="#Generate_PieChart" text="Pie Chart">
+                                       <font>
+                                          <Font name="System Bold Italic" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="Task1TableButton" mnemonicParsing="false" onAction="#Generate_Table" prefHeight="44.0" prefWidth="114.0" text="Table">
+                                       <font>
+                                          <Font name="System Bold Italic" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="Task1Summarybutton" mnemonicParsing="false" onAction="#Generate_Summary" prefHeight="44.0" prefWidth="140.0" text="Summary">
+                                       <font>
+                                          <Font name="System Bold Italic" size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                     </content>
