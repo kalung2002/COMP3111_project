@@ -3,6 +3,7 @@ package comp3111.popnames;
 import org.apache.commons.csv.*;
 import edu.duke.*;
 
+
 public class AnalyzeNames {
 
 	public static CSVParser getFileParser(int year) {
@@ -93,5 +94,43 @@ public class AnalyzeNames {
 	     else
 	     	return "information on the name at the specified rank is not available";
 	 }
- 
-}
+	 // for Task 1 calculating the total number of that specific name
+	 public static int getTotalOccur(int year, String gender) {
+		 
+		 int totalNumber = 0;
+		 // For every name entry in the CSV file
+		 for(CSVRecord rec: getFileParser(year)) {
+			 // check if this is correct gender
+			 if(rec.get(1).equals(gender)) {
+				 // addition to the total number
+				 totalNumber += Integer.parseInt(rec.get(2));
+				 
+			 }
+			 
+		 }
+		 
+		 return totalNumber;
+	 }
+	 public static int getNumber(int year, String gender, int rank) {
+		 
+		 int NumberOccurr = 0;
+		 int currrank = 0;
+		 // For every name entry in the CSV file
+		 for(CSVRecord rec: getFileParser(year)) {
+			 if(rec.get(1).equals(gender)) {
+				 currrank ++;
+				 if(rank == currrank) {
+				 NumberOccurr = Integer.parseInt(rec.get(2));
+				 break;
+				 }
+			 }
+			 
+		 }
+		
+		 
+		 return NumberOccurr;
+	 }	 
+	 
+	 
+
+		}
