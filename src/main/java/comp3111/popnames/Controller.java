@@ -3,14 +3,14 @@
  */
 package comp3111.popnames;
 
-
 import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -60,7 +60,7 @@ public class Controller {
 
     @FXML
     private Button buttonTopF;
-    
+
     @FXML
     private Button buttonSummary;
 
@@ -87,13 +87,6 @@ public class Controller {
 
     @FXML
     private TextArea textAreaConsole;
-
-    @FXML
-    private ToggleGroup tsk6;
-    @FXML
-    private ToggleButton T6X1;
-    @FXML
-    private ToggleButton T6X2;
     
     @FXML
     private ToggleGroup T1;
@@ -114,6 +107,7 @@ public class Controller {
     private Button Task1Summarybutton;//for task 1 
     @FXML
     private Button Task1BarButton;//for task 1 
+
 
     /**
      *  Task Zero
@@ -198,22 +192,7 @@ public class Controller {
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
     }
-    /**
-     *  Task Six klluiaf
-     *  To be triggered get result button
-     *  
-     */
-    @FXML
-    void task_six_getresult() {
-    	ToggleButton selected_algor = (ToggleButton)tsk6.getSelectedToggle();
-    	if(selected_algor==null) {
-    		textAreaConsole.setText("please select alogrithm");
-    		return;
-    	}
-    	String salgor = selected_algor.getText();
-//    	System.out.print(salgor);
-    	textAreaConsole.setText(salgor);
-    }
+  
     
     /**
      *  Task One 
@@ -427,6 +406,84 @@ public class Controller {
         public void setPercent(String fName) {
         	percent.set(fName);
         }
+    }
+  
+    /**
+     *  Task Six klluiaf
+     *  To be triggered get result button
+     *  
+     *
+     *  Anything related to tsk6 will code here
+     *  
+     */
+    @FXML
+    private ProgressBar tsk6progress;
+    @FXML
+    private ToggleGroup tsk6_algor;
+
+    @FXML
+    private ToggleGroup tsk6_youth;
+
+    @FXML
+    private ToggleGroup tsk6_gender_i;
+
+    @FXML
+    private ToggleGroup tsk6_gender_t;
+
+    @FXML
+    private TextField tsk6namei;
+
+    @FXML
+    private TextField tsk6namet;
+
+    @FXML
+    private TextField tsk6yob;
+    @FXML
+    private Button tsk6ans;
+    @FXML
+    void task_six_getresult() {
+    	ToggleButton selected_algor = (ToggleButton)tsk6_algor.getSelectedToggle()
+    	if(selected_algor==null) {
+    		textAreaConsole.setText("please select alogrithm");
+    		return;
+    	}
+    	String salgor = selected_algor.getText();
+//    	System.out.print(salgor);
+    	textAreaConsole.setText(salgor);
+    }
+      @FXML
+    void tsk6check() {
+    	float status=0;
+    	int counter=0;
+    	
+    	RadioButton selected_gender_i = (RadioButton) tsk6_gender_i.getSelectedToggle();
+    	RadioButton selected_gender_t = (RadioButton) tsk6_gender_t.getSelectedToggle();
+    	
+    	ToggleButton selected_age = (ToggleButton)tsk6_youth.getSelectedToggle();
+    	ToggleButton selected_algor = (ToggleButton)tsk6_algor.getSelectedToggle();
+
+    	String namei =tsk6namei.getText();
+    	String namet =tsk6namet.getText();
+    	String yobs=tsk6yob.getText();
+    	
+    	
+    	if(!(yobs==null)&&!yobs.isBlank()) {counter++;}
+    	if(!(namei==null)&&!namei.isBlank()) {counter++;}
+    	if(!(namet==null)&&!namet.isBlank()) {counter++;}
+    	
+    	if(!(selected_algor==null)) {counter++;}
+    	if(!(selected_age==null)) {counter++;}
+    	if(!(selected_gender_i==null)) {counter++;}
+    	if(!(selected_gender_t==null)) {counter++;}
+    	
+    	status=counter/7.0f;
+//    	System.out.println(status);
+    	textAreaConsole.setText(yobs+status);
+    	tsk6progress.setProgress(status);
+    	if(status==1.0) {
+    		textAreaConsole.setText("done");
+    		tsk6ans.setDisable(false);
+    	}else {tsk6ans.setDisable(true);}
     }
 
 }

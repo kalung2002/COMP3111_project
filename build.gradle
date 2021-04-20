@@ -18,6 +18,9 @@ task debug(type:JavaExec) {
 } 
 
 dependencies {
+	//java metro theme
+	compile 'org.jfxtras:jmetro:11.6.14'
+
 	// https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit
 	compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.31'
 
@@ -29,6 +32,9 @@ dependencies {
 	
     testImplementation 'junit:junit:4.12'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+}
+jacoco {
+    toolVersion = "0.8.6"
 }
 
 jacocoTestReport {
