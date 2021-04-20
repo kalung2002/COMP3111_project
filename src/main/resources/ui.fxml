@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
@@ -13,14 +16,12 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="679.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp3111.popnames.Controller">
@@ -33,17 +34,17 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="1.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints fx:id="GRID0" minHeight="0.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="GRID1" minHeight="0.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="GRID2" minHeight="0.0" percentHeight="5.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints fx:id="GRID3" minHeight="0.0" prefHeight="20.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="GRID4" minHeight="0.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Console" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
-            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="719.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="4">
+            <TabPane fx:id="MENU_GROUP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="719.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="4">
               <tabs>
-                <Tab fx:id="tabTaskZero" text="Task Zero">
+                <Tab fx:id="tabTaskZero" onSelectionChanged="#onselect" text="Task Zero">
                   <content>
                     <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="719.0">
                            <children>
@@ -64,7 +65,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="tabReport1" text="Reporting 1">
+                  <Tab fx:id="tabReport1" onSelectionChanged="#onselect" text="Reporting 1">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="719.0">
                            <children>
@@ -72,22 +73,23 @@
                               <TextArea layoutX="66.0" layoutY="4.0" prefHeight="80.0" prefWidth="587.0" text="Just Click the Buttons below to get the name report!" wrapText="true">
                                  <font>
                                     <Font size="24.0" />
-                                 </font></TextArea>
+                                 </font>
+                              </TextArea>
                               <TextField fx:id="Text1_year" layoutX="117.0" layoutY="148.0" prefHeight="32.0" prefWidth="440.0" promptText="Enter Year of interest" />
                               <TextField fx:id="Text1_name" layoutX="117.0" layoutY="184.0" prefHeight="32.0" prefWidth="440.0" promptText="Enter Top N interest" />
-                              <HBox layoutX="93.0" layoutY="93.0" prefHeight="67.0" prefWidth="592.0">
+                              <HBox layoutX="80.0" layoutY="91.0" prefHeight="44.0" prefWidth="560.0">
                                  <children>
-                                    <Button fx:id="Task1BarButton" mnemonicParsing="false" onAction="#Generate_BarChart" text="Bart Chart">
+                                    <Button fx:id="Task1BarButton" mnemonicParsing="false" onAction="#Generate_BarChart" prefHeight="44.0" prefWidth="140.0" text="Bart Chart">
                                        <font>
                                           <Font name="System Bold Italic" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="Task1PieButton" mnemonicParsing="false" onAction="#Generate_PieChart" text="Pie Chart">
+                                    <Button fx:id="Task1PieButton" mnemonicParsing="false" onAction="#Generate_PieChart" prefHeight="44.0" prefWidth="140.0" text="Pie Chart">
                                        <font>
                                           <Font name="System Bold Italic" size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="Task1TableButton" mnemonicParsing="false" onAction="#Generate_Table" prefHeight="44.0" prefWidth="114.0" text="Table">
+                                    <Button fx:id="Task1TableButton" mnemonicParsing="false" onAction="#Generate_Table" prefHeight="44.0" prefWidth="140.0" text="Table">
                                        <font>
                                           <Font name="System Bold Italic" size="20.0" />
                                        </font>
@@ -103,7 +105,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                <Tab fx:id="tabReport2" text="Reporting 2">
+                <Tab fx:id="tabReport2" onSelectionChanged="#onselect" text="Reporting 2">
                   <content>
                         <AnchorPane>
                            <children>
@@ -116,7 +118,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="tabReport3" text="Reporting 3">
+                  <Tab fx:id="tabReport3" onSelectionChanged="#onselect" text="Reporting 3">
                     <content>
                         <AnchorPane>
                            <children>
@@ -129,7 +131,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab fx:id="tabApp1" text="Application1">
+                  <Tab fx:id="tabApp1" onSelectionChanged="#onselect" text="Application 1">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="719.0">
                            <children>
@@ -138,7 +140,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab fx:id="tabApp2" text="Application 2">
+                  <Tab fx:id="tabApp2" onSelectionChanged="#onselect" text="Application 2">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -147,7 +149,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab fx:id="tabApp3" text="Application 3">
+                  <Tab fx:id="tabApp3" onSelectionChanged="#onselect" text="Application 3">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -249,13 +251,36 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <ScrollPane prefHeight="387.0" prefWidth="719.0" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="3">
+            <ScrollPane fitToWidth="true" minHeight="0.0" prefHeight="387.0" prefWidth="719.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
                <content>
                   <TextArea fx:id="textAreaConsole" editable="false" prefHeight="370.0" prefWidth="700.0" wrapText="true" />
                </content>
-               <padding>
-                  <Insets left="10.0" top="5.0" />
-               </padding>
+            </ScrollPane>
+            <ScrollPane fitToWidth="true" minHeight="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="2">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <ScrollPane fitToWidth="true" minHeight="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="3">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <BarChart layoutX="109.0" layoutY="-111.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <ScrollPane fitToWidth="true" minHeight="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="4">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
             </ScrollPane>
          </children>
       </GridPane>
