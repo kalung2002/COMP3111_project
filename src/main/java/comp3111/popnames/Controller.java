@@ -3,8 +3,11 @@
  */
 package comp3111.popnames;
 
-
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
@@ -13,6 +16,24 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
+import javafx.scene.Group;
+import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.geometry.Insets;
+import javafx.scene.text.Font;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
 
@@ -62,22 +83,30 @@ public class Controller {
     private Tab tabApp3;
 
     @FXML
+    private Button task_six_btn_getresult;
+
+    @FXML
     private TextArea textAreaConsole;
-
-//    @FXML
-//    private ToggleGroup tsk6;
-//    @FXML
-//    private ToggleButton T6X1;
-//    @FXML
-//    private ToggleButton T6X2;
-
+    
     @FXML
     private ToggleGroup T1;
     @FXML
     private ToggleGroup T11;
     @FXML
     private ToggleGroup T111;
+    @FXML
+    private TextField Text1_year;// for task 1 
+    @FXML
+    private TextField Text1_name;//for task 1 
     
+    @FXML
+    private Button Task1PieButton;//for task 1 
+    @FXML
+    private Button Task1TableButton;//for task 1 
+    @FXML
+    private Button Task1Summarybutton;//for task 1 
+    @FXML
+    private Button Task1BarButton;//for task 1 
 
 
     /**
@@ -163,8 +192,227 @@ public class Controller {
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
     }
+  
+    
+    /**
+     *  Task One 
+     *  To be triggered get result button
+     * @throws IOException 
+     *  
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@FXML
+    // generate Summary 
+    void Generate_BarChart() throws IOException{
+
+     	int iYear = Integer.parseInt(Text1_year.getText());
+     	int topN = Integer.parseInt(Text1_name.getText());
+     	
+     	// Generate BarChart
+    	Stage stage;
+    	stage = new Stage();
+        stage.setTitle("Bar Chart Sample");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis);
+        bc.setTitle("Top " + Text1_name.getText() + " Names in Year " + Text1_year.getText());
+        xAxis.setLabel("Names");       
+        yAxis.setLabel("Total Number of Occurence");
+ 
+        XYChart.Series series1 = new XYChart.Series();
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("Female");
+        series1.setName("Male");       
+     	for (int i=1; i<=topN; i++) {
+     		series1.getData().add(new XYChart.Data( AnalyzeNames.getName(iYear, i, "M"), AnalyzeNames.getNumber(iYear,"M",i)));
+     		series2.getData().add(new XYChart.Data( AnalyzeNames.getName(iYear, i, "F"), AnalyzeNames.getNumber(iYear,"F",i)));
+     	}
+
+        
+        Scene scene  = new Scene(bc,800,600);
+        bc.getData().addAll(series1,series2);
+        stage.setScene(scene);
+        stage.show();
+
+    	
+
+    }
+    @FXML
+    void  Generate_PieChart(){
+        Scene scene = new Scene(new Group());
+    	Stage stage;
+    	stage = new Stage();
+        stage.setTitle("Imported Fruits");
+        stage.setWidth(1000);
+        stage.setHeight(500);
+     	int iYear = Integer.parseInt(Text1_year.getText());
+     	int topN = Integer.parseInt(Text1_name.getText());
+     	ObservableList<PieChart.Data> pieChartData_M = FXCollections.observableArrayList();
+     	ObservableList<PieChart.Data> pieChartData_F = FXCollections.observableArrayList();
+     	for (int i=1; i<=topN; i++) {
+
+     		pieChartData_M.add(new PieChart.Data(AnalyzeNames.getName(iYear, i, "M"), AnalyzeNames.getNumber(iYear,"M",i)));
+     		pieChartData_F.add(new PieChart.Data(AnalyzeNames.getName(iYear, i, "F"), AnalyzeNames.getNumber(iYear,"F",i)));
+     	}
+        
+               
+        final PieChart chart_M = new PieChart(pieChartData_M);
+        final PieChart chart_F = new PieChart(pieChartData_F);
+        chart_M.setTitle("Top " + Text1_name.getText() + " names (Males) in " + Text1_year.getText());
+        chart_F.setTitle("Top " + Text1_name.getText() + " names (Females) in " + Text1_year.getText());
+        chart_M.setLayoutX(500);
+        ((Group) scene.getRoot()).getChildren().add(chart_M);
+        ((Group) scene.getRoot()).getChildren().add(chart_F);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@FXML
+    void  Generate_Table(){
+
+    	 TableView<Person> M_table = new TableView<Person>();
+    	 TableView<Person> F_table = new TableView<Person>();
+    	 
+    	      final ObservableList<Person> M_data = FXCollections.observableArrayList();
+    	      final ObservableList<Person> F_data = FXCollections.observableArrayList();
+    	      if (Text1_year.getText().isEmpty()) return;
+    	      if (Text1_name.getText().isEmpty()) return;
+        	  int iYear = Integer.parseInt(Text1_year.getText());
+        	  int topN = Integer.parseInt(Text1_name.getText());
+        	  
+    	   	  for(int i = 1; i <= topN; i++) {
+    	   		  
+    	        float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",i) / AnalyzeNames.getTotalOccur(iYear,"M");
+    	        float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",i) / AnalyzeNames.getTotalOccur(iYear,"F");
+    	        String Mpercent = String.valueOf(Malepercent*100)+ "%";
+    	        String Fpercent = String.valueOf(Femalepercent*100) + "%";
+    	   		F_data.add(new Person(AnalyzeNames.getName(iYear, i, "F"),String.valueOf(AnalyzeNames.getNumber(iYear,"F",i)),Fpercent));
+    	   		M_data.add(new Person(AnalyzeNames.getName(iYear, i, "M"),String.valueOf(AnalyzeNames.getNumber(iYear,"M",i)),Mpercent));
+    	   	  }
+    	   	  Scene scene = new Scene(new Group());
+    	   	  Stage stage = new Stage();
+    	   	  stage.setTitle("Top " + Text1_name.getText() + " Names in " + Text1_year.getText());
+    	   	  stage.setWidth(1100);
+    	   	  stage.setHeight(500);
+    	   	  // for female
+    	   	  final Label label = new Label("Female");
+    	   	  label.setFont(new Font("Arial", 20));
+    	   	  //for male
+    	   	  final Label mlabel = new Label("Male");
+    	   	  mlabel .setFont(new Font("Arial", 20));
+    	   	  
+    	   		M_table.setEditable(true);
+    	   		F_table.setEditable(true);
+    	   		
+    	        TableColumn M_NameCol = new TableColumn("Name");
+    	        TableColumn F_NameCol = new TableColumn("Name");
+    	        M_NameCol.setMinWidth(100);
+    	        M_NameCol.setCellValueFactory(
+    	                new PropertyValueFactory<Person, String>("name"));
+    	        F_NameCol.setMinWidth(100);
+    	        F_NameCol.setCellValueFactory(
+    	                new PropertyValueFactory<Person, String>("name"));
+    	        
+    	        TableColumn M_GenderCol = new TableColumn("Occurrences");
+    	        TableColumn F_GenderCol = new TableColumn("Occurrences");
+    	        M_GenderCol.setMinWidth(200);
+    	        M_GenderCol.setCellValueFactory(
+    	                new PropertyValueFactory<Person, String>("occurr"));
+    	        F_GenderCol.setMinWidth(200);
+    	        F_GenderCol.setCellValueFactory(
+    	                new PropertyValueFactory<Person, String>("occurr"));   
+    	       
+    	        TableColumn M_NumberCol = new TableColumn("Percentage");
+    	        TableColumn F_NumberCol = new TableColumn("Percentage");
+    	        M_NumberCol.setMinWidth(200);
+    	        M_NumberCol.setCellValueFactory(
+    	                new PropertyValueFactory<Person, String>("percent"));
+    	        F_NumberCol.setMinWidth(200);
+    	        F_NumberCol.setCellValueFactory(
+    	                new PropertyValueFactory<Person, String>("percent"));
+    	 
+    	        M_table.setItems(M_data);
+    	        F_table.setItems(F_data);
+    	        
+    	        M_table.getColumns().addAll(M_NameCol, M_GenderCol, M_NumberCol);
+    	        F_table.getColumns().addAll(F_NameCol, F_GenderCol, F_NumberCol);
+    	        
+    	        final VBox mbox = new VBox();
+    	        mbox.setSpacing(5);
+    	        mbox.setPadding(new Insets(10, 0, 0, 10));
+    	        mbox.getChildren().addAll(mlabel, M_table);
+    	     	        
+    	        ((Group) scene.getRoot()).getChildren().addAll(mbox);
+    	        
+    	        final VBox fbox = new VBox();
+    	        fbox.setSpacing(5);
+    	        fbox.setPadding(new Insets(10, 0, 0, 10));
+    	        fbox.setLayoutX(550);
+    	        fbox.getChildren().addAll(label, F_table);
+    	        ((Group) scene.getRoot()).getChildren().addAll(fbox);
+//    	        F_table.setLayoutX(550);
+//    	        M_table.setLayoutY(30);
+//    	        ((Group) scene.getRoot()).getChildren().add(label);
+//    	        ((Group) scene.getRoot()).getChildren().add(M_table);
+//    	        ((Group) scene.getRoot()).getChildren().add(F_table);    	 
+    	        stage.setScene(scene);
+    	        stage.show();
+    }    
+    @FXML
+    void  Generate_Summary(){
+    	String oReport = "";
+    	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
+    	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
+    	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
+    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
+    	
+    	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "M"),Malepercent*100);
+    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "F"), Femalepercent*100);
+    	textAreaConsole.setText(oReport);    	
+    }
+    public static class Person {
+    	 
+        private final SimpleStringProperty name;
+        private final SimpleStringProperty occurr;
+        private final SimpleStringProperty percent;
+ 
+        private Person(String fName, String Gender, String Number) {
+            this.name = new SimpleStringProperty(fName);
+            this.occurr = new SimpleStringProperty(Gender);
+            this.percent = new SimpleStringProperty(Number);
+        }
+ 
+        public String getName() {
+            return name.get();
+        }
+ 
+        public void setName(String fName) {
+        	name.set(fName);
+        }
+ 
+        public String getOccurr() {
+            return occurr.get();
+        }
+ 
+        public void setOccurr(String fName) {
+        	occurr.set(fName);
+        }
+ 
+        public String getPercent() {
+            return percent.get();
+        }
+ 
+        public void setPercent(String fName) {
+        	percent.set(fName);
+        }
+    }
+  
     /**
      *  Task Six klluiaf
+     *  To be triggered get result button
+     *  
+     *
      *  Anything related to tsk6 will code here
      *  
      */
@@ -194,7 +442,7 @@ public class Controller {
     private Button tsk6ans;
     @FXML
     void task_six_getresult() {
-    	ToggleButton selected_algor = (ToggleButton)tsk6_algor.getSelectedToggle();
+    	ToggleButton selected_algor = (ToggleButton)tsk6_algor.getSelectedToggle()
     	if(selected_algor==null) {
     		textAreaConsole.setText("please select alogrithm");
     		return;
@@ -203,8 +451,7 @@ public class Controller {
 //    	System.out.print(salgor);
     	textAreaConsole.setText(salgor);
     }
-
-    @FXML
+      @FXML
     void tsk6check() {
     	float status=0;
     	int counter=0;
@@ -237,10 +484,6 @@ public class Controller {
     		textAreaConsole.setText("done");
     		tsk6ans.setDisable(false);
     	}else {tsk6ans.setDisable(true);}
-    	
-    	
-    	
-
     }
 
 }
