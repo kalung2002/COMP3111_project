@@ -61,6 +61,7 @@ public class Task1test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 //		
+		year.setText("2010");
 		String s1 = year.getText();
 		int x = Integer.parseInt(s1);
 		assertTrue(x > 0);
@@ -71,6 +72,7 @@ public class Task1test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 //		
+		topN.setText("1");
 		String s1 = topN.getText();
 		int x = Integer.parseInt(s1);
 		assertTrue(x > 0);

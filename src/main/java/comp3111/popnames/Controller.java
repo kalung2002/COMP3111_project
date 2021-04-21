@@ -225,7 +225,8 @@ public class Controller {
 	@FXML
     // generate Summary 
     void Generate_BarChart() throws IOException{
-
+	    if (Text1_year.getText().isEmpty()) return;
+	    if (Text1_name.getText().isEmpty()) return;
      	int iYear = Integer.parseInt(Text1_year.getText());
      	int topN = Integer.parseInt(Text1_name.getText());
      	
@@ -260,6 +261,8 @@ public class Controller {
     }
     @FXML
     void  Generate_PieChart(){
+	    if (Text1_year.getText().isEmpty()) return;
+	    if (Text1_name.getText().isEmpty()) return;
         Scene scene = new Scene(new Group());
     	Stage stage;
     	stage = new Stage();
@@ -382,6 +385,8 @@ public class Controller {
     }    
     @FXML
     void  Generate_Summary(){
+	    if (Text1_year.getText().isEmpty()) return;
+	    if (Text1_name.getText().isEmpty()) return;
     	String oReport = "";
     	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
     	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
