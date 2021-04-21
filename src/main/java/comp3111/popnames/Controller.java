@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
@@ -17,6 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -98,41 +101,65 @@ public class Controller {
 	@FXML
 	private TextArea textAreaConsole;
 	@FXML
-    private TabPane MENU_GROUP;
+	private TabPane MENU_GROUP;
 
 	private void Display_helper(double d, double e) {
 		GRID0.setPercentHeight(d);
 		GRID1.setPercentHeight(e);
 	}
-	 @FXML
-	 void onselect() {
-		 Display_helper(50,50);
-		 Tab selected=(Tab)MENU_GROUP.getSelectionModel().getSelectedItem();
-		 if(selected==null) {return;}
 
-		 System.out.println(selected.getText());
-		 switch(selected.getText()){
-		 case "Task Zero":	Display_helper(50,50);
-			 break;
-			 
-		 case "Reporting 1":Display_helper(40,60);
-			 break;
-		 case "Reporting 2":Display_helper(50,50);
-			 break;
-		 case "Reporting 3":Display_helper(60,40);
-			 break;
-		
-		 case "Application 1":Display_helper(50,50);
-			 break;
+	@FXML
+	void onselect() {
+		Display_helper(50, 50);
+		Tab selected = (Tab) MENU_GROUP.getSelectionModel().getSelectedItem();
+		if (selected == null) {
+			return;
+		}
+		if (textAreaConsole != null) {
+			textAreaConsole.clear();
+		}
+		System.out.println(selected.getText());
+		switch (selected.getText()) {
+		case "Task Zero":
+			Display_helper(50, 50);
+			break;
 
-		 case "Application 2":Display_helper(60,40);
-			 break;
+		case "Reporting 1":
+			Display_helper(40, 60);
+			break;
+		case "Reporting 2":
+			Display_helper(50, 50);
+			break;
+		case "Reporting 3":
+			Display_helper(40, 60);
+			break;
 
-		 case "Application 3":Display_helper(50,50);
-			 break;
-		 }
-	 }
+		case "Application 1":
+			Display_helper(50, 50);
+			break;
 
+		case "Application 2":
+			Display_helper(60, 40);
+			break;
+
+		case "Application 3":
+			Display_helper(50, 50);
+			break;
+		}
+	}
+
+	@FXML
+	void initialize() {
+		// change setting immediately after application launched
+		// change style here since some fxml setting will be override by JMetro
+		tsk4progress.setProgress(-1);
+
+		Task1PieButton.setStyle("-fx-font-size:20");
+		Task1TableButton.setStyle("-fx-font-size:20");
+		Task1Summarybutton.setStyle("-fx-font-size:20");
+		Task1BarButton.setStyle("-fx-font-size:20");
+
+	}
 
 	/**
 	 * Task Zero To be triggered by the "Summary" button on the Task Zero Tab
@@ -441,95 +468,184 @@ public class Controller {
 		}
 	}
 
-	
-	
-
 	/**
-	 * Task four To be triggered get result button
-	 * Anything related to tsk4 will code here
+	 * Task three To be triggered by get result button or Anything related to tsk3
+	 * will code here
 	 * 
 	 */
-	
-    @FXML
-    private Button tsk4ans;
+	@FXML
+	private Button tsk3btn4;
+	@FXML
+	private Button tsk3btn3;
+	@FXML
+	private Button tsk3btn2;
+	@FXML
+	private Button tsk3btn1;
+	@FXML
+	private TextArea tsk3info;
+	@FXML
+	private TextField tsk3yois;
+	@FXML
+	private TextField tsk3yoe;
+	@FXML
+	private TextField tsk3name;
+	@FXML
+	private TextField tsk3gender;
 
-    @FXML
-    private ToggleGroup tsk4_algor;
+	@FXML
+	void tsk3in() {
+		System.out.println("tsk3");
+		tsk3btn1.setDisable(true);
+		tsk3btn2.setDisable(true);
+		tsk3btn3.setDisable(true);
+		tsk3btn4.setDisable(true);
+		boolean isvalid = true;
+		String output="input check:\n";
 
-    @FXML
-    private ProgressBar tsk4progress;
+		String years= tsk3yois.getText();
+		String yeare= tsk3yoe.getText();
+		String name = tsk3name.getText();
+		String gender= tsk3gender.getText();
+		if(years.isBlank()) {isvalid=false;output+="Please input starting year\n";}
+		if(yeare.isBlank()) {isvalid=false;output+="Please input end year\n";}
+		if(name.isBlank()) {isvalid=false;output+="Please input the name of interest\n";}
+		if(gender.isBlank()) {isvalid=false;output+="Please input gender\n";}
+		
+		
+		
+		
+		
+		
+		
+		if (textAreaConsole != null) {
+			textAreaConsole.clear();
+		}
+		if (isvalid) {//if all pass release the button
 
-    @FXML
-    private TextField tsk4namei;
+			textAreaConsole.setText("input check done");
+			tsk3btn1.setDisable(false);
+			tsk3btn2.setDisable(false);
+			tsk3btn3.setDisable(false);
+			tsk3btn4.setDisable(false);
+		} else {//else split error message
+			textAreaConsole.setText(output);
+		}
+	}
 
-    @FXML
-    private TextField tsk4namet;
+	@FXML
+	void tsk3brcht() {// generate and popup barchart
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Output result");
+		alert.setHeaderText(null);
+		alert.setGraphic(null);
+		alert.setContentText(null);
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		final CategoryAxis xAxis = new CategoryAxis();
+		final NumberAxis yAxis = new NumberAxis();
+		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+		bc.setTitle("test bar chart");
+		expContent.add(bc, 0, 0);
+		alert.getDialogPane().setContent(expContent);
+		alert.showAndWait();
+	}
 
-    @FXML
-    private TextField tsk4yobi;
+	@FXML
+	void tsk3lncht() {
 
-    @FXML
-    private TextField tsk4yobt;
-    
-    @FXML
-    void task_four_getresult() {
+	}
 
-    }
-    @FXML
-    void tsk4check() {
+	@FXML
+	void tsk3summary() {
 
-    }
-    
+	}
+
+	@FXML
+	void tsk3table() {
+
+	}
+
+	/**
+	 * Task four To be triggered get result button Anything related to tsk4 will
+	 * code here
+	 * 
+	 */
+
+	@FXML
+	private Button tsk4ans;
+
+	@FXML
+	private ToggleGroup tsk4_algor;
+
+	@FXML
+	private ProgressBar tsk4progress;
+
+	@FXML
+	private TextField tsk4namei;
+
+	@FXML
+	private TextField tsk4namet;
+
+	@FXML
+	private TextField tsk4yobi;
+
+	@FXML
+	private TextField tsk4yobt;
+
+	@FXML
+	void task_four_getresult() {
+
+	}
+
+	@FXML
+	void tsk4check() {
+
+	}
+
 //
-    /**
-	 * Task five To be triggered get result button
-	 * Anything related to tsk5 will code here
+	/**
+	 * Task five To be triggered get result button Anything related to tsk5 will
+	 * code here
 	 * 
 	 */
-    @FXML
-    private Button tsk5ans;
+	@FXML
+	private Button tsk5ans;
 
-    @FXML
-    private ToggleGroup tsk5_algor;
+	@FXML
+	private ToggleGroup tsk5_algor;
 
-    @FXML
-    private ProgressBar tsk5progress;
+	@FXML
+	private ProgressBar tsk5progress;
 
-    @FXML
-    private ToggleGroup tsk5_youth;
+	@FXML
+	private ToggleGroup tsk5_youth;
 
-    @FXML
-    private ToggleGroup tsk5_gender_i;
+	@FXML
+	private ToggleGroup tsk5_gender_i;
 
-    @FXML
-    private TextField tsk5namei;
+	@FXML
+	private TextField tsk5namei;
 
-    @FXML
-    private TextField tsk5yob;
+	@FXML
+	private TextField tsk5yob;
 
-    @FXML
-    private ToggleGroup tsk5_gender_choice;
+	@FXML
+	private ToggleGroup tsk5_gender_choice;
 
-    @FXML
-    void task_five_getresult() {
+	@FXML
+	void task_five_getresult() {
 
-    }
-    @FXML
-    void tsk5check() {
+	}
 
-    }
+	@FXML
+	void tsk5check() {
+
+	}
 	//
-	
-	
 
-	
-	
-	
-	
-	
 	/**
-	 * Task Six klluiaf To be triggered get result button
-	 * Anything related to tsk6 will code here
+	 * Task Six klluiaf To be triggered get result button Anything related to tsk6
+	 * will code here
 	 * 
 	 */
 	@FXML
@@ -559,7 +675,6 @@ public class Controller {
 
 	@FXML
 	private Button task_six_btn_getresult;
-
 
 	@FXML
 	void task_six_getresult() {
