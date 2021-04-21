@@ -34,21 +34,8 @@ public class Task1test extends ApplicationTest {
 	}
 
 
-<<<<<<< HEAD
-	@Test
-	public void testButtonTaskoneTrue() {
-		clickOn("#tabReport1");
-		sleep(100);
-		clickOn("#Task1button");
-		String s1 = t.getText();
-		System.out.println("how are");
-		clickOn("#Task1button");
-		String s2 = t.getText();
-		assertTrue(s1.equals(s2));
-		
-		
-	}
-=======
+
+
 //	@Test
 //	public void testButtonTaskoneTrue() {
 //		clickOn("#tabReport1");
@@ -61,7 +48,7 @@ public class Task1test extends ApplicationTest {
 ////		assertTrue(s1.equals(s2));
 //
 //	}
->>>>>>> refs/heads/paul_feature1
+
 	@Test
 	public void testinput() {
 		clickOn("#tabReport1");
@@ -76,13 +63,12 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
-<<<<<<< HEAD
+
 //		
 		clickOn("#tabReport1");
 		sleep(100);
-=======
-    	clickOn("#tabReport1");
->>>>>>> refs/heads/paul_feature1
+
+
 		year.setText("2010");
 		String s1 = year.getText();
 		int x = Integer.parseInt(s1);
@@ -95,12 +81,10 @@ public class Task1test extends ApplicationTest {
 //    	assertFalse(name.equals("Paul"));
 //		
 		clickOn("#tabReport1");
-<<<<<<< HEAD
+
 		sleep(100);
 		topN.setText("5");
-=======
-		topN.setText("1");
->>>>>>> refs/heads/paul_feature1
+
 		String s1 = topN.getText();
 		int x = Integer.parseInt(s1);
 		assertTrue(x > 0);
