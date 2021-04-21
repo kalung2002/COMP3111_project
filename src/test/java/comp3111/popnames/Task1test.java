@@ -37,7 +37,7 @@ public class Task1test extends ApplicationTest {
 	@Test
 	public void testButtonTaskoneTrue() {
 		clickOn("#tabReport1");
-		
+		sleep(100);
 		clickOn("#Task1button");
 		String s1 = t.getText();
 		System.out.println("how are");
@@ -61,6 +61,9 @@ public class Task1test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 //		
+		clickOn("#tabReport1");
+		sleep(100);
+		year.setText("2010");
 		String s1 = year.getText();
 		int x = Integer.parseInt(s1);
 		assertTrue(x > 0);
@@ -71,6 +74,9 @@ public class Task1test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 //		
+		clickOn("#tabReport1");
+		sleep(100);
+		topN.setText("5");
 		String s1 = topN.getText();
 		int x = Integer.parseInt(s1);
 		assertTrue(x > 0);
