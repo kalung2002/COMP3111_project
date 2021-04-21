@@ -45,15 +45,6 @@ public class Controller {
 	private RowConstraints GRID1;
 
 	@FXML
-	private RowConstraints GRID2;
-
-	@FXML
-	private RowConstraints GRID3;
-
-	@FXML
-	private RowConstraints GRID4;
-
-	@FXML
 	private Tab tabTaskZero;
 
 	@FXML
@@ -80,73 +71,64 @@ public class Controller {
 	@FXML
 	private Button buttonSummary;
 
-	@FXML
-	private Tab tabReport1;
-
-	@FXML
-	private Tab tabReport2;
-
-	@FXML
-	private Tab tabReport3;
-
-	@FXML
-	private Tab tabApp1;
-
-	@FXML
-	private Tab tabApp2;
-
-	@FXML
-	private Tab tabApp3;
-
-	@FXML
-	private Button task_six_btn_getresult;
+//	@FXML
+//	private Tab tabReport1;
+//
+//	@FXML
+//	private Tab tabReport2;
+//
+//	@FXML
+//	private Tab tabReport3;
+//
+//	@FXML
+//	private Tab tabApp1;
+//
+//	@FXML
+//	private Tab tabApp2;
+//
+//	@FXML
+//	private Tab tabApp3;
+//	@FXML
+//	private ToggleGroup T1;
+//	@FXML
+//	private ToggleGroup T11;
+//	@FXML
+//	private ToggleGroup T111;
 
 	@FXML
 	private TextArea textAreaConsole;
-
-	@FXML
-	private ToggleGroup T1;
-	@FXML
-	private ToggleGroup T11;
-	@FXML
-	private ToggleGroup T111;
 	@FXML
     private TabPane MENU_GROUP;
 
-	private void Display_helper(double d, double e, double f, double g, double h) {
+	private void Display_helper(double d, double e) {
 		GRID0.setPercentHeight(d);
 		GRID1.setPercentHeight(e);
-		GRID2.setPercentHeight(f);
-		GRID3.setPercentHeight(g);
-		GRID4.setPercentHeight(h);
 	}
 	 @FXML
 	 void onselect() {
-		 Display_helper(50,50,0,0,0);
+		 Display_helper(50,50);
 		 Tab selected=(Tab)MENU_GROUP.getSelectionModel().getSelectedItem();
 		 if(selected==null) {return;}
 
-			textAreaConsole.setText("");
 		 System.out.println(selected.getText());
 		 switch(selected.getText()){
-		 case "Task Zero":	Display_helper(50,50,0,0,0);
+		 case "Task Zero":	Display_helper(50,50);
 			 break;
 			 
-		 case "Reporting 1":Display_helper(40,60,0,0,0);
+		 case "Reporting 1":Display_helper(40,60);
 			 break;
-		 case "Reporting 2":Display_helper(50,50,0,0,0);
+		 case "Reporting 2":Display_helper(50,50);
 			 break;
-		 case "Reporting 3":Display_helper(60,40,0,0,0);
+		 case "Reporting 3":Display_helper(60,40);
 			 break;
-			 
-
-		 case "Application 1":Display_helper(50,50,0,0,0);
-			 break;
-
-		 case "Application 2":Display_helper(40,10,10,20,20);
+		
+		 case "Application 1":Display_helper(50,50);
 			 break;
 
-		 case "Application 3":Display_helper(50,50,0,0,0);
+		 case "Application 2":Display_helper(60,40);
+			 break;
+
+		 case "Application 3":Display_helper(50,50);
 			 break;
 		 }
 	 }
@@ -277,7 +259,6 @@ public class Controller {
 			series2.getData()
 					.add(new XYChart.Data(AnalyzeNames.getName(iYear, i, "F"), AnalyzeNames.getNumber(iYear, "F", i)));
 		}
-
 		Scene scene = new Scene(bc, 800, 600);
 		bc.getData().addAll(series1, series2);
 		stage.setScene(scene);
@@ -304,7 +285,6 @@ public class Controller {
 			pieChartData_F
 					.add(new PieChart.Data(AnalyzeNames.getName(iYear, i, "F"), AnalyzeNames.getNumber(iYear, "F", i)));
 		}
-
 		final PieChart chart_M = new PieChart(pieChartData_M);
 		final PieChart chart_F = new PieChart(pieChartData_F);
 		chart_M.setTitle("Top " + Text1_name.getText() + " names (Males) in " + Text1_year.getText());
@@ -461,10 +441,94 @@ public class Controller {
 		}
 	}
 
+	
+	
+
+	/**
+	 * Task four To be triggered get result button
+	 * Anything related to tsk4 will code here
+	 * 
+	 */
+	
+    @FXML
+    private Button tsk4ans;
+
+    @FXML
+    private ToggleGroup tsk4_algor;
+
+    @FXML
+    private ProgressBar tsk4progress;
+
+    @FXML
+    private TextField tsk4namei;
+
+    @FXML
+    private TextField tsk4namet;
+
+    @FXML
+    private TextField tsk4yobi;
+
+    @FXML
+    private TextField tsk4yobt;
+    
+    @FXML
+    void task_four_getresult() {
+
+    }
+    @FXML
+    void tsk4check() {
+
+    }
+    
+//
+    /**
+	 * Task five To be triggered get result button
+	 * Anything related to tsk5 will code here
+	 * 
+	 */
+    @FXML
+    private Button tsk5ans;
+
+    @FXML
+    private ToggleGroup tsk5_algor;
+
+    @FXML
+    private ProgressBar tsk5progress;
+
+    @FXML
+    private ToggleGroup tsk5_youth;
+
+    @FXML
+    private ToggleGroup tsk5_gender_i;
+
+    @FXML
+    private TextField tsk5namei;
+
+    @FXML
+    private TextField tsk5yob;
+
+    @FXML
+    private ToggleGroup tsk5_gender_choice;
+
+    @FXML
+    void task_five_getresult() {
+
+    }
+    @FXML
+    void tsk5check() {
+
+    }
+	//
+	
+	
+
+	
+	
+	
+	
+	
 	/**
 	 * Task Six klluiaf To be triggered get result button
-	 * 
-	 *
 	 * Anything related to tsk6 will code here
 	 * 
 	 */
@@ -494,6 +558,10 @@ public class Controller {
 	private Button tsk6ans;
 
 	@FXML
+	private Button task_six_btn_getresult;
+
+
+	@FXML
 	void task_six_getresult() {
 		ToggleButton selected_algor = (ToggleButton) tsk6_algor.getSelectedToggle();
 		if (selected_algor == null) {
@@ -507,7 +575,6 @@ public class Controller {
 
 	@FXML
 	void tsk6check() {
-
 		float status = 0;
 		int counter = 0;
 
