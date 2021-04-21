@@ -1,9 +1,12 @@
 package comp3111.popnames;
 
+import jfxtras.styles.jmetro.*;
+
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 
@@ -49,8 +52,13 @@ public class MyApplication extends Application {
    		VBox root = (VBox) loader.load();
    		Scene scene =  new Scene(root);
    		stage.setScene(scene);
+
+   		JMetro jMetro = new JMetro(Style.LIGHT);
+		jMetro.setScene(scene); 
+   		
    		stage.setTitle("Team T-02: Popular Names");
    		stage.show();
+   		
 	}
 
 	/**
@@ -59,6 +67,7 @@ public class MyApplication extends Application {
 	 */
 	public static void main(String args[]) {
 		Application.launch(args);
+		
 		
 	}
 	 

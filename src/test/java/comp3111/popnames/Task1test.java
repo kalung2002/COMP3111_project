@@ -34,21 +34,21 @@ public class Task1test extends ApplicationTest {
 	}
 
 
-	@Test
-	public void testButtonTaskoneTrue() {
-		clickOn("#tabReport1");
-		
-		clickOn("#Task1button");
-		String s1 = t.getText();
-		System.out.println("how are");
-		clickOn("#Task1button");
-		String s2 = t.getText();
-		assertTrue(s1.equals(s2));
-		
-		
-	}
+//	@Test
+//	public void testButtonTaskoneTrue() {
+//		clickOn("#tabReport1");
+//		
+//		clickOn("#Task1button");
+////		String s1 = t.getText();
+////		System.out.println("how are");
+////		clickOn("#Task1button");
+////		String s2 = t.getText();
+////		assertTrue(s1.equals(s2));
+//
+//	}
 	@Test
 	public void testinput() {
+		clickOn("#tabReport1");
     	AnalyzeNames a = new AnalyzeNames();
     	String name = a.getName(2019, 2192, "F");
     	assertFalse(name.equals("Paul"));
@@ -60,7 +60,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
-//		
+    	clickOn("#tabReport1");
 		year.setText("2010");
 		String s1 = year.getText();
 		int x = Integer.parseInt(s1);
@@ -72,10 +72,20 @@ public class Task1test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 //		
+		clickOn("#tabReport1");
 		topN.setText("1");
 		String s1 = topN.getText();
 		int x = Integer.parseInt(s1);
 		assertTrue(x > 0);
+	}
+	@Test
+	public void test_getTotalOccur() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		AnalyzeNames a = new AnalyzeNames();
+		int test = a.getTotalOccur(2010, "M");
+		assertTrue(test > 0);
 	}
 
 }
