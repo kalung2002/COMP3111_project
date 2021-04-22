@@ -113,5 +113,44 @@ public class Task1test extends ApplicationTest {
 		int test = a.getNumber(2010,"F",1);
 		assertTrue(test == 22883);
 	}
-
+	@Test
+	public void test_Barchart() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		clickOn("#tabReport1");
+		topN.setText("5");
+		year.setText("2000");
+		clickOn("#Task1BarButton");
+	}
+	@Test
+	public void test_Piechart() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		clickOn("#tabReport1");
+		topN.setText("10");
+		year.setText("2010");
+		clickOn("#Task1PieButton");
+	}
+	@Test
+	public void test_getSummary() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		clickOn("#tabReport1");
+		topN.setText("10");
+		year.setText("2010");
+		clickOn("#buttonSummary");
+	}
+	@Test
+	public void test_Table() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		clickOn("#tabReport1");
+		topN.setText("10");
+		year.setText("2010");
+		clickOn("#Task1TableButton");
+	}
 }
