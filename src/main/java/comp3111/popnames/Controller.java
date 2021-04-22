@@ -4,6 +4,9 @@
 package comp3111.popnames;
 
 import java.io.IOException;
+
+import org.apache.commons.lang3.math.NumberUtils;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +30,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.chart.*;
 import javafx.scene.Group;
 import javafx.collections.ObservableList;
@@ -102,6 +106,16 @@ public class Controller {
 	private TextArea textAreaConsole;
 	@FXML
 	private TabPane MENU_GROUP;
+
+	private Alert getAlert(String title) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setGraphic(null);
+		alert.setContentText(null);
+		return alert;
+
+	}
 
 	private void Display_helper(double d, double e) {
 		GRID0.setPercentHeight(d);
@@ -424,22 +438,22 @@ public class Controller {
 		M_table.setEditable(true);
 		F_table.setEditable(true);
 
-		TableColumn M_NameCol = new TableColumn("Name");
-		TableColumn F_NameCol = new TableColumn("Name");
+		TableColumn<Person, String> M_NameCol = new TableColumn<Person, String>("Name");
+		TableColumn<Person, String> F_NameCol = new TableColumn<Person, String>("Name");
 		M_NameCol.setMinWidth(100);
 		M_NameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
 		F_NameCol.setMinWidth(100);
 		F_NameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
 
-		TableColumn M_GenderCol = new TableColumn("Occurrences");
-		TableColumn F_GenderCol = new TableColumn("Occurrences");
+		TableColumn<Person, String> M_GenderCol = new TableColumn<Person, String>("Occurrences");
+		TableColumn<Person, String> F_GenderCol = new TableColumn<Person, String>("Occurrences");
 		M_GenderCol.setMinWidth(200);
 		M_GenderCol.setCellValueFactory(new PropertyValueFactory<Person, String>("occurr"));
 		F_GenderCol.setMinWidth(200);
 		F_GenderCol.setCellValueFactory(new PropertyValueFactory<Person, String>("occurr"));
 
-		TableColumn M_NumberCol = new TableColumn("Percentage");
-		TableColumn F_NumberCol = new TableColumn("Percentage");
+		TableColumn<Person, String> M_NumberCol = new TableColumn<Person, String>("Percentage");
+		TableColumn<Person, String> F_NumberCol = new TableColumn<Person, String>("Percentage");
 		M_NumberCol.setMinWidth(200);
 		M_NumberCol.setCellValueFactory(new PropertyValueFactory<Person, String>("percent"));
 		F_NumberCol.setMinWidth(200);
@@ -563,65 +577,205 @@ public class Controller {
 
 	@FXML
 	void tsk3in() {
-		System.out.println("tsk3");
+//		System.out.println("tsk3");
 		tsk3btn1.setDisable(true);
 		tsk3btn2.setDisable(true);
 		tsk3btn3.setDisable(true);
 		tsk3btn4.setDisable(true);
 		boolean isvalid = true;
-		String output="input check:\n";
+		String output = "input check:\n";
 
-		String years= tsk3yois.getText();
-		String yeare= tsk3yoe.getText();
+		String years = tsk3yois.getText();
+		String yeare = tsk3yoe.getText();
 		String name = tsk3name.getText();
-		String gender= tsk3gender.getText();
-		if(years.isBlank()) {isvalid=false;output+="Please input starting year\n";}
-		if(yeare.isBlank()) {isvalid=false;output+="Please input end year\n";}
-		if(name.isBlank()) {isvalid=false;output+="Please input the name of interest\n";}
-		if(gender.isBlank()) {isvalid=false;output+="Please input gender\n";}
-		
-		
-		
-		
-		
-		
-		
+		String gender = tsk3gender.getText();
+		if (years.isBlank()) {
+			isvalid = false;
+			output += "Please input starting year\n";
+		} else if (!NumberUtils.isCreatable(years)) {// if isn't number
+			isvalid = false;
+			output += "Please input a valid number\n";
+		} else {
+			int a = Integer.parseInt(years);
+			if (a < 1880 || a > 2019) {
+				isvalid = false;
+				output += "Please input year within range\n";
+
+			}
+
+		}
+
+		if (yeare.isBlank()) {
+			isvalid = false;
+			output += "Please input end year\n";
+		} else if (!NumberUtils.isCreatable(yeare)) {// if isn't number
+			isvalid = false;
+			output += "Please input a valid number\n";
+		} else {
+			int b = Integer.parseInt(yeare);
+			if (b < 1880 || b > 2019) {
+				isvalid = false;
+				output += "Please input year within range\n";
+			}
+
+		}
+
+		if (isvalid) {// check start year and end year
+			int a = Integer.parseInt(years);
+			int b = Integer.parseInt(yeare);
+			if (b < a) {
+				isvalid = false;
+
+				output += Integer.toString(a) + '>';
+				output += Integer.toString(b) + ' ';
+				output += "error:start year is greater than end year\n";
+			}
+		}
+
+		if (name.isBlank()) {
+			isvalid = false;
+			output += "Please input the name of interest\n";
+		} else if (!name.chars().allMatch(Character::isLetter)) {
+			isvalid = false;
+			output += "Please input a valid name(only character)\n";
+		} else if (name.length() > 15 || name.length() < 2) {
+			isvalid = false;
+			output += "Please input a valid name(2~15 characters)\n";
+
+		}
+
+		if (gender.isBlank()) {
+			isvalid = false;
+			output += "Please input gender\n";
+		} else if (!(gender.equals("M") || gender.equals("F"))) {
+			isvalid = false;
+			output += "Please input valid gender(M/F)\n";
+		}
+
 		if (textAreaConsole != null) {
 			textAreaConsole.clear();
 		}
-		if (isvalid) {//if all pass release the button
 
-			textAreaConsole.setText("input check done");
+		if (isvalid) {// if all pass release the button
+
+			textAreaConsole.setText("input check done\nclick on the buttons to get report");
 			tsk3btn1.setDisable(false);
 			tsk3btn2.setDisable(false);
 			tsk3btn3.setDisable(false);
 			tsk3btn4.setDisable(false);
-		} else {//else split error message
+		} else {// else split error message
 			textAreaConsole.setText(output);
 		}
 	}
 
 	@FXML
 	void tsk3brcht() {// generate and popup barchart
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Output result");
-		alert.setHeaderText(null);
-		alert.setGraphic(null);
-		alert.setContentText(null);
+		String years = tsk3yois.getText();
+		String yeare = tsk3yoe.getText();
+		String name = tsk3name.getText();
+		String gender = tsk3gender.getText();
+		int start_year = Integer.parseInt(years);
+		int end_year = Integer.parseInt(yeare);
+		boolean existdata = false;
+		for (int i = start_year; i <= end_year; i++) {
+			if (AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender) >= 0) {
+				existdata = true;
+			}
+		}
+		if(!existdata) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Data not found error");
+			alert.setContentText("Ooops, the information you entered has no record in our database");
+			alert.showAndWait();
+			return;
+		}
+
+		final CategoryAxis xAxis = new CategoryAxis();
+		xAxis.setLabel("year");
+
+		final NumberAxis yAxis = new NumberAxis();
+		yAxis.setLabel("occurance");
+
+		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+		bc.setTitle("bar chart of birth in specific name in a period");
+
+		XYChart.Series<String, Number> dataseries = new XYChart.Series();
+		dataseries.setName("year");
+		for (int i = start_year; i <= end_year; i++) {
+			dataseries.getData().add(
+					new XYChart.Data(Integer.toString(i), AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender)));
+		}
+
+		bc.getData().add(dataseries);
+
 		GridPane expContent = new GridPane();
 		expContent.setMaxWidth(Double.MAX_VALUE);
-		final CategoryAxis xAxis = new CategoryAxis();
-		final NumberAxis yAxis = new NumberAxis();
-		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
-		bc.setTitle("test bar chart");
 		expContent.add(bc, 0, 0);
+
+//		String a =Integer.toString(AnalyzeNames.tsk3csv_find_name_by_year(start_year,name,gender));
+
+		Alert alert = getAlert("bar chart");
+
 		alert.getDialogPane().setContent(expContent);
 		alert.showAndWait();
+		
 	}
 
 	@FXML
 	void tsk3lncht() {
 
+		String years = tsk3yois.getText();
+		String yeare = tsk3yoe.getText();
+		String name = tsk3name.getText();
+		String gender = tsk3gender.getText();
+		int start_year = Integer.parseInt(years);
+		int end_year = Integer.parseInt(yeare);
+		boolean existdata = false;
+		for (int i = start_year; i <= end_year; i++) {
+			if (AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender) >= 0) {
+				existdata = true;
+			}
+		}
+		if(!existdata) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Data not found error");
+			alert.setContentText("Ooops, the information you entered has no record in our database");
+			alert.showAndWait();
+			return;
+		}
+		
+		final NumberAxis xAxis = new NumberAxis(start_year-2,end_year+2,2);
+		xAxis.setLabel("year");
+
+		final NumberAxis yAxis = new NumberAxis();
+		yAxis.setLabel("occurance");
+		
+		LineChart<Number, Number> lc = new LineChart<Number, Number>(xAxis, yAxis);
+		lc.setTitle("bar chart of birth in specific name in a period");
+		
+		Series<Number, Number> dataseries = new XYChart.Series<Number, Number>(); 
+		dataseries.setName("Year"); 
+		for (int i = start_year; i <= end_year; i++) {
+			dataseries.getData().add(
+					new XYChart.Data(i, AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender)));
+		}
+
+		
+		lc.getData().add(dataseries);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(lc, 0, 0);
+
+//		String a =Integer.toString(AnalyzeNames.tsk3csv_find_name_by_year(start_year,name,gender));
+
+		Alert alert = getAlert("line chart");
+
+		alert.getDialogPane().setContent(expContent);
+		alert.showAndWait();
+		
 	}
 
 	@FXML
