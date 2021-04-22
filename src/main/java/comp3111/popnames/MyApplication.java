@@ -3,6 +3,7 @@ package comp3111.popnames;
 import jfxtras.styles.jmetro.*;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.RowConstraints;
@@ -45,6 +46,7 @@ public class MyApplication extends Application {
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
+		
     	FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource(UI_FILE));
    		VBox root = (VBox) loader.load();
@@ -68,6 +70,5 @@ public class MyApplication extends Application {
 		
 		
 	}
-
-
+	 
 }

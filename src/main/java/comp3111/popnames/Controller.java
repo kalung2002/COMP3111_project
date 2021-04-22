@@ -39,7 +39,7 @@ import javafx.geometry.Insets;
 import javafx.scene.text.Font;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import java.awt.Toolkit;
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -262,9 +262,28 @@ public class Controller {
 	// generate Summary
 	void Generate_BarChart() throws IOException {
 
+
+		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		if (Text1_year.getText().isEmpty())
+			return;
+		if (Text1_name.getText().isEmpty())
+			return;
+		if (name_isNum == false) {
+			return;
+		}
+		if (year_isNum == false) {
+			return;
+		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-
+		
+		if(iYear>2019 || iYear<1880) {
+			return;
+		}
+		if(topN < 1 || topN > 10) {
+			return;
+		}
 		// Generate BarChart
 		Stage stage;
 		stage = new Stage();
@@ -295,14 +314,36 @@ public class Controller {
 
 	@FXML
 	void Generate_PieChart() {
+
+		if (Text1_year.getText().isEmpty())
+			return;
+		if (Text1_name.getText().isEmpty())
+			return;
+		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		if (name_isNum == false) {
+			return;
+		}
+		if (year_isNum == false) {
+			return;
+		}
+		int iYear = Integer.parseInt(Text1_year.getText());
+		int topN = Integer.parseInt(Text1_name.getText());
+		
+		if(iYear>2019 || iYear<1880) {
+			return;
+		}
+		if(topN < 1 || topN > 10) {
+			return;
+		}
+		
 		Scene scene = new Scene(new Group());
 		Stage stage;
 		stage = new Stage();
 		stage.setTitle("Imported Fruits");
 		stage.setWidth(1000);
 		stage.setHeight(500);
-		int iYear = Integer.parseInt(Text1_year.getText());
-		int topN = Integer.parseInt(Text1_name.getText());
+
 		ObservableList<PieChart.Data> pieChartData_M = FXCollections.observableArrayList();
 		ObservableList<PieChart.Data> pieChartData_F = FXCollections.observableArrayList();
 		for (int i = 1; i <= topN; i++) {
@@ -327,24 +368,40 @@ public class Controller {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	void Generate_Table() {
-
+		
+		if (Text1_year.getText().isEmpty())
+			return;
+		if (Text1_name.getText().isEmpty())
+			return;
+		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		if (name_isNum == false) {
+			return;
+		}
+		if (year_isNum == false) {
+			return;
+		}
 		TableView<Person> M_table = new TableView<Person>();
 		TableView<Person> F_table = new TableView<Person>();
 
 		final ObservableList<Person> M_data = FXCollections.observableArrayList();
 		final ObservableList<Person> F_data = FXCollections.observableArrayList();
-		if (Text1_year.getText().isEmpty())
-			return;
-		if (Text1_name.getText().isEmpty())
-			return;
+
+
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
+		
+		if(iYear>2019 || iYear<1880) {
+			return;
+		}
+		if(topN < 1 || topN > 10) {
+			return;
+		}
 
 		for (int i = 1; i <= topN; i++) {
 
 			float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", i) / AnalyzeNames.getTotalOccur(iYear, "M");
-			float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", i)
-					/ AnalyzeNames.getTotalOccur(iYear, "F");
+			float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", i)/ AnalyzeNames.getTotalOccur(iYear, "F");
 			String Mpercent = String.valueOf(Malepercent * 100) + "%";
 			String Fpercent = String.valueOf(Femalepercent * 100) + "%";
 			F_data.add(new Person(AnalyzeNames.getName(iYear, i, "F"),
@@ -412,61 +469,73 @@ public class Controller {
 //    	        ((Group) scene.getRoot()).getChildren().add(label);
 //    	        ((Group) scene.getRoot()).getChildren().add(M_table);
 //    	        ((Group) scene.getRoot()).getChildren().add(F_table);    	 
-		stage.setScene(scene);
-		stage.show();
-	}
-
-	@FXML
-	void Generate_Summary() {
-		String oReport = "";
-		int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
-		float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", 1) / AnalyzeNames.getTotalOccur(iYear, "M");
-		float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", 1) / AnalyzeNames.getTotalOccur(iYear, "F");
-		oReport = String.format("Summary of Results in the year %d:\n", iYear);
-
-		oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",
-				AnalyzeNames.getName(iYear, 1, "M"), Malepercent * 100);
-		oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",
-				AnalyzeNames.getName(iYear, 1, "F"), Femalepercent * 100);
-		textAreaConsole.setText(oReport);
-	}
-
-	public static class Person {
-
-		private final SimpleStringProperty name;
-		private final SimpleStringProperty occurr;
-		private final SimpleStringProperty percent;
-
-		private Person(String fName, String Gender, String Number) {
-			this.name = new SimpleStringProperty(fName);
-			this.occurr = new SimpleStringProperty(Gender);
-			this.percent = new SimpleStringProperty(Number);
+    	        stage.setScene(scene);
+    	        stage.show();
+    }    
+    @FXML
+    void  Generate_Summary(){
+		if (Text1_year.getText().isEmpty())
+			return;
+		if (Text1_name.getText().isEmpty())
+			return;
+		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		if (name_isNum == false) {
+			return;
 		}
-
-		public String getName() {
-			return name.get();
+		if (year_isNum == false) {
+			return;
 		}
+		
+    	String oReport = "";
+    	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
+    	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
+    	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
+    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
+    	
+    	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "M"),Malepercent*100);
+    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "F"), Femalepercent*100);
+    	textAreaConsole.setText(oReport);    	
+    }
+    public static class Person {
+    	 
+        private final SimpleStringProperty name;
+        private final SimpleStringProperty occurr;
+        private final SimpleStringProperty percent;
+ 
+        private Person(String fName, String Gender, String Number) {
+            this.name = new SimpleStringProperty(fName);
+            this.occurr = new SimpleStringProperty(Gender);
+            this.percent = new SimpleStringProperty(Number);
+        }
+ 
+        public String getName() {
+            return name.get();
+        }
+ 
+        public void setName(String fName) {
+        	name.set(fName);
+        }
+ 
+        public String getOccurr() {
+            return occurr.get();
+        }
+ 
+        public void setOccurr(String fName) {
+        	occurr.set(fName);
+        }
+ 
+        public String getPercent() {
+            return percent.get();
+        }
+ 
+        public void setPercent(String fName) {
+        	percent.set(fName);
+        }
+    }
 
-		public void setName(String fName) {
-			name.set(fName);
-		}
 
-		public String getOccurr() {
-			return occurr.get();
-		}
-
-		public void setOccurr(String fName) {
-			occurr.set(fName);
-		}
-
-		public String getPercent() {
-			return percent.get();
-		}
-
-		public void setPercent(String fName) {
-			percent.set(fName);
-		}
-	}
+	
 
 	/**
 	 * Task three To be triggered by get result button or Anything related to tsk3
@@ -737,5 +806,6 @@ public class Controller {
 			tsk6ans.setDisable(true);
 		}
 	}
+
 
 }
