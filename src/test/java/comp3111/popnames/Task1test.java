@@ -81,13 +81,18 @@ public class Task1test extends ApplicationTest {
 //    	assertFalse(name.equals("Paul"));
 //		
 		clickOn("#tabReport1");
-
 		sleep(100);
 		topN.setText("5");
-
 		String s1 = topN.getText();
+		
+		clickOn("#tabReport1");
+		String s2 = topN.getText();
 		int x = Integer.parseInt(s1);
-		assertTrue(x > 0);
+		assertTrue(x == 5);
+		
+		x = Integer.parseInt(s2);
+		assertTrue(x == 5);
+		assertTrue(s1.equals(s2));
 	}
 	@Test
 	public void test_getTotalOccur() {
@@ -96,7 +101,17 @@ public class Task1test extends ApplicationTest {
 //    	assertFalse(name.equals("Paul"));
 		AnalyzeNames a = new AnalyzeNames();
 		int test = a.getTotalOccur(2010, "M");
-		assertTrue(test > 0);
+		assertTrue(test == 1913851);
+		
+	}
+	@Test
+	public void test_getNumber() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		AnalyzeNames a = new AnalyzeNames();
+		int test = a.getNumber(2010,"F",1);
+		assertTrue(test == 22883);
 	}
 
 }
