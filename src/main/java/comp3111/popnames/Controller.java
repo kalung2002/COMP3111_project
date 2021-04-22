@@ -613,7 +613,7 @@ public class Controller {
 				existdata = true;
 			}
 		}
-		if(!existdata) {
+		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
@@ -641,7 +641,7 @@ public class Controller {
 		bc.getData().add(dataseries);
 
 		GridPane expContent = new GridPane();
-		expContent.setMaxWidth(Double.MAX_VALUE);
+//		expContent.setMaxWidth(Double.MAX_VALUE);
 		expContent.add(bc, 0, 0);
 
 //		String a =Integer.toString(AnalyzeNames.tsk3csv_find_name_by_year(start_year,name,gender));
@@ -650,7 +650,7 @@ public class Controller {
 
 		alert.getDialogPane().setContent(expContent);
 		alert.showAndWait();
-		
+
 	}
 
 	@FXML
@@ -668,7 +668,7 @@ public class Controller {
 				existdata = true;
 			}
 		}
-		if(!existdata) {
+		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
@@ -676,28 +676,26 @@ public class Controller {
 			alert.showAndWait();
 			return;
 		}
-		
-		final NumberAxis xAxis = new NumberAxis(start_year-2,end_year+2,2);
+
+		final NumberAxis xAxis = new NumberAxis(start_year - 2, end_year + 2, 2);
 		xAxis.setLabel("year");
 
 		final NumberAxis yAxis = new NumberAxis();
 		yAxis.setLabel("occurance");
-		
+
 		LineChart<Number, Number> lc = new LineChart<Number, Number>(xAxis, yAxis);
 		lc.setTitle("bar chart of birth in specific name in a period");
-		
-		Series<Number, Number> dataseries = new XYChart.Series<Number, Number>(); 
-		dataseries.setName("Year"); 
+
+		Series<Number, Number> dataseries = new XYChart.Series<Number, Number>();
+		dataseries.setName("Year");
 		for (int i = start_year; i <= end_year; i++) {
-			dataseries.getData().add(
-					new XYChart.Data(i, AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender)));
+			dataseries.getData().add(new XYChart.Data(i, AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender)));
 		}
 
-		
 		lc.getData().add(dataseries);
 
 		GridPane expContent = new GridPane();
-		expContent.setMaxWidth(Double.MAX_VALUE);
+//		expContent.setMaxWidth(Double.MAX_VALUE);
 		expContent.add(lc, 0, 0);
 
 //		String a =Integer.toString(AnalyzeNames.tsk3csv_find_name_by_year(start_year,name,gender));
@@ -706,17 +704,139 @@ public class Controller {
 
 		alert.getDialogPane().setContent(expContent);
 		alert.showAndWait();
-		
+
 	}
 
 	@FXML
 	void tsk3summary() {
+		String years = tsk3yois.getText();
+		String yeare = tsk3yoe.getText();
+		String name = tsk3name.getText();
+		String gender = tsk3gender.getText();
+		int start_year = Integer.parseInt(years);
+		int end_year = Integer.parseInt(yeare);
+		boolean existdata = false;
+		for (int i = start_year; i <= end_year; i++) {
+			if (AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender) >= 0) {
+				existdata = true;
+			}
+		}
+		if (!existdata) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Data not found error");
+			alert.setContentText("Ooops, the information you entered has no record in our database");
+			alert.showAndWait();
+			return;
+		}
+		String out = "summary:\n";
+		int rank = AnalyzeNames.tsk3csv_get_highest_rank(start_year, end_year, name, gender);
+		int year = AnalyzeNames.tsk3csv_get_highest_year(start_year, end_year, name, gender);
+		out += rank +' '+ '\n';
+		out += year +' '+ '\n';
+		Alert alert = getAlert("Summary");
+		alert.setContentText(out);
+		alert.showAndWait();
 
 	}
 
+	public static class tsk3entry {
+		private final SimpleStringProperty year;
+		private final SimpleStringProperty rank;
+		private final SimpleStringProperty occu;
+		private final SimpleStringProperty pcnt;
+
+		tsk3entry(String year, String rank, String occu, String pcnt) {
+			this.year = new SimpleStringProperty(year);
+			this.rank = new SimpleStringProperty(rank);
+			this.occu = new SimpleStringProperty(occu);
+			this.pcnt = new SimpleStringProperty(pcnt);
+		}
+
+		public String getYear() {
+			return this.year.get();
+		}
+
+		public String getRank() {
+			return this.rank.get();
+		}
+
+		public String getOccu() {
+			return this.occu.get();
+		}
+
+		public String getPcnt() {
+			return this.pcnt.get();
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
 	@FXML
 	void tsk3table() {
 
+		String years = tsk3yois.getText();
+		String yeare = tsk3yoe.getText();
+		String name = tsk3name.getText();
+		String gender = tsk3gender.getText();
+		int start_year = Integer.parseInt(years);
+		int end_year = Integer.parseInt(yeare);
+		boolean existdata = false;
+		for (int i = start_year; i <= end_year; i++) {
+			if (AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender) >= 0) {
+				existdata = true;
+			}
+		}
+		if (!existdata) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Data not found error");
+			alert.setContentText("Ooops, the information you entered has no record in our database");
+			alert.showAndWait();
+			return;
+		}
+		/////////////////////////////
+		TableView<tsk3entry> table = new TableView<tsk3entry>();
+		final ObservableList<tsk3entry> data = FXCollections.observableArrayList();
+
+		for (int i = start_year; i <= end_year; i++) {
+			String year = Integer.toString(i);
+			String rank = Integer.toString(AnalyzeNames.getRank(i, name, gender));
+			int occui = AnalyzeNames.tsk3csv_find_name_by_year(i, name, gender);
+			int occount = AnalyzeNames.getTotalOccur(i, gender);
+			float percent = (float) occui / occount;
+			String occu = Integer.toString(occui);
+			String pcnt = Float.toString(percent * 100.0f) + '%';
+//			System.out.println(year+":"+rank+":"+occount+":"+percent);
+			data.add(new tsk3entry(year, rank, occu, pcnt));
+		}
+
+		////////////////////////////////////////////////
+
+		TableColumn<tsk3entry, String> YearCol = new TableColumn<tsk3entry, String>("Year");
+		TableColumn<tsk3entry, String> RankCol = new TableColumn<tsk3entry, String>("Rank");
+		TableColumn<tsk3entry, String> OccuCol = new TableColumn<tsk3entry, String>("Occurrences");
+		TableColumn<tsk3entry, String> PcntCol = new TableColumn<tsk3entry, String>("Percentage");
+
+		YearCol.setCellValueFactory(new PropertyValueFactory<tsk3entry, String>("year"));
+		RankCol.setCellValueFactory(new PropertyValueFactory<tsk3entry, String>("rank"));
+		OccuCol.setCellValueFactory(new PropertyValueFactory<tsk3entry, String>("occu"));
+		PcntCol.setCellValueFactory(new PropertyValueFactory<tsk3entry, String>("pcnt"));
+
+		table.setItems(data);
+		table.getColumns().addAll(YearCol, RankCol, OccuCol, PcntCol);
+		////////////////////////////////////////
+
+		GridPane expContent = new GridPane();
+		final Label label = new Label("Data table");
+		label.setFont(new Font("Arial", 20));
+		final VBox databox = new VBox();
+		databox.getChildren().addAll(label,table);
+		expContent.add(databox, 0, 0);
+
+		Alert alert = getAlert("Table");
+		alert.getDialogPane().setContent(expContent);
+		alert.showAndWait();
 	}
 
 	/**

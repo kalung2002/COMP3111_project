@@ -140,5 +140,26 @@ public class AnalyzeNames {
 		if(out>0) {return out;}
 		return -1;
 	}
+	public static int tsk3csv_get_highest_rank(int years,int yeare,String name,String gender) {
+		int rank=-1;
+		for(int i=years;i<=yeare;i++) {
+			if(getRank(i,name,gender)>rank) {
+				rank=getRank(i,name,gender);
+			}
+		}
+		return rank;
+	}
+	public static int tsk3csv_get_highest_year(int years,int yeare,String name,String gender) {
+		int rank=-1;
+		int out=0;
+		for(int i=years;i<=yeare;i++) {
+			if(getRank(i,name,gender)>rank) {
+				rank=getRank(i,name,gender);
+				out=i;
+			}
+		}
+		return out;
+	}
+	
 
 }
