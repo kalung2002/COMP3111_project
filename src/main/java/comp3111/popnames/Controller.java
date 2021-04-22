@@ -36,7 +36,7 @@ import javafx.geometry.Insets;
 import javafx.scene.text.Font;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import java.awt.Toolkit;
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -237,7 +237,7 @@ public class Controller {
 
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		boolean year_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
@@ -250,6 +250,13 @@ public class Controller {
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
+		
+		if(iYear>2019 || iYear<1880) {
+			return;
+		}
+		if(topN < 1 || topN > 10) {
+			return;
+		}
 		// Generate BarChart
 		Stage stage;
 		stage = new Stage();
@@ -286,7 +293,7 @@ public class Controller {
 		if (Text1_name.getText().isEmpty())
 			return;
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		boolean year_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		if (name_isNum == false) {
 			return;
 		}
@@ -295,6 +302,14 @@ public class Controller {
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
+		
+		if(iYear>2019 || iYear<1880) {
+			return;
+		}
+		if(topN < 1 || topN > 10) {
+			return;
+		}
+		
 		Scene scene = new Scene(new Group());
 		Stage stage;
 		stage = new Stage();
@@ -326,12 +341,13 @@ public class Controller {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	void Generate_Table() {
+		
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		boolean year_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		if (name_isNum == false) {
 			return;
 		}
@@ -348,13 +364,17 @@ public class Controller {
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 		
+		if(iYear>2019 || iYear<1880) {
+			return;
+		}
+		if(topN < 1 || topN > 10) {
+			return;
+		}
 
-		
 		for (int i = 1; i <= topN; i++) {
 
 			float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", i) / AnalyzeNames.getTotalOccur(iYear, "M");
-			float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", i)
-					/ AnalyzeNames.getTotalOccur(iYear, "F");
+			float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", i)/ AnalyzeNames.getTotalOccur(iYear, "F");
 			String Mpercent = String.valueOf(Malepercent * 100) + "%";
 			String Fpercent = String.valueOf(Femalepercent * 100) + "%";
 			F_data.add(new Person(AnalyzeNames.getName(iYear, i, "F"),
@@ -432,7 +452,7 @@ public class Controller {
 		if (Text1_name.getText().isEmpty())
 			return;
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		boolean year_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		if (name_isNum == false) {
 			return;
 		}
