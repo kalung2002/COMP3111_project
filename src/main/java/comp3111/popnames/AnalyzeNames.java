@@ -126,40 +126,61 @@ public class AnalyzeNames {
 
 		return NumberOccurr;
 	}
-	
-	public static int tsk3csv_find_name_by_year(int year,String name,String gender) {
-		int out =0;
+
+	public static int tsk3csv_find_name_by_year(int year, String name, String gender) {
+		int out = 0;
 		for (CSVRecord rec : getFileParser(year)) {
-			if(rec.get(1).equals(gender)) {
-				if(rec.get(0).equals(name)) {
-					out=Integer.parseInt(rec.get(2));
+			if (rec.get(1).equals(gender)) {
+				if (rec.get(0).equals(name)) {
+					out = Integer.parseInt(rec.get(2));
 				}
 			}
 		}
-		
-		if(out>0) {return out;}
+
+		if (out > 0) {
+			return out;
+		}
 		return -1;
 	}
-	public static int tsk3csv_get_highest_rank(int years,int yeare,String name,String gender) {
-		int rank=-1;
-		for(int i=years;i<=yeare;i++) {
-			if(getRank(i,name,gender)>rank) {
-				rank=getRank(i,name,gender);
+
+	public static int tsk3csv_get_highest_rank(int years, int yeare, String name, String gender) {
+		int rank = -1;
+		for (int i = years; i <= yeare; i++) {
+			if (getRank(i, name, gender) > rank) {
+				rank = getRank(i, name, gender);
 			}
 		}
 		return rank;
 	}
-	public static int tsk3csv_get_highest_year(int years,int yeare,String name,String gender) {
-		int rank=-1;
-		int out=0;
-		for(int i=years;i<=yeare;i++) {
-			if(getRank(i,name,gender)>rank) {
-				rank=getRank(i,name,gender);
-				out=i;
+
+	public static int tsk3csv_get_highest_year(int years, int yeare, String name, String gender) {
+		int rank = -1;
+		int out = 0;
+		for (int i = years; i <= yeare; i++) {
+			if (getRank(i, name, gender) > rank) {
+				rank = getRank(i, name, gender);
+				out = i;
 			}
 		}
 		return out;
 	}
-	
+
+	public static int tsk3csv_num_entry_by_gender(int year, String gender) {
+		int count = 0;
+		for (CSVRecord rec : getFileParser(year)) {
+			if (rec.get(1).equals(gender)) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public static int tsk6csv_num_entry(int year) {
+		int count = 0;
+		for (CSVRecord rec : getFileParser(year)) {
+			count++;
+		}
+		return count;
+	}
 
 }
