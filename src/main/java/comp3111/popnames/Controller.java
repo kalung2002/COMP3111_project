@@ -732,8 +732,19 @@ public class Controller {
 		String out = "summary:\n";
 		int rank = AnalyzeNames.tsk3csv_get_highest_rank(start_year, end_year, name, gender);
 		int year = AnalyzeNames.tsk3csv_get_highest_year(start_year, end_year, name, gender);
-		out += rank +' '+ '\n';
-		out += year +' '+ '\n';
+
+		int occui = AnalyzeNames.tsk3csv_find_name_by_year(year, name, gender);
+		int occount = AnalyzeNames.getTotalOccur(year, gender);
+		float percent = (float) occui / occount;
+
+		out += "Name of interest : " + name + '\n';
+		out += "The most popular year for this name is " + Integer.toString(year) + "\n";
+		out += "It was ranked " + Integer.toString(rank) + " out of "
+				+ AnalyzeNames.tsk3csv_num_entry_by_gender(year, gender) + "\n";
+
+		out += "It occured " + Integer.toString(occui) + " times" + "\n";
+		out += "This was accounted for " + Float.toString(percent * 100.0f) + '%' + " of the total names" + "\n";
+
 		Alert alert = getAlert("Summary");
 		alert.setContentText(out);
 		alert.showAndWait();
@@ -831,7 +842,7 @@ public class Controller {
 		final Label label = new Label("Data table");
 		label.setFont(new Font("Arial", 20));
 		final VBox databox = new VBox();
-		databox.getChildren().addAll(label,table);
+		databox.getChildren().addAll(label, table);
 		expContent.add(databox, 0, 0);
 
 		Alert alert = getAlert("Table");
@@ -952,14 +963,120 @@ public class Controller {
 
 	@FXML
 	void task_six_getresult() {
+		RadioButton selected_gender_i = (RadioButton) tsk6_gender_i.getSelectedToggle();
+		RadioButton selected_gender_t = (RadioButton) tsk6_gender_t.getSelectedToggle();
+
+		ToggleButton selected_age = (ToggleButton) tsk6_youth.getSelectedToggle();
 		ToggleButton selected_algor = (ToggleButton) tsk6_algor.getSelectedToggle();
-		if (selected_algor == null) {
-			textAreaConsole.setText("please select alogrithm");
+
+		String namei = tsk6namei.getText();
+		String namet = tsk6namet.getText();
+		/////////////////////////////
+		String yobs = tsk6yob.getText();
+		boolean isvalid = true;
+		String output = "Message:\n";
+		if (yobs.isBlank()) {
+			isvalid = false;
+			output += "Error this should be blocked by tsk6check\n";
+
+		} else if (!NumberUtils.isCreatable(yobs)) {// if isn't number
+			isvalid = false;
+			output += "Please input a valid digit\n";
+
+		} else {
+			int a = Integer.parseInt(yobs);
+			if (a < 1880 || a > 2019) {
+				isvalid = false;
+				output += "Please input a year within range(1880-2019)\n";
+			}
+		}
+		if (!isvalid) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Data not found error");
+			alert.setContentText(output);
+			alert.showAndWait();
 			return;
 		}
+		////////////////////////////////////////////////////////////////////////////////
+		// input check complete
+		// start data parsing
+		////////////////////////////////////////////////////////////////////////////////
+		int yob = Integer.parseInt(yobs);
+		/////////////////////////////
+		String genderi = selected_gender_i.getText();
+		String gender = null;
+		if (genderi.contains("female")) {
+			gender = "F";
+		} else {
+			gender = "M";
+		}
+		/////////////////////////////
+		String gendert = selected_gender_t.getText();
+		String gender1 = null;
+		if (gendert.contains("female")) {
+			gender1 = "F";
+		} else {
+			gender1 = "M";
+		}
+		/////////////////////////////
+		String age_pref = selected_age.getText();
+		/////////////////////////////
+		// data parsing done
+		// calculation start
+		/////////////////////////////
+		boolean existdata = false;
+		if (AnalyzeNames.tsk3csv_find_name_by_year(yob, namei, gender) >= 0
+				&& AnalyzeNames.tsk3csv_find_name_by_year(yob, namet, gender1) >= 0) {
+			existdata = true;
+
+		}
+		if (!existdata) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Data not found error");
+			alert.setContentText("Ooops, the information you entered has no record in our database");
+			alert.showAndWait();
+			return;
+		}
+		//////////////////////////////////////////////////////////////////////
+		// score calculation and explanation here
+		GridPane exp = new GridPane();
+
+		float score = 1.0f;
+		String out = "Capability score:";
+		String explain = "Explaination:\n";
 		String salgor = selected_algor.getText();
-//    	System.out.print(salgor);
-		textAreaConsole.setText(salgor);
+		if (salgor.equals("T6X1")) {
+			if (namei.length() != namet.length()) {
+				score = 0.0f;
+				explain += "name is not in equal length\n";
+			}
+			explain += "name is in equal length\n";
+		} else {
+			int diff = Math.abs(namei.length() - namet.length());
+			if (diff != 0) {
+				score *= ((float) (100 - diff) / 100.0f);
+				explain += "Name in the same length might have a higher chance of being soulmate\n";
+			}
+
+			int diffrank = Math
+					.abs(AnalyzeNames.getRank(yob, namet, gender1) - AnalyzeNames.getRank(yob, namei, gender));
+			if (diffrank != 0) {
+				score *= (1 - Math.sqrt((double) diffrank / AnalyzeNames.tsk6csv_num_entry(yob)));
+				explain += "Name with similar rarity may have higher chance to get along with each other\n";
+			}
+		}
+		// done calculation
+		//////////////////////////////////////////////////////////////////////
+
+		TextArea textArea = new TextArea(explain);
+		exp.add(textArea, 0, 0);
+
+		Alert alert = getAlert("Result");
+		alert.setContentText(out + Float.toString(score * 100f) + '%');
+		alert.getDialogPane().setExpandableContent(exp);
+		alert.showAndWait();
 	}
 
 	@FXML
