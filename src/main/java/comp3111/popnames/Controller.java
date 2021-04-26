@@ -395,13 +395,6 @@ public class Controller {
 		if (year_isNum == false) {
 			return;
 		}
-		TableView<Person> M_table = new TableView<Person>();
-		TableView<Person> F_table = new TableView<Person>();
-
-		final ObservableList<Person> M_data = FXCollections.observableArrayList();
-		final ObservableList<Person> F_data = FXCollections.observableArrayList();
-
-
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 		
@@ -411,6 +404,14 @@ public class Controller {
 		if(topN < 1 || topN > 10) {
 			return;
 		}
+		TableView<Person> M_table = new TableView<Person>();
+		TableView<Person> F_table = new TableView<Person>();
+
+		final ObservableList<Person> M_data = FXCollections.observableArrayList();
+		final ObservableList<Person> F_data = FXCollections.observableArrayList();
+
+
+
 
 		for (int i = 1; i <= topN; i++) {
 
