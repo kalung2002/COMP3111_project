@@ -44,6 +44,7 @@ import javafx.scene.text.Font;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.awt.Toolkit;
+
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -279,6 +280,7 @@ public class Controller {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
@@ -289,6 +291,7 @@ public class Controller {
 		if (year_isNum == false) {
 			return;
 		}
+		
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 		
@@ -333,8 +336,10 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
+		
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (name_isNum == false) {
 			return;
 		}
@@ -387,8 +392,10 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
+		
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (name_isNum == false) {
 			return;
 		}
@@ -493,8 +500,10 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
+		
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (name_isNum == false) {
 			return;
 		}
@@ -506,10 +515,11 @@ public class Controller {
     	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
     	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
     	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
-    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
     	
+    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
     	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "M"),Malepercent*100);
     	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "F"), Femalepercent*100);
+    	
     	textAreaConsole.setText(oReport);    	
     }
     public static class Person {
@@ -934,7 +944,7 @@ public class Controller {
 
 	@FXML
 	private ProgressBar tsk4progress;
-
+	
 	@FXML
 	private TextField tsk4namei;
 
@@ -949,12 +959,54 @@ public class Controller {
 
 	@FXML
 	void task_four_getresult() {
-
+		ToggleButton selected_algor = (ToggleButton) tsk4_algor.getSelectedToggle();
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error Dialog");
+		alert.setHeaderText("Data not found error");
+		alert.setContentText("Ooops, the information you entered has no record in our database");
+		alert.showAndWait();
 	}
 
 	@FXML
 	void tsk4check() {
+		float status = 0;
+		int counter = 0;
 
+		ToggleButton selected_algor = (ToggleButton) tsk4_algor.getSelectedToggle();
+
+		String dadName = tsk4namei.getText();
+		String momName = tsk4namet.getText();
+		String  MomYOB= tsk4yobt.getText();
+		String dadYOB = tsk4yobi.getText();
+
+		if (!(MomYOB == null) && !MomYOB.isBlank()) {
+			counter++;
+		}
+		if (!(dadYOB == null) && !dadYOB.isBlank()) {
+			counter++;
+		}
+		if (!(dadName == null) && !dadName.isBlank()) {
+			counter++;
+		}
+		if (!(momName == null) && !momName.isBlank()) {
+			counter++;
+		}
+
+		if (!(selected_algor == null)) {
+			counter++;
+		}
+
+		status = counter / 5.0f;
+//    	System.out.println(status);
+		int show_status = (int)(status * 100);
+		textAreaConsole.setText("The Current Process : " + show_status + "%");
+		tsk4progress.setProgress(status);
+		if (status == 1.0) {
+			textAreaConsole.setText("Done! Click result button !");
+			tsk4ans.setDisable(false);
+		} else {
+			tsk4ans.setDisable(true);
+		}
 	}
 
 //
