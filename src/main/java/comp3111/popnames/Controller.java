@@ -47,7 +47,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
-
+import java.awt.Toolkit;
 //import javafx.scene.media;
 import javafx.scene.media.Media;
 public class Controller {
@@ -975,6 +975,7 @@ public class Controller {
 		
 		if(!dadYOB_isNum){
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input digital number");
