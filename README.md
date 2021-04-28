@@ -30,7 +30,7 @@
 - [x] use-case diagram(in team)
 - [x] use-case specification for all **six** tasks
 ### Task todo before 1/May
-- [x] Task 1 
+- [ ] Task 1 
 - [ ] Task 2
 - [ ] Task 3
 - [ ] Task 4
