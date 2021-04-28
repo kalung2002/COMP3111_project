@@ -50,6 +50,7 @@ import java.io.File;
 
 //import javafx.scene.media;
 import javafx.scene.media.Media;
+
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -132,9 +133,9 @@ public class Controller {
 	void onselect() {
 		Display_helper(50, 50);
 		Tab selected = (Tab) MENU_GROUP.getSelectionModel().getSelectedItem();
-		if (selected == null) {
-			return;
-		}
+//		if (selected == null) {
+//			return;
+//		}
 		if (textAreaConsole != null) {
 			textAreaConsole.clear();
 		}
@@ -282,10 +283,9 @@ public class Controller {
 	// generate Summary
 	void Generate_BarChart() throws IOException {
 
-
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		
+
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
@@ -296,14 +296,14 @@ public class Controller {
 		if (year_isNum == false) {
 			return;
 		}
-		
+
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-		
-		if(iYear>2019 || iYear<1880) {
+
+		if (iYear > 2019 || iYear < 1880) {
 			return;
 		}
-		if(topN < 1 || topN > 10) {
+		if (topN < 1 || topN > 10) {
 			return;
 		}
 		// Generate BarChart
@@ -341,10 +341,10 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
-		
+
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		
+
 		if (name_isNum == false) {
 			return;
 		}
@@ -353,14 +353,14 @@ public class Controller {
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-		
-		if(iYear>2019 || iYear<1880) {
+
+		if (iYear > 2019 || iYear < 1880) {
 			return;
 		}
-		if(topN < 1 || topN > 10) {
+		if (topN < 1 || topN > 10) {
 			return;
 		}
-		
+
 		Scene scene = new Scene(new Group());
 		Stage stage;
 		stage = new Stage();
@@ -392,15 +392,15 @@ public class Controller {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	void Generate_Table() {
-		
+
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
-		
+
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		
+
 		if (name_isNum == false) {
 			return;
 		}
@@ -409,11 +409,11 @@ public class Controller {
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-		
-		if(iYear>2019 || iYear<1880) {
+
+		if (iYear > 2019 || iYear < 1880) {
 			return;
 		}
-		if(topN < 1 || topN > 10) {
+		if (topN < 1 || topN > 10) {
 			return;
 		}
 		TableView<Person> M_table = new TableView<Person>();
@@ -422,13 +422,11 @@ public class Controller {
 		final ObservableList<Person> M_data = FXCollections.observableArrayList();
 		final ObservableList<Person> F_data = FXCollections.observableArrayList();
 
-
-
-
 		for (int i = 1; i <= topN; i++) {
 
 			float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", i) / AnalyzeNames.getTotalOccur(iYear, "M");
-			float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", i)/ AnalyzeNames.getTotalOccur(iYear, "F");
+			float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", i)
+					/ AnalyzeNames.getTotalOccur(iYear, "F");
 			String Mpercent = String.valueOf(Malepercent * 100) + "%";
 			String Fpercent = String.valueOf(Femalepercent * 100) + "%";
 			F_data.add(new Person(AnalyzeNames.getName(iYear, i, "F"),
@@ -496,76 +494,77 @@ public class Controller {
 //    	        ((Group) scene.getRoot()).getChildren().add(label);
 //    	        ((Group) scene.getRoot()).getChildren().add(M_table);
 //    	        ((Group) scene.getRoot()).getChildren().add(F_table);    	 
-    	        stage.setScene(scene);
-    	        stage.show();
-    }    
-    @FXML
-    void  Generate_Summary(){
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	@FXML
+	void Generate_Summary() {
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
-		
+
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-		
+
 		if (name_isNum == false) {
 			return;
 		}
 		if (year_isNum == false) {
 			return;
 		}
-		
-    	String oReport = "";
-    	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
-    	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
-    	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
-    	
-    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
-    	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "M"),Malepercent*100);
-    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "F"), Femalepercent*100);
-    	
-    	textAreaConsole.setText(oReport);    	
-    }
-    public static class Person {
-    	 
-        private final SimpleStringProperty name;
-        private final SimpleStringProperty occurr;
-        private final SimpleStringProperty percent;
- 
-        private Person(String fName, String Gender, String Number) {
-            this.name = new SimpleStringProperty(fName);
-            this.occurr = new SimpleStringProperty(Gender);
-            this.percent = new SimpleStringProperty(Number);
-        }
- 
-        public String getName() {
-            return name.get();
-        }
- 
-        public void setName(String fName) {
-        	name.set(fName);
-        }
- 
-        public String getOccurr() {
-            return occurr.get();
-        }
- 
-        public void setOccurr(String fName) {
-        	occurr.set(fName);
-        }
- 
-        public String getPercent() {
-            return percent.get();
-        }
- 
-        public void setPercent(String fName) {
-        	percent.set(fName);
-        }
-    }
 
+		String oReport = "";
+		int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
+		float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", 1) / AnalyzeNames.getTotalOccur(iYear, "M");
+		float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", 1) / AnalyzeNames.getTotalOccur(iYear, "F");
 
-	
+		oReport = String.format("Summary of Results in the year %d:\n", iYear);
+		oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",
+				AnalyzeNames.getName(iYear, 1, "M"), Malepercent * 100);
+		oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",
+				AnalyzeNames.getName(iYear, 1, "F"), Femalepercent * 100);
+
+		textAreaConsole.setText(oReport);
+	}
+
+	public static class Person {
+
+		private final SimpleStringProperty name;
+		private final SimpleStringProperty occurr;
+		private final SimpleStringProperty percent;
+
+		private Person(String fName, String Gender, String Number) {
+			this.name = new SimpleStringProperty(fName);
+			this.occurr = new SimpleStringProperty(Gender);
+			this.percent = new SimpleStringProperty(Number);
+		}
+
+		public String getName() {
+			return name.get();
+		}
+
+		public void setName(String fName) {
+			name.set(fName);
+		}
+
+		public String getOccurr() {
+			return occurr.get();
+		}
+
+		public void setOccurr(String fName) {
+			occurr.set(fName);
+		}
+
+		public String getPercent() {
+			return percent.get();
+		}
+
+		public void setPercent(String fName) {
+			percent.set(fName);
+		}
+	}
 
 	/**
 	 * Task three To be triggered by get result button or Anything related to tsk3
@@ -654,7 +653,7 @@ public class Controller {
 		} else if (!name.chars().allMatch(Character::isLetter)) {
 			isvalid = false;
 			output += "Please input a valid name(only character)\n";
-		} else if (name.length() > 15 || name.length() < 2) {
+		} else if (!(name.length() <= 15 && name.length() >= 2)) {
 			isvalid = false;
 			output += "Please input a valid name(2~15 characters)\n";
 
@@ -949,7 +948,7 @@ public class Controller {
 
 	@FXML
 	private ProgressBar tsk4progress;
-	
+
 	@FXML
 	private TextField tsk4namei;
 
@@ -961,7 +960,7 @@ public class Controller {
 
 	@FXML
 	private TextField tsk4yobt;
-	
+
 	@FXML
 	void task_four_getresult() {
 		///////////////////////////////////////////////////////////////////////
@@ -972,16 +971,8 @@ public class Controller {
 		boolean MomYOB_isNum = tsk4yobt.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean dadName_isChar = tsk4namei.getText().matches("[aA-zZ]+$");
 		boolean momName_isChar = tsk4namet.getText().matches("[aA-zZ]+$");
-		
-		if(!dadYOB_isNum){
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error Dialog");
-			alert.setHeaderText("Invalid Input");
-			alert.setContentText("Please input digital number");
-			alert.showAndWait();
-			return;
-			}
-		if(!MomYOB_isNum){
+
+		if (!dadYOB_isNum) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
@@ -989,7 +980,15 @@ public class Controller {
 			alert.showAndWait();
 			return;
 		}
-		if(!dadName_isChar && selected_algor.getText().equals("T4X2")) {
+		if (!MomYOB_isNum) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input digital number");
+			alert.showAndWait();
+			return;
+		}
+		if (!dadName_isChar && selected_algor.getText().equals("T4X2")) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
@@ -997,7 +996,7 @@ public class Controller {
 			alert.showAndWait();
 			return;
 		}
-		if(!momName_isChar && selected_algor.getText().equals("T4X2")) {
+		if (!momName_isChar && selected_algor.getText().equals("T4X2")) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
@@ -1005,39 +1004,39 @@ public class Controller {
 			alert.showAndWait();
 			return;
 		}
-		
+
 		int dadYOB = Integer.parseInt(tsk4yobi.getText());
 		int MomYOB = Integer.parseInt(tsk4yobt.getText());
-		
-		if(dadYOB <0 || dadYOB < 1880 || dadYOB > 2019) {
+
+		if (dadYOB < 0 || dadYOB < 1880 || dadYOB > 2019) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		
-		if(MomYOB <0 || MomYOB < 1880 || MomYOB > 2019) {
+
+		if (MomYOB < 0 || MomYOB < 1880 || MomYOB > 2019) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		////////////////////////////////////////////////////////////////////
-		//Execution below T4X1
+		// Execution below T4X1
 		///////////////////////////////////////////////////////////////////
 		String algorType = selected_algor.getText();
 		String oreport = "";
-		if(algorType.equals("T4X1")) {
-			String girlName = AnalyzeNames.getName(MomYOB,1,"F");
-			String boyName = AnalyzeNames.getName(dadYOB,1,"M");
-			 
+		if (algorType.equals("T4X1")) {
+			String girlName = AnalyzeNames.getName(MomYOB, 1, "F");
+			String boyName = AnalyzeNames.getName(dadYOB, 1, "M");
+
 			oreport += String.format("The Recommended Newborn baby's name is %s (girl)\n", girlName);
 			oreport += String.format("The Recommended Newborn baby's name is %s (boy)\n", boyName);
-			
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			///////////////////////////////////
 			//// Set Text
@@ -1045,18 +1044,18 @@ public class Controller {
 			alert.setTitle("Recommended Name");
 			alert.setHeaderText("New Born Baby");
 			alert.setContentText(oreport);
-			/////////////////////////////////////// 
-			///Set icon
+			///////////////////////////////////////
+			/// Set icon
 			//////////////////////////////////////
-			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();	
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 			Image image = new Image("/babyicon.png");
 			ImageView imageView = new ImageView(image);
-	        
+
 			imageView.setFitHeight(48);
-	        imageView.setFitWidth(48);
+			imageView.setFitWidth(48);
 			stage.getIcons().add(image);
 			alert.setGraphic(imageView);
-			
+
 			Media sound = new Media(new File("whistle.mp3").toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
@@ -1064,13 +1063,13 @@ public class Controller {
 			alert.showAndWait();
 		}
 		//////////////////////////////////////////////////////////////////
-		//Execution below T4X2
+		// Execution below T4X2
 		/////////////////////////////////////////////////////////////////
-		if(algorType.equals("T4X2")) {
+		if (algorType.equals("T4X2")) {
 
 		}
-		
-		}
+
+	}
 
 	@FXML
 	void tsk4check() {
@@ -1080,69 +1079,63 @@ public class Controller {
 		ToggleButton selected_algor = (ToggleButton) tsk4_algor.getSelectedToggle();
 		String dadName = tsk4namei.getText();
 		String momName = tsk4namet.getText();
-		String  MomYOB= tsk4yobt.getText();
+		String MomYOB = tsk4yobt.getText();
 		String dadYOB = tsk4yobi.getText();
 		String oreport = "";
 		String title = "";
-		if(!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
+		if (!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
 			title += "#####################You are Now selecting Algorithm T4X1 #####################\n";
-			
-		}
-		else if(!(selected_algor == null)) {
+
+		} else if (!(selected_algor == null)) {
 			title += "#####################You are Now selecting Algorithm T4X2 #####################\n";
 		}
-		
+
 		if (!(MomYOB == null) && !MomYOB.isBlank()) {
 			counter++;
 			T4X1timer++;
 
-		}
-		else {
+		} else {
 			oreport += String.format("Please enter Mom's Year of Born\n");
 		}
-		
+
 		if (!(dadYOB == null) && !dadYOB.isBlank()) {
 			counter++;
 			T4X1timer++;
-		}
-		else {
+		} else {
 			oreport += String.format("Please enter Dad's Year of Born\n");
 		}
-		
+
 		if (!(dadName == null) && !dadName.isBlank()) {
 			counter++;
-		}
-		else if(!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
+		} else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
 			oreport += String.format("Please enter Dad's Name\n");
 		}
-		
+
 		if (!(momName == null) && !momName.isBlank()) {
 			counter++;
-		}
-		else if(!(selected_algor == null) && selected_algor.getText().equals("T4X2")){
+		} else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
 			oreport += String.format("Please enter Mom's Name\n");
 		}
-		
+
 		if (!(selected_algor == null)) {
 			counter++;
 			T4X1timer++;
-		}
-		else {
+		} else {
 			oreport += String.format("Please Select the Algorithm(T4X1 or T4X2)\n");
 		}
 
 		status = counter / 5.0f;
-		
-		if(!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
+
+		if (!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
 			status = T4X1timer / 3.0f;
-			
+
 		}
 
 //    	System.out.println(status);
-		int show_status = (int)(status * 100);
+		int show_status = (int) (status * 100);
 		textAreaConsole.setText(title + "The Current Process : " + show_status + "%\n" + oreport);
 		tsk4progress.setProgress(status);
-		
+
 		if (status == 1.0) {
 			textAreaConsole.setText("Done! Click result button !");
 			tsk4ans.setDisable(false);
@@ -1221,9 +1214,25 @@ public class Controller {
 	private TextField tsk6yob;
 	@FXML
 	private Button tsk6ans;
+	@FXML
+	
+	private RadioButton tsk6tif;
+	@FXML
+	private RadioButton tsk6tim;
+	@FXML
+	private RadioButton tsk6iaf;
+	@FXML
+	private RadioButton tsk6iam;
 
 	@FXML
-	private Button task_six_btn_getresult;
+	private ToggleButton tsk6ios;
+	@FXML
+	private ToggleButton tsk6iys;
+
+	@FXML
+	private ToggleButton T6X1;
+	@FXML
+	private ToggleButton T6X2;
 
 	@FXML
 	void task_six_getresult() {
@@ -1303,7 +1312,7 @@ public class Controller {
 			Media sound = new Media(new File("erro.mp3").toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
-			
+
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
@@ -1391,8 +1400,8 @@ public class Controller {
 
 		status = counter / 7.0f;
 //    	System.out.println(status);
-		String formatted=String.format("%02.2f", status*100.0f);
-		textAreaConsole.setText("Progress: "+formatted+"%");
+		String formatted = String.format("%02.2f", status * 100.0f);
+		textAreaConsole.setText("Progress: " + formatted + "%");
 		tsk6progress.setProgress(status);
 		if (status == 1.0) {
 			textAreaConsole.setText("Input complete.\nClick on the \"get result\" button to view the score");
@@ -1401,6 +1410,5 @@ public class Controller {
 			tsk6ans.setDisable(true);
 		}
 	}
-
 
 }
