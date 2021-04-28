@@ -202,7 +202,7 @@
                                        </GridPane.margin>
                                     </Button>
                                     <TextArea prefHeight="106.0" prefWidth="538.0" text="Task #4: Recommendation on Names for Newborn Babies (application)&#10;&#10;Develop and implement an online service using empirical data to help make informed decisions on naming their newborn babies.&#10;" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk4check" onKeyPressed="#tsk4check" onKeyReleased="#tsk4check" onMouseClicked="#tsk4check" onMouseDragEntered="#tsk4check" onMouseDragExited="#tsk4check" onMouseEntered="#tsk4check" onMouseExited="#tsk4check" onMousePressed="#tsk4check" onMouseReleased="#tsk4check" text="T4X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk4check" onKeyPressed="#tsk4check" onKeyReleased="#tsk4check" onMouseClicked="#tsk4check" onMouseEntered="#tsk4check" onMouseExited="#tsk4check" onMousePressed="#tsk4check" onMouseReleased="#tsk4check" text="T4X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -210,7 +210,7 @@
                                           <ToggleGroup fx:id="tsk4_algor" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk4check" onKeyPressed="#tsk4check" onKeyReleased="#tsk4check" onMouseClicked="#tsk4check" onMouseDragEntered="#tsk4check" onMouseDragExited="#tsk4check" onMouseEntered="#tsk4check" onMouseExited="#tsk4check" onMousePressed="#tsk4check" onMouseReleased="#tsk4check" selected="true" text="T4X1" toggleGroup="$tsk4_algor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk4check" onKeyPressed="#tsk4check" onKeyReleased="#tsk4check" onMouseClicked="#tsk4check" onMouseEntered="#tsk4check" onMouseExited="#tsk4check" onMousePressed="#tsk4check" onMouseReleased="#tsk4check" selected="true" text="T4X1" toggleGroup="$tsk4_algor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose algorithm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <ProgressBar fx:id="tsk4progress" prefHeight="20.0" prefWidth="400.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Progess" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="TOP">

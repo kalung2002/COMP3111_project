@@ -43,7 +43,13 @@ import javafx.geometry.Insets;
 import javafx.scene.text.Font;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.awt.Toolkit;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+
+//import javafx.scene.media;
+import javafx.scene.media.Media;
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -279,6 +285,7 @@ public class Controller {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (Text1_year.getText().isEmpty())
 			return;
 		if (Text1_name.getText().isEmpty())
@@ -289,6 +296,7 @@ public class Controller {
 		if (year_isNum == false) {
 			return;
 		}
+		
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 		
@@ -333,8 +341,10 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
+		
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (name_isNum == false) {
 			return;
 		}
@@ -387,21 +397,16 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
+		
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (name_isNum == false) {
 			return;
 		}
 		if (year_isNum == false) {
 			return;
 		}
-		TableView<Person> M_table = new TableView<Person>();
-		TableView<Person> F_table = new TableView<Person>();
-
-		final ObservableList<Person> M_data = FXCollections.observableArrayList();
-		final ObservableList<Person> F_data = FXCollections.observableArrayList();
-
-
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 		
@@ -411,6 +416,14 @@ public class Controller {
 		if(topN < 1 || topN > 10) {
 			return;
 		}
+		TableView<Person> M_table = new TableView<Person>();
+		TableView<Person> F_table = new TableView<Person>();
+
+		final ObservableList<Person> M_data = FXCollections.observableArrayList();
+		final ObservableList<Person> F_data = FXCollections.observableArrayList();
+
+
+
 
 		for (int i = 1; i <= topN; i++) {
 
@@ -492,8 +505,10 @@ public class Controller {
 			return;
 		if (Text1_name.getText().isEmpty())
 			return;
+		
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		
 		if (name_isNum == false) {
 			return;
 		}
@@ -505,10 +520,11 @@ public class Controller {
     	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
     	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
     	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
-    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
     	
+    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
     	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "M"),Malepercent*100);
     	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",AnalyzeNames.getName(iYear, 1, "F"), Femalepercent*100);
+    	
     	textAreaConsole.setText(oReport);    	
     }
     public static class Person {
@@ -933,7 +949,7 @@ public class Controller {
 
 	@FXML
 	private ProgressBar tsk4progress;
-
+	
 	@FXML
 	private TextField tsk4namei;
 
@@ -945,15 +961,194 @@ public class Controller {
 
 	@FXML
 	private TextField tsk4yobt;
-
+	
 	@FXML
 	void task_four_getresult() {
+		///////////////////////////////////////////////////////////////////////
+		//////// Checking valid input
+		////////////////////////////////////////////////////////////////////
+		ToggleButton selected_algor = (ToggleButton) tsk4_algor.getSelectedToggle();
+		boolean dadYOB_isNum = tsk4yobi.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean MomYOB_isNum = tsk4yobt.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		boolean dadName_isChar = tsk4namei.getText().matches("[aA-zZ]+$");
+		boolean momName_isChar = tsk4namet.getText().matches("[aA-zZ]+$");
+		
+		if(!dadYOB_isNum){
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input digital number");
+			alert.showAndWait();
+			return;
+			}
+		if(!MomYOB_isNum){
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input digital number");
+			alert.showAndWait();
+			return;
+		}
+		if(!dadName_isChar && selected_algor.getText().equals("T4X2")) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input English Character");
+			alert.showAndWait();
+			return;
+		}
+		if(!momName_isChar && selected_algor.getText().equals("T4X2")) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input English Character");
+			alert.showAndWait();
+			return;
+		}
+		
+		int dadYOB = Integer.parseInt(tsk4yobi.getText());
+		int MomYOB = Integer.parseInt(tsk4yobt.getText());
+		
+		if(dadYOB <0 || dadYOB < 1880 || dadYOB > 2019) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
+		}
+		
+		if(MomYOB <0 || MomYOB < 1880 || MomYOB > 2019) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
+		}
+		////////////////////////////////////////////////////////////////////
+		//Execution below T4X1
+		///////////////////////////////////////////////////////////////////
+		String algorType = selected_algor.getText();
+		String oreport = "";
+		if(algorType.equals("T4X1")) {
+			String girlName = AnalyzeNames.getName(MomYOB,1,"F");
+			String boyName = AnalyzeNames.getName(dadYOB,1,"M");
+			 
+			oreport += String.format("The Recommended Newborn baby's name is %s (girl)\n", girlName);
+			oreport += String.format("The Recommended Newborn baby's name is %s (boy)\n", boyName);
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			///////////////////////////////////
+			//// Set Text
+			//////////////////////////////////
+			alert.setTitle("Recommended Name");
+			alert.setHeaderText("New Born Baby");
+			alert.setContentText(oreport);
+			/////////////////////////////////////// 
+			///Set icon
+			//////////////////////////////////////
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();	
+			Image image = new Image("/babyicon.png");
+			ImageView imageView = new ImageView(image);
+	        
+			imageView.setFitHeight(48);
+	        imageView.setFitWidth(48);
+			stage.getIcons().add(image);
+			alert.setGraphic(imageView);
+			
+			Media sound = new Media(new File("whistle.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 
-	}
+			alert.showAndWait();
+		}
+		//////////////////////////////////////////////////////////////////
+		//Execution below T4X2
+		/////////////////////////////////////////////////////////////////
+		if(algorType.equals("T4X2")) {
+
+		}
+		
+		}
 
 	@FXML
 	void tsk4check() {
+		float status = 0;
+		int counter = 0;
+		int T4X1timer = 0;
+		ToggleButton selected_algor = (ToggleButton) tsk4_algor.getSelectedToggle();
+		String dadName = tsk4namei.getText();
+		String momName = tsk4namet.getText();
+		String  MomYOB= tsk4yobt.getText();
+		String dadYOB = tsk4yobi.getText();
+		String oreport = "";
+		String title = "";
+		if(!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
+			title += "#####################You are Now selecting Algorithm T4X1 #####################\n";
+			
+		}
+		else if(!(selected_algor == null)) {
+			title += "#####################You are Now selecting Algorithm T4X2 #####################\n";
+		}
+		
+		if (!(MomYOB == null) && !MomYOB.isBlank()) {
+			counter++;
+			T4X1timer++;
 
+		}
+		else {
+			oreport += String.format("Please enter Mom's Year of Born\n");
+		}
+		
+		if (!(dadYOB == null) && !dadYOB.isBlank()) {
+			counter++;
+			T4X1timer++;
+		}
+		else {
+			oreport += String.format("Please enter Dad's Year of Born\n");
+		}
+		
+		if (!(dadName == null) && !dadName.isBlank()) {
+			counter++;
+		}
+		else if(!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
+			oreport += String.format("Please enter Dad's Name\n");
+		}
+		
+		if (!(momName == null) && !momName.isBlank()) {
+			counter++;
+		}
+		else if(!(selected_algor == null) && selected_algor.getText().equals("T4X2")){
+			oreport += String.format("Please enter Mom's Name\n");
+		}
+		
+		if (!(selected_algor == null)) {
+			counter++;
+			T4X1timer++;
+		}
+		else {
+			oreport += String.format("Please Select the Algorithm(T4X1 or T4X2)\n");
+		}
+
+		status = counter / 5.0f;
+		
+		if(!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
+			status = T4X1timer / 3.0f;
+			
+		}
+
+//    	System.out.println(status);
+		int show_status = (int)(status * 100);
+		textAreaConsole.setText(title + "The Current Process : " + show_status + "%\n" + oreport);
+		tsk4progress.setProgress(status);
+		
+		if (status == 1.0) {
+			textAreaConsole.setText("Done! Click result button !");
+			tsk4ans.setDisable(false);
+		} else {
+			tsk4ans.setDisable(true);
+		}
 	}
 
 //
