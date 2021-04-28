@@ -172,7 +172,7 @@ public class Controller {
 	void initialize() {
 		// change setting immediately after application launched
 		// change style here since some fxml setting will be override by JMetro
-		tsk4progress.setProgress(-1);
+//		tsk4progress.setProgress(-1);
 
 		Task1PieButton.setStyle("-fx-font-size:20");
 		Task1TableButton.setStyle("-fx-font-size:20");
@@ -1255,6 +1255,10 @@ public class Controller {
 			}
 		}
 		if (!isvalid) {
+			Media sound = new Media(new File("erro.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
@@ -1296,6 +1300,10 @@ public class Controller {
 
 		}
 		if (!existdata) {
+			Media sound = new Media(new File("erro.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
@@ -1383,10 +1391,11 @@ public class Controller {
 
 		status = counter / 7.0f;
 //    	System.out.println(status);
-		textAreaConsole.setText(yobs + status);
+		String formatted=String.format("%02.2f", status*100.0f);
+		textAreaConsole.setText("Progress: "+formatted+"%");
 		tsk6progress.setProgress(status);
 		if (status == 1.0) {
-			textAreaConsole.setText("done");
+			textAreaConsole.setText("Input complete.\nClick on the \"get result\" button to view the score");
 			tsk6ans.setDisable(false);
 		} else {
 			tsk6ans.setDisable(true);
