@@ -76,7 +76,7 @@ public class Testcase3 extends ApplicationTest {
 		clickOn("#tsk3yoe");
 		tsk3yois.setText("AAAA");
 		clickOn("#tsk3yoe");
-		tsk3yois.setText("20000");
+		tsk3yois.setText("200");
 		clickOn("#tsk3yoe");
 		tsk3yois.setText("1999");
 		clickOn("#tsk3yoe");
@@ -87,7 +87,7 @@ public class Testcase3 extends ApplicationTest {
 		clickOn("#tsk3yoe");
 		tsk3yoe.setText("AAAA");
 		clickOn("#tsk3yoe");
-		tsk3yoe.setText("20000");
+		tsk3yoe.setText("200");
 		clickOn("#tsk3yoe");
 		tsk3yoe.setText("1998");
 		clickOn("#tsk3yoe");
