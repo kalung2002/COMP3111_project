@@ -152,7 +152,7 @@ public class Testcase6 extends ApplicationTest {
 		sleep(100);
 		tsk6namei.setText("Mary");
 		tsk6namet.setText("Mary");
-		tsk6yob.setText("20000");
+		tsk6yob.setText("200");
 		clickOn("#tsk6yob");
 		sleep(1000);
 		clickOn("#tsk6ans");
