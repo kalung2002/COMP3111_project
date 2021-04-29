@@ -367,7 +367,7 @@
                                           <Insets bottom="5.0" />
                                        </GridPane.margin>
                                     </TextArea>
-                                    <ToggleButton mnemonicParsing="false" onAction="#tsk6check" text="T6X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                    <ToggleButton fx:id="T6X2" mnemonicParsing="false" onAction="#tsk6check" text="T6X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="70.0" />
                                        </GridPane.margin>
@@ -375,7 +375,7 @@
                                           <ToggleGroup fx:id="tsk6_algor" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton mnemonicParsing="false" onAction="#tsk6check" selected="true" text="T6X1" toggleGroup="$tsk6_algor" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                                    <ToggleButton fx:id="T6X1" mnemonicParsing="false" onAction="#tsk6check" selected="true" text="T6X1" toggleGroup="$tsk6_algor" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose algorithm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <ProgressBar fx:id="tsk6progress" prefHeight="20.0" prefWidth="400.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Progess" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="TOP">
@@ -383,15 +383,15 @@
                                           <Insets top="15.0" />
                                        </GridPane.margin>
                                     </Text>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk6check" selected="true" text="I want a younger soulmate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <ToggleButton fx:id="tsk6iys" minWidth="216.0" mnemonicParsing="false" onAction="#tsk6check" selected="true" text="I want a younger soulmate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tsk6_youth" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk6check" text="I want a older soulmate" toggleGroup="$tsk6_youth" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ToggleButton fx:id="tsk6ios" minWidth="216.0" mnemonicParsing="false" onAction="#tsk6check" text="I want a older soulmate" toggleGroup="$tsk6_youth" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please input your info" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please input your target's info" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    <RadioButton mnemonicParsing="false" onAction="#tsk6check" text="I am male" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <RadioButton fx:id="tsk6iam" mnemonicParsing="false" onAction="#tsk6check" text="I am male" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="20.0" />
                                        </GridPane.margin>
@@ -399,12 +399,12 @@
                                           <ToggleGroup fx:id="tsk6_gender_i" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" onAction="#tsk6check" text="I am female" toggleGroup="$tsk6_gender_i" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                    <RadioButton fx:id="tsk6iaf" mnemonicParsing="false" onAction="#tsk6check" text="I am female" toggleGroup="$tsk6_gender_i" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" onAction="#tsk6check" text="Target is male" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                    <RadioButton fx:id="tsk6tim" mnemonicParsing="false" onAction="#tsk6check" text="Target is male" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
@@ -412,7 +412,7 @@
                                           <ToggleGroup fx:id="tsk6_gender_t" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" onAction="#tsk6check" text="Target is female" toggleGroup="$tsk6_gender_t" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                                    <RadioButton fx:id="tsk6tif" mnemonicParsing="false" onAction="#tsk6check" text="Target is female" toggleGroup="$tsk6_gender_t" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                                     <TextField fx:id="tsk6namei" onAction="#tsk6check" onKeyPressed="#tsk6check" onKeyReleased="#tsk6check" onMouseEntered="#tsk6check" onMouseExited="#tsk6check" onMousePressed="#tsk6check" onMouseReleased="#tsk6check" promptText="input your name here" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                        <GridPane.margin>
                                           <Insets left="5.0" right="5.0" />
