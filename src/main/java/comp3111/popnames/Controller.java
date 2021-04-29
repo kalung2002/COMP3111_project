@@ -848,7 +848,7 @@ public class Controller {
 		if (years.isBlank()) {
 			isvalid = false;
 			output += "Please input starting year\n";
-		} else if (!NumberUtils.isCreatable(years)) {// if isn't number
+		} else if ((!NumberUtils.isCreatable(years))||(years.length()>4)) {// if isn't number
 			isvalid = false;
 			output += "Please input a valid number\n";
 		} else {
@@ -864,7 +864,7 @@ public class Controller {
 		if (yeare.isBlank()) {
 			isvalid = false;
 			output += "Please input end year\n";
-		} else if (!NumberUtils.isCreatable(yeare)) {// if isn't number
+		} else if ((!NumberUtils.isCreatable(yeare))||(yeare.length()>4)) {// if isn't number
 			isvalid = false;
 			output += "Please input a valid number\n";
 		} else {
@@ -941,9 +941,7 @@ public class Controller {
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
 
-			Media sound = new Media(new File("erro.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -1000,9 +998,7 @@ public class Controller {
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
 
-			Media sound = new Media(new File("erro.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -1057,9 +1053,7 @@ public class Controller {
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
 
-			Media sound = new Media(new File("erro.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -1138,9 +1132,7 @@ public class Controller {
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
 
-			Media sound = new Media(new File("erro.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -1536,7 +1528,7 @@ public class Controller {
 			isvalid = false;
 			output += "Error this should be blocked by tsk6check\n";
 
-		} else if (!NumberUtils.isCreatable(yobs)) {// if isn't number
+		} else if ((!NumberUtils.isCreatable(yobs))||(yobs.length()>4)) {// if isn't number
 			isvalid = false;
 			output += "Please input a valid digit\n";
 
@@ -1548,9 +1540,7 @@ public class Controller {
 			}
 		}
 		if (!isvalid) {
-			Media sound = new Media(new File("erro.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			Toolkit.getDefaultToolkit().beep();
 
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
@@ -1593,9 +1583,7 @@ public class Controller {
 
 		}
 		if (!existdata) {
-			Media sound = new Media(new File("erro.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
+			Toolkit.getDefaultToolkit().beep();
 
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
