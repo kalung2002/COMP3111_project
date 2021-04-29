@@ -47,7 +47,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
-
+import java.awt.Toolkit;
 //import javafx.scene.media;
 import javafx.scene.media.Media;
 
@@ -286,25 +286,93 @@ public class Controller {
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 
-		if (Text1_year.getText().isEmpty())
-			return;
-		if (Text1_name.getText().isEmpty())
-			return;
-		if (name_isNum == false) {
+
+		if (Text1_year.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Your input is empty!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;			
+		}
+		if (Text1_name.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Your input is empty!\nPlease input Top N number of interest 1 - 10.");
+			alert.showAndWait();
+			return;		
+		}
+		if(Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("First digit contains 0");
+			alert.setContentText("Please do not put zero at the starting digit");
+			alert.showAndWait();
+
 			return;
 		}
+		if (name_isNum == false) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not a number!\nPlease input number 1 - 10.");
+			alert.showAndWait();
+			return;		
+		}
 		if (year_isNum == false) {
-			return;
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not a number!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;		
+		}
+		if(Text1_name.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Our of range!\nPlease input Top N number 1 - 10");
+			alert.showAndWait();
+			return;			
+		}
+		if(Text1_year.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Our of range!\nPlease input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
 		}
 
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-
-		if (iYear > 2019 || iYear < 1880) {
-			return;
+		
+		if(iYear>2019 || iYear<1880) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Please input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
 		}
-		if (topN < 1 || topN > 10) {
-			return;
+		if(topN < 1 || topN > 10) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Please input number 1 - 10");
+			alert.showAndWait();
+			return;			
+
 		}
 		// Generate BarChart
 		Stage stage;
@@ -337,34 +405,100 @@ public class Controller {
 	@FXML
 	void Generate_PieChart() {
 
-		if (Text1_year.getText().isEmpty())
-			return;
-		if (Text1_name.getText().isEmpty())
-			return;
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-
-		if (name_isNum == false) {
+		if (Text1_year.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Your input is empty!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;			
+		}
+		if (Text1_name.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Your input is empty!\nPlease input Top N number of interest 1 - 10.");
+			alert.showAndWait();
+			return;		
+		}
+		if(Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("First digit contains 0");
+			alert.setContentText("Please do not put zero at the starting digit");
+			alert.showAndWait();
 			return;
 		}
+		if (name_isNum == false) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not a number!\nPlease input Top N number 1 - 10.");
+			alert.showAndWait();
+			return;		
+		}
 		if (year_isNum == false) {
-			return;
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not a number!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;		
+		}
+		if(Text1_name.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Our of range!\nPlease input Top N number 1 - 10");
+			alert.showAndWait();
+			return;			
+		}
+		if(Text1_year.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Our of range!\nPlease input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-
-		if (iYear > 2019 || iYear < 1880) {
-			return;
+		
+		if(iYear>2019 || iYear<1880) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Our of range!\nPlease input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
 		}
-		if (topN < 1 || topN > 10) {
-			return;
+		if(topN < 1 || topN > 10) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Our of range!\nPlease input Top N  number 1 - 10");
+			alert.showAndWait();
+			return;					
 		}
+		String oReport = "";
+		oReport += String.format("Top "+ topN + " Names in Year " + iYear);
 
 		Scene scene = new Scene(new Group());
 		Stage stage;
 		stage = new Stage();
-		stage.setTitle("Imported Fruits");
+		stage.setTitle(oReport);
 		stage.setWidth(1000);
 		stage.setHeight(500);
 
@@ -389,32 +523,97 @@ public class Controller {
 		stage.show();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	@FXML
 	void Generate_Table() {
 
-		if (Text1_year.getText().isEmpty())
-			return;
-		if (Text1_name.getText().isEmpty())
-			return;
-
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-
-		if (name_isNum == false) {
+		if (Text1_year.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Your input is empty!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;			
+		}
+		if (Text1_name.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Your input is empty!\nPlease input Top N number of interest 1 - 10.");
+			alert.showAndWait();
+			return;		
+		}
+		if(Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("First digit contains 0");
+			alert.setContentText("Please do not put zero at the starting digit");
+			alert.showAndWait();
 			return;
 		}
+		if (name_isNum == false) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not a number!\nPlease input Top N  number 1 - 10.");
+			alert.showAndWait();
+			return;		
+		}
 		if (year_isNum == false) {
-			return;
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not a number!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;		
+		}
+		if(Text1_name.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Out of range!\nPlease input Top N  number 1 - 10");
+			alert.showAndWait();
+			return;			
+		}
+		if(Text1_year.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Out of range!\nPlease input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 
-		if (iYear > 2019 || iYear < 1880) {
-			return;
+		
+		if(iYear>2019 || iYear<1880) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Out of range!\nPlease input year 1880 - 2019");
+			alert.showAndWait();
+			return;		
 		}
-		if (topN < 1 || topN > 10) {
-			return;
+		if(topN < 1 || topN > 10) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Out of range!\nPlease input Top N  number 1 - 10");
+			alert.showAndWait();
+			return;				
+
 		}
 		TableView<Person> M_table = new TableView<Person>();
 		TableView<Person> F_table = new TableView<Person>();
@@ -494,26 +693,114 @@ public class Controller {
 //    	        ((Group) scene.getRoot()).getChildren().add(label);
 //    	        ((Group) scene.getRoot()).getChildren().add(M_table);
 //    	        ((Group) scene.getRoot()).getChildren().add(F_table);    	 
-		stage.setScene(scene);
-		stage.show();
-	}
+    	        stage.setScene(scene);
+    	        stage.show();
+    }    
+    @FXML
+    void  Generate_Summary(){
 
-	@FXML
-	void Generate_Summary() {
-		if (Text1_year.getText().isEmpty())
-			return;
-		if (Text1_name.getText().isEmpty())
-			return;
-
-		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+		if (Text1_year.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Empty");
+			alert.setContentText("Out of range!\nPlease input year 1880 - 2019.");
+			alert.showAndWait();
+			return;			
+		}
+		if(Text1_year.getText().charAt(0) == '0') {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("First digit contains 0");
+			alert.setContentText("Please do not put zero at the starting digit");
+			alert.showAndWait();
 
-		if (name_isNum == false) {
 			return;
+		}
+		if(Text1_year.getText().length() > 4) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Out of range!\nPlease input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
 		}
 		if (year_isNum == false) {
-			return;
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("invalid input");
+			alert.setContentText("Your input is not number!\nPlease input year of interest 1880 - 2019");
+			alert.showAndWait();
+			return;		
 		}
+
+		
+    	String oReport = "";
+    	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
+    	
+		if(iYear>2019 || iYear<1880) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid input");
+			alert.setContentText("Please input year 1880 - 2019");
+			alert.showAndWait();
+			return;		
+		}
+		
+    	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
+    	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
+    	
+    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
+    	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "M"),AnalyzeNames.getNumber(iYear,"M",1),Malepercent*100);
+    	oReport += "%";
+    	oReport	+= String.format(" of total Male in year %d \n",iYear);
+    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "F"),AnalyzeNames.getNumber(iYear,"M",1),Femalepercent*100);
+    	oReport  += "%";
+    	oReport	+=	String.format( " of total Female in year %d \n",iYear);
+    	
+    	textAreaConsole.setText(oReport);    	
+    }
+    public static class Person {
+    	 
+        private final SimpleStringProperty name;
+        private final SimpleStringProperty occurr;
+        private final SimpleStringProperty percent;
+ 
+        private Person(String fName, String Gender, String Number) {
+            this.name = new SimpleStringProperty(fName);
+            this.occurr = new SimpleStringProperty(Gender);
+            this.percent = new SimpleStringProperty(Number);
+        }
+ 
+        public String getName() {
+            return name.get();
+        }
+ 
+        public void setName(String fName) {
+        	name.set(fName);
+        }
+ 
+        public String getOccurr() {
+            return occurr.get();
+        }
+ 
+        public void setOccurr(String fName) {
+        	occurr.set(fName);
+        }
+ 
+        public String getPercent() {
+            return percent.get();
+        }
+ 
+        public void setPercent(String fName) {
+        	percent.set(fName);
+        }
+    }
 
 		String oReport = "";
 		int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
@@ -976,6 +1263,8 @@ public class Controller {
 
 	@FXML
 	private TextField tsk4yobt;
+  
+	private boolean Play = true;
 
 	@FXML
 	void task_four_getresult() {
@@ -990,6 +1279,7 @@ public class Controller {
 
 		if (!dadYOB_isNum) {
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input digital number");
@@ -998,6 +1288,7 @@ public class Controller {
 		}
 		if (!MomYOB_isNum) {
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input digital number");
@@ -1006,6 +1297,7 @@ public class Controller {
 		}
 		if (!dadName_isChar && selected_algor.getText().equals("T4X2")) {
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input English Character");
@@ -1014,6 +1306,7 @@ public class Controller {
 		}
 		if (!momName_isChar && selected_algor.getText().equals("T4X2")) {
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input English Character");
@@ -1021,11 +1314,22 @@ public class Controller {
 			return;
 		}
 
+		if(tsk4yobt.getText().length()>4 || tsk4yobi.getText().length()>4){
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input year 1880 - 2019");
+			alert.showAndWait();
+			return;			
+		}
+		
 		int dadYOB = Integer.parseInt(tsk4yobi.getText());
 		int MomYOB = Integer.parseInt(tsk4yobt.getText());
-
-		if (dadYOB < 0 || dadYOB < 1880 || dadYOB > 2019) {
+		
+		if((dadYOB <0 || dadYOB < 1880 || dadYOB > 2019) ) {
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input year 1880 - 2019");
@@ -1033,8 +1337,9 @@ public class Controller {
 			return;
 		}
 
-		if (MomYOB < 0 || MomYOB < 1880 || MomYOB > 2019) {
+		if( (MomYOB <0 || MomYOB < 1880 || MomYOB > 2019) ) {
 			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid Input");
 			alert.setContentText("Please input year 1880 - 2019");
@@ -1081,8 +1386,9 @@ public class Controller {
 		//////////////////////////////////////////////////////////////////
 		// Execution below T4X2
 		/////////////////////////////////////////////////////////////////
-		if (algorType.equals("T4X2")) {
 
+		if(algorType.equals("T4X2")) {
+			
 		}
 
 	}
@@ -1154,8 +1460,15 @@ public class Controller {
 
 		if (status == 1.0) {
 			textAreaConsole.setText("Done! Click result button !");
+			if(Play) {
+			Media sound = new Media(new File("Unlock.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			Play = false;
+			}
 			tsk4ans.setDisable(false);
 		} else {
+			Play = true;
 			tsk4ans.setDisable(true);
 		}
 	}
