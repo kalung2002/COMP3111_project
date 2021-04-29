@@ -278,14 +278,15 @@ public class Controller {
 	@FXML
 	private Button Task1BarButton;// for task 1
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@FXML
+
 	// generate Summary
+	@FXML
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+
 	void Generate_BarChart() throws IOException {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
-
 
 		if (Text1_year.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -408,6 +409,7 @@ public class Controller {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+
 		if (Text1_year.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
@@ -529,6 +531,7 @@ public class Controller {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
+
 		if (Text1_year.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
@@ -765,56 +768,7 @@ public class Controller {
     	
     	textAreaConsole.setText(oReport);    	
     }
-    public static class Person {
-    	 
-        private final SimpleStringProperty name;
-        private final SimpleStringProperty occurr;
-        private final SimpleStringProperty percent;
- 
-        private Person(String fName, String Gender, String Number) {
-            this.name = new SimpleStringProperty(fName);
-            this.occurr = new SimpleStringProperty(Gender);
-            this.percent = new SimpleStringProperty(Number);
-        }
- 
-        public String getName() {
-            return name.get();
-        }
- 
-        public void setName(String fName) {
-        	name.set(fName);
-        }
- 
-        public String getOccurr() {
-            return occurr.get();
-        }
- 
-        public void setOccurr(String fName) {
-        	occurr.set(fName);
-        }
- 
-        public String getPercent() {
-            return percent.get();
-        }
- 
-        public void setPercent(String fName) {
-        	percent.set(fName);
-        }
-    }
 
-		String oReport = "";
-		int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
-		float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", 1) / AnalyzeNames.getTotalOccur(iYear, "M");
-		float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", 1) / AnalyzeNames.getTotalOccur(iYear, "F");
-
-		oReport = String.format("Summary of Results in the year %d:\n", iYear);
-		oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %.2f \n",
-				AnalyzeNames.getName(iYear, 1, "M"), Malepercent * 100);
-		oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %.2f \n",
-				AnalyzeNames.getName(iYear, 1, "F"), Femalepercent * 100);
-
-		textAreaConsole.setText(oReport);
-	}
 
 	public static class Person {
 
