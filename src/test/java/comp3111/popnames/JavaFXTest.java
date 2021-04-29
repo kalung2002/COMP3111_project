@@ -10,12 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 public class JavaFXTest extends ApplicationTest {
 
 	private Scene s;
 	private TextArea t;
+	private TextField textfieldNameF;
+	private TextField textfieldYear;
+	private TextField textfieldNameM;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -28,6 +32,9 @@ public class JavaFXTest extends ApplicationTest {
    		stage.show();
    		s = scene;
 		t = (TextArea)s.lookup("#textAreaConsole");
+		textfieldNameF=(TextField) s.lookup("#textfieldNameF");
+		textfieldYear=(TextField) s.lookup("#textfieldYear");
+		textfieldNameM=(TextField) s.lookup("#textfieldNameM");
 	}
 
     
@@ -63,5 +70,28 @@ public class JavaFXTest extends ApplicationTest {
 		String s = t.getText();
 		assertTrue(s.equals("David"));
 	}
+	@Test
+	public void test1() {	
+			textfieldNameF.setText("Mary");
+			textfieldNameM.setText("Mary");
+			textfieldYear.setText("2000");
+			sleep(100);
+			clickOn("#buttonRankM");
+			clickOn("#buttonRankF");
+			clickOn("#buttonTopM");
+			clickOn("#buttonTopF");
+			clickOn("#buttonSummary");
+	}@Test
+	public void test2() {	
+		textfieldNameF.setText("Maaary");
+		textfieldNameM.setText("Maaary");
+		textfieldYear.setText("2000");
+		sleep(100);
+		clickOn("#buttonRankM");
+		clickOn("#buttonRankF");
+		clickOn("#buttonTopM");
+		clickOn("#buttonTopF");
+		clickOn("#buttonSummary");
+}
 		
 }

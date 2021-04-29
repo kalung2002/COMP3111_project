@@ -68,10 +68,10 @@ public class Controller {
 	private TextField textfieldYear;
 
 	@FXML
-	private Button buttonRankM;
+	private TextField textfieldNameM;
 
 	@FXML
-	private TextField textfieldNameM;
+	private Button buttonRankM;
 
 	@FXML
 	private Button buttonRankF;
@@ -699,6 +699,10 @@ public class Controller {
 		}
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
+
+			Media sound = new Media(new File("erro.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -754,6 +758,10 @@ public class Controller {
 		}
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
+
+			Media sound = new Media(new File("erro.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -807,6 +815,10 @@ public class Controller {
 		}
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
+
+			Media sound = new Media(new File("erro.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -884,6 +896,10 @@ public class Controller {
 		}
 		if (!existdata) {
 			Alert alert = new Alert(AlertType.ERROR);
+
+			Media sound = new Media(new File("erro.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Data not found error");
 			alert.setContentText("Ooops, the information you entered has no record in our database");
@@ -1231,6 +1247,7 @@ public class Controller {
 
 	@FXML
 	private ToggleButton T6X1;
+
 	@FXML
 	private ToggleButton T6X2;
 
