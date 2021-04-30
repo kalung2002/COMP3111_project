@@ -791,7 +791,6 @@ public class Controller {
 		private final SimpleStringProperty name;
 		private final SimpleStringProperty occurr;
 		private final SimpleStringProperty percent;
-
 		private Person(String fName, String Gender, String Number) {
 			this.name = new SimpleStringProperty(fName);
 			this.occurr = new SimpleStringProperty(Gender);
@@ -1350,7 +1349,6 @@ public class Controller {
 			Media sound = new Media(new File("whistle.mp3").toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
-
 			alert.showAndWait();
 		}
 		//////////////////////////////////////////////////////////////////
@@ -1360,14 +1358,14 @@ public class Controller {
 		if(algorType.equals("T4X2")) {
 			int Byear = (MomYOB + dadYOB) / 2;// we believe Father and Mother are equally important, so we take average of the year.
 		    HashMap<Character, Boolean> checkNam = new HashMap<Character, Boolean>();
-			// we take the feature of parents , ~ since child always inherits parent where 
-		    String dadName = tsk4namei.getText();
-		    String momName = tsk4namet.getText();
+			// we take the feature of parents , ~ since child always inherits parent where
+		    String dadName = Character.toUpperCase(tsk4namei.getText().charAt(0)) + tsk4namei.getText().substring(1).toLowerCase();
+		    String momName = Character.toUpperCase(tsk4namet.getText().charAt(0)) + tsk4namet.getText().substring(1).toLowerCase();
 		    Random rand = new Random(momName.length() + dadName.length()); //use  mom and dad's name as seed
 		    // take min length,which is the total number of element will be put in hashmap from name String.
 		    int pos = Math.min(dadName.length(), momName.length());
-		    
-		    
+
+			
 		    for(int i = 0; i < pos; i++) {
 			    int random = rand.nextInt(pos);
 			    int Grand = rand.nextInt(2);
@@ -1466,10 +1464,13 @@ public class Controller {
 		    ///////////////////////////////////////////////////////////////////
 		    String oCom = "";
 		    for(Pair<String,Float> list : felist) {
-		    	oReport += String.format("The Recommended Name is : %s (female) with score %f\n", list.getKey(), list.getValue());
+		    	oReport += String.format("The Recommended Name is : %s (female) with score %f", list.getKey(), list.getValue()*100f);
+		    	oReport +="%\n";
 		    }
+		    oReport +="##############################################################################################\n";
 		    for(Pair<String,Float> list : malist) {
-		    	oReport += String.format("The Recommended Name is : %s (male) with score %f\n", list.getKey(), list.getValue());
+		    	oReport += String.format("The Recommended Name is : %s (male) with score %f", list.getKey(), list.getValue()*100f);
+		    	oReport += "%\n";
 		    }
 			for(Character list : checkNam.keySet()) {
 				oCom += list;
@@ -1486,7 +1487,7 @@ public class Controller {
 		    oExplain += String.format("point will be added by one if Name from selected range of dataset match any one of the (%s)\n",oCom);
 		    oExplain += String.format("Score is calculated using formular : matched element( %s ) / length of database Name\n",oCom);
 
-		    
+		    /////////////////////////////////////////////////////////////////////
 			//////////////////////// Report all the rank
 			/////////////////////////////////////////////////////////////////////
 			/////////////////////////// Report the max rank
@@ -1494,18 +1495,62 @@ public class Controller {
 			oResult +="%";
 			oResult += String.format("\n Name : %s (male) with score %.2f", malist.get(0).getKey(),malist.get(0).getValue()*100f);
 			oResult +="%\n";
-
 			//////////////////////////////////////
 			///////////////////////////////////////////////////////////////////
+
+			String oStory = "It is believed that newborn baby needs a popular name to avoid seperateness or isolation\n";
+			oStory += String.format("Also in real life (biology) baby will inherit Component/feacures from parents, which is randomly assigned\n");
+			oStory += String.format("So we randomly assigned the Name character from either dad or mom, making it similar to real life\n");
+			oStory += String.format("Name with the shorter length will be easier for children to write or spell\n");
+			oStory += String.format("As a result, we select based on these factors\n");
+			oStory += String.format("-English character of parent's name will be randomly selected\n");
+			oStory += String.format("-Score calculated by (Matched character) / length of recommended name\n");
+			oStory += String.format("-Since recommended name's length is in denominator, shorter will score higher\n");
+			oStory += String.format("-Since Matched English character is in numerator, larger will score higher\n");
+			oStory += String.format("if all Scores are the same or 0, the most popular name will be recommened");
+			
 		    textAreaConsole.setText(oReport);
 			GridPane exp = new GridPane();
 			TextArea textArea = new TextArea(oExplain);
 			exp.add(textArea, 0, 0);
+			
 			Alert alert = getAlert("Recommended Name");
 			alert.setContentText(oResult);
 			alert.getDialogPane().setExpandableContent(exp);
+			////////////////////////////////////////////////////////////////////
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+			Image image = new Image("/babyicon.png");
+			ImageView imageView = new ImageView(image);
+			imageView.setFitHeight(48);
+			imageView.setFitWidth(48);
+			stage.getIcons().add(image);
+			alert.setGraphic(imageView);
+			////////////////////////////////Image shown
+			//////////////////////////////////////////
+			//////////////////////////////Sound effect
+			Media sound = new Media(new File("whistle.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			/////////////////////////////////////////////
+			
 			alert.showAndWait();
-		    
+			alert.setContentText(oStory);
+			alert.setTitle("The Story behind: ");
+			alert.setResizable(true);
+			alert.setWidth(750);
+			image = new Image("/bagua.png");
+			imageView = new ImageView(image);
+			imageView.setFitHeight(48);
+			imageView.setFitWidth(48);
+			stage.getIcons().clear();
+			stage.getIcons().add(image);
+			alert.setGraphic(imageView);
+			alert.getDialogPane().setExpandableContent(null);
+			sound = new Media(new File("babysound.wav").toURI().toString());
+			mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			alert.showAndWait();
+			
 			// we do not want children have the exact name as parent.
 		}
 
@@ -1596,7 +1641,49 @@ public class Controller {
 			tsk4ans.setDisable(true);
 		}
 	}
+	public static class People {
 
+		private final SimpleStringProperty name;
+		private final SimpleStringProperty occurr;
+		private final SimpleStringProperty percent;
+		private final SimpleStringProperty score;
+		private People(String fName, String Gender, String Number, String n) {
+			this.name = new SimpleStringProperty(fName);
+			this.occurr = new SimpleStringProperty(Gender);
+			this.percent = new SimpleStringProperty(Number);
+			this.score = new SimpleStringProperty(n);
+		}
+
+		public String getName() {
+			return name.get();
+		}
+
+		public void setName(String fName) {
+			name.set(fName);
+		}
+
+		public String getOccurr() {
+			return occurr.get();
+		}
+
+		public void setOccurr(String fName) {
+			occurr.set(fName);
+		}
+
+		public String getPercent() {
+			return percent.get();
+		}
+
+		public void setPercent(String fName) {
+			percent.set(fName);
+		}
+		public String getScore() {
+			return score.get();
+		}
+		public void setScore(String n) {
+			 score.set(n);
+		}
+	}
 //
 	/**
 	 * Task five To be triggered get result button Anything related to tsk5 will
