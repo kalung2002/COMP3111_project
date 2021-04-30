@@ -48,9 +48,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.awt.Toolkit;
+import java.util.HashMap;
 //import javafx.scene.media;
 import javafx.scene.media.Media;
-
+import java.util.Random;
+import javafx.util.Pair;
+import java.util.ArrayList;
+import java.util.Comparator;
+import javafx.scene.layout.Region;
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -400,7 +405,9 @@ public class Controller {
 		bc.getData().addAll(series1, series2);
 		stage.setScene(scene);
 		stage.show();
-
+		Media sound = new Media(new File("whistle.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 	}
 
 	@FXML
@@ -523,6 +530,9 @@ public class Controller {
 
 		stage.setScene(scene);
 		stage.show();
+		Media sound = new Media(new File("whistle.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 	}
 
 	@SuppressWarnings({ "unchecked" })
@@ -697,7 +707,10 @@ public class Controller {
 //    	        ((Group) scene.getRoot()).getChildren().add(M_table);
 //    	        ((Group) scene.getRoot()).getChildren().add(F_table);    	 
     	        stage.setScene(scene);
-    	        stage.show();
+    	        stage.show();			
+    	        Media sound = new Media(new File("whistle.mp3").toURI().toString());
+    			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    			mediaPlayer.play();
     }    
     @FXML
     void  Generate_Summary(){
@@ -762,11 +775,14 @@ public class Controller {
     	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "M"),AnalyzeNames.getNumber(iYear,"M",1),Malepercent*100);
     	oReport += "%";
     	oReport	+= String.format(" of total Male in year %d \n",iYear);
-    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "F"),AnalyzeNames.getNumber(iYear,"M",1),Femalepercent*100);
-    	oReport  += "%";
+    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "F"),AnalyzeNames.getNumber(iYear,"F",1),Femalepercent*100);
+    	oReport += "%";
     	oReport	+=	String.format( " of total Female in year %d \n",iYear);
     	
-    	textAreaConsole.setText(oReport);    	
+    	textAreaConsole.setText(oReport);
+		Media sound = new Media(new File("whistle.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
     }
 
 
@@ -1342,7 +1358,155 @@ public class Controller {
 		/////////////////////////////////////////////////////////////////
 
 		if(algorType.equals("T4X2")) {
-			
+			int Byear = (MomYOB + dadYOB) / 2;// we believe Father and Mother are equally important, so we take average of the year.
+		    HashMap<Character, Boolean> checkNam = new HashMap<Character, Boolean>();
+			// we take the feature of parents , ~ since child always inherits parent where 
+		    String dadName = tsk4namei.getText();
+		    String momName = tsk4namet.getText();
+		    Random rand = new Random(momName.length() + dadName.length()); //use  mom and dad's name as seed
+		    // take min length,which is the total number of element will be put in hashmap from name String.
+		    int pos = Math.min(dadName.length(), momName.length());
+		    
+		    
+		    for(int i = 0; i < pos; i++) {
+			    int random = rand.nextInt(pos);
+			    int Grand = rand.nextInt(2);
+			    if(Grand == 1) {
+			    	if(!checkNam.containsKey(dadName.charAt(random)))
+			    		checkNam.put(dadName.charAt(random),true);
+			    }
+			    else {
+			    	if(!checkNam.containsKey(momName.charAt(random)))
+			    		checkNam.put(momName.charAt(random),true);
+			    }
+		    
+		    }
+		    
+		    //////////////////////////////////////
+		    ////////////// Get Year
+		    int RankNum = Math.max(dadName.length(), momName.length());
+		    ///////////////////////////////////////
+		    ////////////////// Create List for reporting and sorting
+		    ArrayList <Pair<String,Float>> felist = new ArrayList <Pair<String, Float>>();
+		    ArrayList <Pair<String,Float>> malist = new ArrayList <Pair<String, Float>>();
+		    String oReport = "";
+		    /////////////////////////////////////
+		    float fscore_final = 0;
+		    float mscore_final = 0;
+		    //////////////////////////////////////
+		    ///////////////////////Calculating...
+		    /////////////////////////////////////
+		    for (int i = 1; i <= RankNum; i++) {
+		    	String MName = AnalyzeNames.getName(Byear, i, "M");
+		    	String FName = AnalyzeNames.getName(Byear, i, "F");
+		    	int Mscore = 0;
+		    	int Fscore = 0;
+		    	
+		    	for(int j = 0; j < MName.length(); j++) {
+		    		if(checkNam.containsKey(MName.charAt(j))) {
+		    			Mscore ++; // score increment matches parent's name.
+		    		}
+		    	}
+		    	for(int j = 0; j < FName.length(); j++) {
+		    		if(checkNam.containsKey(FName.charAt(j))) {
+		    			Fscore ++; // score increment matches parent's name.
+		    		}
+		    	}
+		    	
+		    	mscore_final = (float) Mscore / MName.length();
+		    	fscore_final = (float) Fscore / FName.length();
+		    	if(!(FName.equals(momName)|| FName.equals(dadName))) {
+		    		
+		    		felist.add(new Pair<String,Float>(FName, fscore_final));
+		    	}
+		    	if(!(MName.equals(momName)|| MName.equals(dadName))) {
+		    		malist.add(new Pair<String, Float>(MName, mscore_final));
+		    	}
+		    	
+		    }
+		    ///////////////////////////////////////////////////////////
+		    /////////////////////////////Finish Calculation
+		  //////////////////////////////////////////////////////////////
+		    
+		   /////////////////////////////////////////////////////////////////////////////
+		   ////////////////////////////////////// Sorting the list
+		   ////////////////////////////////////////////////////////////////////////////
+		    felist.sort(new Comparator<Pair<String, Float>>() {
+		        @Override
+		        public int compare(Pair<String, Float> o1, Pair<String, Float> o2) {
+		            if (o1.getValue() > o2.getValue()) {
+		                return -1;
+		            } else if (o1.getValue().equals(o2.getValue())) {
+		                return 0; // You can change this to make it then look at the
+		                          //words alphabetical order
+
+		            } else {
+		                return 1;
+		            }
+		        }
+		    });
+		    malist.sort(new Comparator<Pair<String, Float>>() {
+		        @Override
+		        public int compare(Pair<String, Float> o1, Pair<String, Float> o2) {
+		            if (o1.getValue() > o2.getValue()) {
+		                return -1;
+		            } else if (o1.getValue().equals(o2.getValue())) {
+		                return 0; // You can change this to make it then look at the
+		                          //words alphabetical order
+
+		            } else {
+		                return 1;
+		            }
+		        }
+		    });
+		    //////////////////////////////////////////////////////////////////////
+		    //////////////////////////////// Finish sorting
+		   //////////////////////////////////////////////////////////////////////////
+		   /////////////////////////////////////////////// Reporting
+		    ///////////////////////////////////////////////////////////////////
+		    String oCom = "";
+		    for(Pair<String,Float> list : felist) {
+		    	oReport += String.format("The Recommended Name is : %s (female) with score %f\n", list.getKey(), list.getValue());
+		    }
+		    for(Pair<String,Float> list : malist) {
+		    	oReport += String.format("The Recommended Name is : %s (male) with score %f\n", list.getKey(), list.getValue());
+		    }
+			for(Character list : checkNam.keySet()) {
+				oCom += list;
+			}
+		    String oExplain = String.format("######Recommended Name chosen from year %d######\n",Byear);
+		    oExplain += String.format("######English character selected from parents' Name : ---- \"%s\"######\n",oCom);
+		    oExplain += String.format("##################Seed of the random number : %d ########################\n",dadName.length()+momName.length());
+		    oExplain += String.format("######We will select the top %d popular Name from the dataset######\n",pos);
+		    oExplain += String.format("Year is computed by (Dad's Yob + Mom's Yob) / 2\n");
+		    oExplain += String.format("Top %d popular name will be selected from list, Top N is decided by min length of parents'name\n",pos);
+		    oExplain += String.format("English Character(%s) are randomly selected from either Mom or Dad randomly\n",oCom);
+		    oExplain += String.format("Seed of Random number is the sum of name's length of both dad and mom\n",pos);
+		    oExplain += String.format("Total number of selected character (%s) is decided by min length of parent's Name\n",oCom);
+		    oExplain += String.format("point will be added by one if Name from selected range of dataset match any one of the (%s)\n",oCom);
+		    oExplain += String.format("Score is calculated using formular : matched element( %s ) / length of database Name\n",oCom);
+
+		    
+			//////////////////////// Report all the rank
+			/////////////////////////////////////////////////////////////////////
+			/////////////////////////// Report the max rank
+			String oResult = String.format("Name : %s (female) with score %.2f", felist.get(0).getKey(),felist.get(0).getValue()*100f);
+			oResult +="%";
+			oResult += String.format("\n Name : %s (male) with score %.2f", malist.get(0).getKey(),malist.get(0).getValue()*100f);
+			oResult +="%\n";
+
+			//////////////////////////////////////
+			///////////////////////////////////////////////////////////////////
+		    textAreaConsole.setText(oReport);
+			GridPane exp = new GridPane();
+			TextArea textArea = new TextArea(oExplain);
+			exp.add(textArea, 0, 0);
+			Alert alert = getAlert("Recommended Name");
+			alert.setContentText(oResult);
+			alert.getDialogPane().setExpandableContent(exp);
+			alert.showAndWait();
+		    
+			// we do not want children have the exact name as parent.
 		}
 
 	}
@@ -1362,7 +1526,8 @@ public class Controller {
 		if (!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
 			title += "#####################You are Now selecting Algorithm T4X1 #####################\n";
 
-		} else if (!(selected_algor == null)) {
+		} 
+		else if (!(selected_algor == null)) {
 			title += "#####################You are Now selecting Algorithm T4X2 #####################\n";
 		}
 
@@ -1370,33 +1535,38 @@ public class Controller {
 			counter++;
 			T4X1timer++;
 
-		} else {
+		}
+		else {
 			oreport += String.format("Please enter Mom's Year of Born\n");
 		}
 
 		if (!(dadYOB == null) && !dadYOB.isBlank()) {
 			counter++;
 			T4X1timer++;
-		} else {
+		} 
+		else {
 			oreport += String.format("Please enter Dad's Year of Born\n");
 		}
 
 		if (!(dadName == null) && !dadName.isBlank()) {
 			counter++;
-		} else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
+		} 
+		else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
 			oreport += String.format("Please enter Dad's Name\n");
 		}
 
 		if (!(momName == null) && !momName.isBlank()) {
 			counter++;
-		} else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
+		} 
+		else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
 			oreport += String.format("Please enter Mom's Name\n");
 		}
 
 		if (!(selected_algor == null)) {
 			counter++;
 			T4X1timer++;
-		} else {
+		} 
+		else {
 			oreport += String.format("Please Select the Algorithm(T4X1 or T4X2)\n");
 		}
 
