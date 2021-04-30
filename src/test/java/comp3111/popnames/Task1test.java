@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 public class Task1test extends ApplicationTest {
 
 	private Scene s;
-	@SuppressWarnings("unused")
 	private TextArea t;
 	private TextField year;
 	private TextField topN;
@@ -53,6 +52,7 @@ public class Task1test extends ApplicationTest {
 	@Test
 	public void testinput() {
 		clickOn("#tabReport1");
+		sleep(100);
     	AnalyzeNames a = new AnalyzeNames();
     	String name = a.getName(2019, 2192, "F");
     	assertFalse(name.equals("Paul"));
@@ -216,6 +216,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("2010");
@@ -226,6 +227,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("0");
 		year.setText("2010");
@@ -236,6 +238,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("11");
 		year.setText("2010");
@@ -246,6 +249,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("-1");
 		year.setText("2019");
@@ -256,6 +260,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1");
 		year.setText("01999");
@@ -266,6 +271,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1");
 		year.setText("1879");
@@ -336,6 +342,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("-1");
 		year.setText("2010");
@@ -346,6 +353,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1");
 		year.setText("1879");
@@ -356,6 +364,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1");
 		year.setText("01880");
@@ -376,15 +385,10 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("2-2");
-		clickOn("#buttonSummary");
-		topN.setText("10");
-		year.setText("abc");
-		clickOn("#buttonSummary");
-		topN.setText("10");
-		year.setText("20202");	
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -517,6 +521,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("2020");
 		year.setText("2010");
@@ -527,6 +532,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1999");
 		year.setText("0123");
@@ -547,6 +553,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1999");
 		year.setText("1879");
@@ -557,6 +564,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1999");
 		year.setText("``````");
