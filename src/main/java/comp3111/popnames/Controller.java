@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
@@ -57,13 +58,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
-import javafx.scene.web.WebHistory;
-import javafx.collections.ListChangeListener;
-import javafx.scene.web.WebEngine;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
+import javafx.stage.Window;
 
-//import javafx.scene.control.ButtonBar;
-//import javafx.scene.control.ButtonType;
-//import java.util.Optional;
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -1584,11 +1582,11 @@ public class Controller {
 		    String oLink ="<br><a href=\"https://www.huffingtonpost.ca/2016/03/28/unique-baby-names_n_9562904.html\">"
 		    		+ "WhY we recommended popular name??!</a></br>";
 		    oLink +="<br><a href=\"https://www.youtube.com/watch?v=LBnEnqusjZQ\">"
-		    		+ "WhY we want shorter name??( -point 8)</a></br>";
+		    		+ "WhY we want shorter name??(video)</a></br>";
 		    oLink +="<br><a href=\"https://www.verywellfamily.com/baby-names-4014180#family-traditions\">"
 		    		+ "WhY we want child name contain Parent name's Character??</a></br>";		    
             WebView webView = new WebView();
-            webView.getEngine().loadContent("<html>\r\n"
+            String htmlcontent = "<html>\r\n"
             		+ "<head>\r\n"
             		+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n"
             		+ "<style>\r\n"
@@ -1651,21 +1649,27 @@ public class Controller {
             		+ "</script>\r\n"
             		+ "\r\n"
             		+ "</body>\r\n"
-            		+ "</html>"
-            		);
+            		+ "</html>";
+            webView.getEngine().loadContent(htmlcontent);
             webView.setMaxHeight(400);
 			exp = new GridPane();
 			exp.add(webView, 0, 0);
-				
-			/////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////// HTML adding
-			/////////////////////////////////////////////////////////////////////////////
-            alert.getDialogPane().setExpandableContent(exp);
+			/////////////////////////////////
+			/////////////////// finish web View
+			////////////////////////////////
 			sound = new Media(new File("babysound.wav").toURI().toString());
 			mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
-			alert.showAndWait();
-			// we do not want children have the exact name as parent.
+            alert.getDialogPane().setExpandableContent(exp);
+            alert.showAndWait();
+/////////////////////////////// Close properly
+			webView.getEngine().loadContent(htmlcontent);
+			exp = new GridPane();
+			exp.add(webView, 0, 0);
+			alert.getDialogPane().setExpandableContent(exp);
+			alert.show();
+			alert.close();
+/////////////////////////////////////////////////
 		}
 
 	}

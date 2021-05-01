@@ -16,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 public class Task4test extends ApplicationTest {
 
 	private Scene s;
-	@SuppressWarnings("unused")
 	private TextArea t;
 	private TextField DadName;
 	private TextField MomName;
@@ -42,31 +41,54 @@ public class Task4test extends ApplicationTest {
 		Algorbtn = (ToggleButton)s.lookup("#T4X1");
 		
 	}
-	@Test
-	public void ts() {
-//    	AnalyzeNames a = new AnalyzeNames();
-//    	String name = a.getName(2019, 2192, "F");
-//    	assertFalse(name.equals("Paul"));
-		clickOn("#tabApp1");
-		MomYoB.setText("2000");
-		DadYOB.setText("2015");		
-		MomName.setText("SDSDDS");
-		DadName.setText("SSSS");
-		Algorbtn.setSelected(true);
-		clickOn("#tsk4ans");
-
-	}
+//	@Test
+//	public void ts() {
+////    	AnalyzeNames a = new AnalyzeNames();
+////    	String name = a.getName(2019, 2192, "F");
+////    	assertFalse(name.equals("Paul"));
+//
+////		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+////		sleep(100);
+////		clickOn("#tabApp1");
+////		MomYoB.setText("2000");
+////		DadYOB.setText("2015");		
+////		MomName.setText("SDSDDS");
+////		DadName.setText("SSSS");
+////		sleep(100);
+////		Algorbtn.setSelected(true);
+////		sleep(100);
+////		clickOn("#tsk4ans");
+//		sleep(100);
+//		clickOn("#tabApp1");
+//		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+//		MomYoB.setText("19991");
+//		DadYOB.setText("20151");		
+//		MomName.setText("SDSDDS");
+//		DadName.setText("SSSS");
+//		Algorbtn.setSelected(true);
+//		sleep(100);
+//		clickOn("#tsk4ans");
+//	}
 	@Test
 	public void testT4X1_valid() {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+		sleep(100);
 		MomYoB.setText("19991");
+		sleep(100);
 		DadYOB.setText("20151");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -75,12 +97,19 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("2020");
+		sleep(100);
 		DadYOB.setText("2000");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -89,12 +118,21 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("2019");
+		sleep(100);
 		DadYOB.setText("2020");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -103,12 +141,19 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("2000");
+		sleep(100);
 		DadYOB.setText("1879");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -117,12 +162,20 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("-*#@@$#");
+		sleep(100);
 		DadYOB.setText("1880");		
+		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -131,12 +184,19 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("1880");
+		sleep(100);
 		DadYOB.setText("!#!@!$!@!@#");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -145,12 +205,21 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+		sleep(100);
 		MomYoB.setText("1880");
+		sleep(100);
 		DadYOB.setText("01999");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -159,12 +228,20 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+		sleep(100);
 		MomYoB.setText("01880");
+		sleep(100);
 		DadYOB.setText("1999");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -174,11 +251,19 @@ public class Task4test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 		clickOn("#tabApp1");
+		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+		sleep(100);
 		MomYoB.setText("111880");
+		sleep(100);
 		DadYOB.setText("1999");		
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -188,11 +273,19 @@ public class Task4test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 		clickOn("#tabApp1");
+		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
+		sleep(100);
 		MomYoB.setText("1999");
-		DadYOB.setText("111880");		
+		sleep(100);
+		DadYOB.setText("111880");
+		sleep(100);
 		MomName.setText("SDSDDS");
+		sleep(100);
 		DadName.setText("SSSS");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -202,10 +295,15 @@ public class Task4test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("1999");
-		DadYOB.setText("111880");		
+		sleep(100);
+		DadYOB.setText("111880");	
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);		
 		clickOn("#tsk4ans");
 	}
 	@Test
@@ -213,8 +311,12 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		Algorbtn = (ToggleButton)s.lookup("#T4X1");
 		clickOn("#tabApp1");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 	}
 	@Test
@@ -222,8 +324,11 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
-		Algorbtn = (ToggleButton)s.lookup("#T4X2");
+		sleep(100);
+//		Algorbtn = (ToggleButton)s.lookup("#T4X2");
+		sleep(100);
 		Algorbtn.setSelected(true);
 		clickOn("#tsk4ans");
 	}
@@ -232,13 +337,22 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		Algorbtn = (ToggleButton)s.lookup("#T4X2");
+		sleep(100);
 		MomYoB.setText("1999");
-		DadYOB.setText("2000");		
+		sleep(100);
+		DadYOB.setText("2000");
+		sleep(100);
 		MomName.setText("Kenneth");
+		sleep(100);
 		DadName.setText("Desmond");
+		sleep(100);
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
+		sleep(100);
+		sleep(400);
 	}
 }
