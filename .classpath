@@ -26,5 +26,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="javafx-media-15.0.1-win.jar"/>
+	<classpathentry kind="lib" path="javafx-web-11.0.2-win.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
