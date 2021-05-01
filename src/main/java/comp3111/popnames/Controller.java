@@ -96,23 +96,23 @@ public class Controller {
 	@FXML
 	private Button buttonSummary;
 
-//	@FXML
-//	private Tab tabReport1;
-//
-//	@FXML
-//	private Tab tabReport2;
-//
-//	@FXML
-//	private Tab tabReport3;
-//
-//	@FXML
-//	private Tab tabApp1;
-//
-//	@FXML
-//	private Tab tabApp2;
-//
-//	@FXML
-//	private Tab tabApp3;
+	@FXML
+	private Tab tabReport1;
+
+	@FXML
+	private Tab tabReport2;
+
+	@FXML
+	private Tab tabReport3;
+
+	@FXML
+	private Tab tabApp1;
+
+	@FXML
+	private Tab tabApp2;
+
+	@FXML
+	private Tab tabApp3;
 //	@FXML
 //	private ToggleGroup T1;
 //	@FXML
@@ -125,6 +125,11 @@ public class Controller {
 	@FXML
 	private TabPane MENU_GROUP;
 
+	/**
+	 * generate a blank information alert to use
+	 * @param title the title for the desired alert
+	 * @return the alert object
+	 */
 	private Alert getAlert(String title) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -134,13 +139,21 @@ public class Controller {
 		return alert;
 
 	}
-
+	
+	/**
+	 * set the ratio for the UI
+	 * @param d 0-100 the percentage height
+	 * @param e 0-100 the percentage height
+	 */
 	private void Display_helper(double d, double e) {
 		GRID0.setPercentHeight(d);
 		GRID1.setPercentHeight(e);
 	}
 
 	@FXML
+	/**
+	 * change height every-time the tab page change
+	 */
 	void onselect() {
 		Display_helper(50, 50);
 		Tab selected = (Tab) MENU_GROUP.getSelectionModel().getSelectedItem();
@@ -181,6 +194,9 @@ public class Controller {
 	}
 
 	@FXML
+	/**
+	 * modify UI parameter since the data is in fxml is overwritten by the jmetro
+	 */
 	void initialize() {
 		// change setting immediately after application launched
 		// change style here since some fxml setting will be override by JMetro
@@ -190,6 +206,11 @@ public class Controller {
 		Task1TableButton.setStyle("-fx-font-size:20");
 		Task1Summarybutton.setStyle("-fx-font-size:20");
 		Task1BarButton.setStyle("-fx-font-size:20");
+		
+		tsk3btn4.setStyle("-fx-font-size:20");
+		tsk3btn3.setStyle("-fx-font-size:20");
+		tsk3btn2.setStyle("-fx-font-size:20");
+		tsk3btn1.setStyle("-fx-font-size:20");
 
 	}
 
@@ -1972,8 +1993,16 @@ public class Controller {
 		alert.getDialogPane().setExpandableContent(exp);
 		alert.showAndWait();
 	}
-
 	@FXML
+	/**
+	 * This is the safeguard function for task 6
+	 * the button to get result will be lock until the input field is filled
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	void tsk6check() {
 		float status = 0;
 		int counter = 0;

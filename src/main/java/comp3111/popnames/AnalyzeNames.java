@@ -2,14 +2,29 @@ package comp3111.popnames;
 
 import org.apache.commons.csv.*;
 import edu.duke.*;
-
+/**
+ * This package handles all query related to the birth dataset
+ * <B>WARNING all func here will assume the input is valid</B> 
+ * 
+ * @author klluiaf
+ *
+ */
 public class AnalyzeNames {
-
+	/**
+	 * Parse the csv and return aa array of CSVRecord 
+	 * @param year the year of interest
+	 * @return a array of record found on that year
+	 */
 	public static CSVParser getFileParser(int year) {
 		FileResource fr = new FileResource(String.format("dataset/yob%s.csv", year));
 		return fr.getCSVParser(false);
 	}
-
+	
+	/**
+	 * Get the summary of birth
+	 * @param year the year of interest
+	 * @return the report in string
+	 */
 	public static String getSummary(int year) {
 		String oReport = "";
 		int totalBirths = 0;
@@ -44,6 +59,13 @@ public class AnalyzeNames {
 		return oReport;
 	}
 
+	/**
+	 * Get the rank of a name in the csv file
+	 * @param year the year of interest
+	 * @param name the name of interest
+	 * @param gender the gender of interest(M/F)
+	 * @return rank if found;-1 if not found
+	 */
 	public static int getRank(int year, String name, String gender) {
 		boolean found = false;
 		int oRank = 0;
@@ -65,7 +87,14 @@ public class AnalyzeNames {
 		else
 			return -1;
 	}
-
+	
+	/**
+	 * Get the birth name of year by rank
+	 * @param year the year of interest
+	 * @param rank the rank of interest
+	 * @param gender the gender of interest(M/F)
+	 * @return Name of interest if found;error message if not found
+	 */
 	public static String getName(int year, int rank, String gender) {
 		boolean found = false;
 		String oName = "";
@@ -91,6 +120,12 @@ public class AnalyzeNames {
 	}
 
 	// for Task 1 calculating the total number of that specific name
+	/**
+	 * Get the total birth for a gender in a year
+	 * @param year the year of interest
+	 * @param gender the gender of interest(M/F)
+	 * @return the total occurrence;0 if error
+	 */
 	public static int getTotalOccur(int year, String gender) {
 
 		int totalNumber = 0;
@@ -107,7 +142,13 @@ public class AnalyzeNames {
 
 		return totalNumber;
 	}
-
+	/**
+	 * Get the number of birth for a specific rank in a year
+	 * @param year the year of interest
+	 * @param gender the gender of interest(M/F)
+	 * @param rank  the rank of interest
+	 * @return the occurrence(data) in that rank in that year;0 if error
+	 */
 	public static int getNumber(int year, String gender, int rank) {
 
 		int NumberOccurr = 0;
@@ -127,6 +168,13 @@ public class AnalyzeNames {
 		return NumberOccurr;
 	}
 
+	/**
+	 * Get the record for specific name for a year(for one gender)
+	 * @param year the year of interest
+	 * @param name the name of interest
+	 * @param gender the gender of interest
+	 * @return ;-1 if error
+	 */
 	public static int tsk3csv_find_name_by_year(int year, String name, String gender) {
 		int out = 0;
 		for (CSVRecord rec : getFileParser(year)) {
@@ -142,7 +190,15 @@ public class AnalyzeNames {
 		}
 		return -1;
 	}
-
+	
+	/**
+	 * Get the highest rank for the same name in a period
+	 * @param years the starting year
+	 * @param yeare the ending year
+	 * @param name the name of interest
+	 * @param gender the gender of interest
+	 * @return highest rank in a period;-1 if not found
+	 */
 	public static int tsk3csv_get_highest_rank(int years, int yeare, String name, String gender) {
 		int rank = -1;
 		for (int i = years; i <= yeare; i++) {
@@ -152,7 +208,15 @@ public class AnalyzeNames {
 		}
 		return rank;
 	}
-
+	
+	/**
+	 * Get the highest year for the same name in a period
+	 * @param years the starting year
+	 * @param yeare the ending year
+	 * @param name the name of interest
+	 * @param gender the gender of interest
+	 * @return highest rank in a period;-1 if not found
+	 */
 	public static int tsk3csv_get_highest_year(int years, int yeare, String name, String gender) {
 		int rank = -1;
 		int out = 0;
@@ -164,7 +228,12 @@ public class AnalyzeNames {
 		}
 		return out;
 	}
-
+	/**
+	 * Get the total entry(lines of data) in one year for specific gender
+	 * @param year the year of interest
+	 * @param gender the gender of interest(M/F)
+	 * @return the total entry(lines of data) in one year for specific gender
+	 */
 	public static int tsk3csv_num_entry_by_gender(int year, String gender) {
 		int count = 0;
 		for (CSVRecord rec : getFileParser(year)) {
@@ -174,7 +243,11 @@ public class AnalyzeNames {
 		}
 		return count;
 	}
-
+	/**
+	 * Get the total entry(lines of data) in one year
+	 * @param year the year of interest
+	 * @return the total entry(lines of data) in one year
+	 */
 	public static int tsk6csv_num_entry(int year) {
 		int count = 0;
 		for (CSVRecord rec : getFileParser(year)) {
