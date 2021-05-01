@@ -61,7 +61,12 @@ import javafx.scene.web.WebView;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
 import javafx.stage.Window;
-
+/**
+ * public class containing function to be used by the javafx
+ * and also all the referenced item from ui.fxml
+ * @author kalung
+ *
+ */
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -127,6 +132,7 @@ public class Controller {
 
 	/**
 	 * generate a blank information alert to use
+	 * 
 	 * @param title the title for the desired alert
 	 * @return the alert object
 	 */
@@ -139,9 +145,10 @@ public class Controller {
 		return alert;
 
 	}
-	
+
 	/**
 	 * set the ratio for the UI
+	 * 
 	 * @param d 0-100 the percentage height
 	 * @param e 0-100 the percentage height
 	 */
@@ -206,7 +213,7 @@ public class Controller {
 		Task1TableButton.setStyle("-fx-font-size:20");
 		Task1Summarybutton.setStyle("-fx-font-size:20");
 		Task1BarButton.setStyle("-fx-font-size:20");
-		
+
 		tsk3btn4.setStyle("-fx-font-size:20");
 		tsk3btn3.setStyle("-fx-font-size:20");
 		tsk3btn2.setStyle("-fx-font-size:20");
@@ -310,8 +317,12 @@ public class Controller {
 	@FXML
 	private Button Task1BarButton;// for task 1
 
-
 	// generate Summary
+	/**
+	 * This function generate a bar chart showing the most n popular name in a new scene
+	 * it will return alert if input is invalid
+	 * @throws IOException
+	 */
 	@FXML
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 
@@ -327,7 +338,7 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Your input is empty!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		if (Text1_name.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -336,9 +347,9 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Your input is empty!\nPlease input Top N number of interest 1 - 10.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
+		if (Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
@@ -355,7 +366,7 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not a number!\nPlease input number 1 - 10.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
 		if (year_isNum == false) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -364,47 +375,47 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not a number!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(Text1_name.getText().length() > 4) {
+		if (Text1_name.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Our of range!\nPlease input Top N number 1 - 10");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		if(Text1_year.getText().length() > 4) {
+		if (Text1_year.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Our of range!\nPlease input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-		
-		if(iYear>2019 || iYear<1880) {
+
+		if (iYear > 2019 || iYear < 1880) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Please input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		if(topN < 1 || topN > 10) {
+		if (topN < 1 || topN > 10) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Please input number 1 - 10");
 			alert.showAndWait();
-			return;			
+			return;
 
 		}
 		// Generate BarChart
@@ -436,10 +447,11 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
-
-	@FXML
+	/**
+	 * This function generate a Pie chart showing the most n popular name in a new scene
+	 * it will return alert if input is invalid
+	 */
 	void Generate_PieChart() {
-
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
@@ -451,7 +463,7 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Your input is empty!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		if (Text1_name.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -460,9 +472,9 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Your input is empty!\nPlease input Top N number of interest 1 - 10.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
+		if (Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
@@ -478,7 +490,7 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not a number!\nPlease input Top N number 1 - 10.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
 		if (year_isNum == false) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -487,49 +499,49 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not a number!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(Text1_name.getText().length() > 4) {
+		if (Text1_name.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Our of range!\nPlease input Top N number 1 - 10");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		if(Text1_year.getText().length() > 4) {
+		if (Text1_year.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Our of range!\nPlease input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
-		
-		if(iYear>2019 || iYear<1880) {
+
+		if (iYear > 2019 || iYear < 1880) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Our of range!\nPlease input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		if(topN < 1 || topN > 10) {
+		if (topN < 1 || topN > 10) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Our of range!\nPlease input Top N  number 1 - 10");
 			alert.showAndWait();
-			return;					
+			return;
 		}
 		String oReport = "";
-		oReport += String.format("Top "+ topN + " Names in Year " + iYear);
+		oReport += String.format("Top " + topN + " Names in Year " + iYear);
 
 		Scene scene = new Scene(new Group());
 		Stage stage;
@@ -561,9 +573,10 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
-
-	@SuppressWarnings({ "unchecked" })
-	@FXML
+	/**
+	 * This function generate a Table showing the most n popular name in a new scene
+	 * it will return alert if input is invalid
+	 */
 	void Generate_Table() {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
@@ -576,7 +589,7 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Your input is empty!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		if (Text1_name.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -585,9 +598,9 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Your input is empty!\nPlease input Top N number of interest 1 - 10.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
+		if (Text1_year.getText().charAt(0) == '0' || Text1_name.getText().charAt(0) == '0') {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
@@ -603,7 +616,7 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not a number!\nPlease input Top N  number 1 - 10.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
 		if (year_isNum == false) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -612,47 +625,46 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not a number!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(Text1_name.getText().length() > 4) {
+		if (Text1_name.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Out of range!\nPlease input Top N  number 1 - 10");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		if(Text1_year.getText().length() > 4) {
+		if (Text1_year.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Out of range!\nPlease input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		int iYear = Integer.parseInt(Text1_year.getText());
 		int topN = Integer.parseInt(Text1_name.getText());
 
-		
-		if(iYear>2019 || iYear<1880) {
+		if (iYear > 2019 || iYear < 1880) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Out of range!\nPlease input year 1880 - 2019");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		if(topN < 1 || topN > 10) {
+		if (topN < 1 || topN > 10) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Out of range!\nPlease input Top N  number 1 - 10");
 			alert.showAndWait();
-			return;				
+			return;
 
 		}
 		TableView<Person> M_table = new TableView<Person>();
@@ -733,14 +745,18 @@ public class Controller {
 //    	        ((Group) scene.getRoot()).getChildren().add(label);
 //    	        ((Group) scene.getRoot()).getChildren().add(M_table);
 //    	        ((Group) scene.getRoot()).getChildren().add(F_table);    	 
-    	        stage.setScene(scene);
-    	        stage.show();			
-    	        Media sound = new Media(new File("whistle.mp3").toURI().toString());
-    			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-    			mediaPlayer.play();
-    }    
-    @FXML
-    void  Generate_Summary(){
+		stage.setScene(scene);
+		stage.show();
+		Media sound = new Media(new File("whistle.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
+	}
+	/**
+	 * This function generate a summary showing the most n popular name on the console
+	 * it will return alert if input is invalid
+	 */
+	@FXML
+	void Generate_Summary() {
 
 		boolean year_isNum = Text1_year.getText().chars().allMatch(c -> c >= 48 && c <= 57);
 		if (Text1_year.getText().isEmpty()) {
@@ -750,9 +766,9 @@ public class Controller {
 			alert.setHeaderText("Empty");
 			alert.setContentText("Out of range!\nPlease input year 1880 - 2019.");
 			alert.showAndWait();
-			return;			
+			return;
 		}
-		if(Text1_year.getText().charAt(0) == '0') {
+		if (Text1_year.getText().charAt(0) == '0') {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
@@ -762,14 +778,14 @@ public class Controller {
 
 			return;
 		}
-		if(Text1_year.getText().length() > 4) {
+		if (Text1_year.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Out of range!\nPlease input year 1880 - 2019");
 			alert.showAndWait();
-			return;			
+			return;
 		}
 		if (year_isNum == false) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -778,72 +794,111 @@ public class Controller {
 			alert.setHeaderText("invalid input");
 			alert.setContentText("Your input is not number!\nPlease input year of interest 1880 - 2019");
 			alert.showAndWait();
-			return;		
+			return;
 		}
 
-		
-    	String oReport = "";
-    	int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
-    	
-		if(iYear>2019 || iYear<1880) {
+		String oReport = "";
+		int iYear = Integer.parseInt(Text1_year.getText()); // get the year of the user input
+
+		if (iYear > 2019 || iYear < 1880) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Invalid input");
 			alert.setContentText("Please input year 1880 - 2019");
 			alert.showAndWait();
-			return;		
+			return;
 		}
-		
-    	float Malepercent=   (float)AnalyzeNames.getNumber(iYear,"M",1) / AnalyzeNames.getTotalOccur(iYear,"M");
-    	float Femalepercent = (float)  AnalyzeNames.getNumber(iYear,"F",1) / AnalyzeNames.getTotalOccur(iYear,"F");
-    	
-    	oReport = String.format("Summary of Results in the year %d:\n", iYear);
-    	oReport += String.format("--- %s (Male) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "M"),AnalyzeNames.getNumber(iYear,"M",1),Malepercent*100);
-    	oReport += "%";
-    	oReport	+= String.format(" of total Male in year %d \n",iYear);
-    	oReport += String.format("--- %s (Female) is the most popular name with the number of occurences of %d,which represents %.2f",AnalyzeNames.getName(iYear, 1, "F"),AnalyzeNames.getNumber(iYear,"F",1),Femalepercent*100);
-    	oReport += "%";
-    	oReport	+=	String.format( " of total Female in year %d \n",iYear);
-    	
-    	textAreaConsole.setText(oReport);
+
+		float Malepercent = (float) AnalyzeNames.getNumber(iYear, "M", 1) / AnalyzeNames.getTotalOccur(iYear, "M");
+		float Femalepercent = (float) AnalyzeNames.getNumber(iYear, "F", 1) / AnalyzeNames.getTotalOccur(iYear, "F");
+
+		oReport = String.format("Summary of Results in the year %d:\n", iYear);
+		oReport += String.format(
+				"--- %s (Male) is the most popular name with the number of occurences of %d,which represents %.2f",
+				AnalyzeNames.getName(iYear, 1, "M"), AnalyzeNames.getNumber(iYear, "M", 1), Malepercent * 100);
+		oReport += "%";
+		oReport += String.format(" of total Male in year %d \n", iYear);
+		oReport += String.format(
+				"--- %s (Female) is the most popular name with the number of occurences of %d,which represents %.2f",
+				AnalyzeNames.getName(iYear, 1, "F"), AnalyzeNames.getNumber(iYear, "F", 1), Femalepercent * 100);
+		oReport += "%";
+		oReport += String.format(" of total Female in year %d \n", iYear);
+
+		textAreaConsole.setText(oReport);
 		Media sound = new Media(new File("whistle.mp3").toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
-    }
+	}
 
-
+	/**
+	 * the inner class for table to use in task1
+	 * 
+	 * @author kalung
+	 *
+	 */
 	public static class Person {
 
 		private final SimpleStringProperty name;
 		private final SimpleStringProperty occurr;
 		private final SimpleStringProperty percent;
+
 		private Person(String fName, String Gender, String Number) {
 			this.name = new SimpleStringProperty(fName);
 			this.occurr = new SimpleStringProperty(Gender);
 			this.percent = new SimpleStringProperty(Number);
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return name
+		 */
 		public String getName() {
 			return name.get();
 		}
 
+		/**
+		 * The mutator function for name
+		 * 
+		 * @param fName name to be changed
+		 */
 		public void setName(String fName) {
 			name.set(fName);
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return occurrence
+		 */
 		public String getOccurr() {
 			return occurr.get();
 		}
 
+		/**
+		 * The mutator function for name
+		 * 
+		 * @param fName occu to be changed
+		 */
 		public void setOccurr(String fName) {
 			occurr.set(fName);
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return percent of occurrence
+		 */
 		public String getPercent() {
 			return percent.get();
 		}
 
+		/**
+		 * The mutator function for name
+		 * 
+		 * @param fName pcnt to be changed
+		 */
 		public void setPercent(String fName) {
 			percent.set(fName);
 		}
@@ -872,7 +927,12 @@ public class Controller {
 	private TextField tsk3name;
 	@FXML
 	private TextField tsk3gender;
-
+	/**
+	 * This function is to safeguard the input for task3
+	 * all the button in task 3 is lock until the data is input fits the format
+	 * there will be text showing on the console showing user what has gone wrong /
+	 * (e.g. end-year is smaller than start-year)
+	 */
 	@FXML
 	void tsk3in() {
 //		System.out.println("tsk3");
@@ -890,7 +950,7 @@ public class Controller {
 		if (years.isBlank()) {
 			isvalid = false;
 			output += "Please input starting year\n";
-		} else if ((!NumberUtils.isCreatable(years))||(years.length()>4)) {// if isn't number
+		} else if ((!NumberUtils.isCreatable(years)) || (years.length() > 4)) {// if isn't number
 			isvalid = false;
 			output += "Please input a valid number\n";
 		} else {
@@ -906,7 +966,7 @@ public class Controller {
 		if (yeare.isBlank()) {
 			isvalid = false;
 			output += "Please input end year\n";
-		} else if ((!NumberUtils.isCreatable(yeare))||(yeare.length()>4)) {// if isn't number
+		} else if ((!NumberUtils.isCreatable(yeare)) || (yeare.length() > 4)) {// if isn't number
 			isvalid = false;
 			output += "Please input a valid number\n";
 		} else {
@@ -965,7 +1025,11 @@ public class Controller {
 			textAreaConsole.setText(output);
 		}
 	}
-
+	/**
+	 * This function will generate a bar chart showing the popularity of a name over a period
+	 * the result will be shown in a popup alert
+	 * it will return alert if input name is not found
+	 */
 	@FXML
 	void tsk3brcht() {// generate and popup barchart
 		String years = tsk3yois.getText();
@@ -1021,7 +1085,11 @@ public class Controller {
 		alert.showAndWait();
 
 	}
-
+	/**
+	 * This function will generate a line chart showing the popularity of a name over a period
+	 * the result will be shown in a popup alert
+	 * it will return alert if input is invalid
+	 */
 	@FXML
 	void tsk3lncht() {
 
@@ -1077,7 +1145,11 @@ public class Controller {
 		alert.showAndWait();
 
 	}
-
+	/**
+	 * This function will generate a summary showing the popularity of a name over a period
+	 * the result will be shown in a popup alert
+	 * it will return alert if input name is not found
+	 */
 	@FXML
 	void tsk3summary() {
 		String years = tsk3yois.getText();
@@ -1124,12 +1196,26 @@ public class Controller {
 
 	}
 
+	/**
+	 * this is a inner class to store the info for table to use
+	 * 
+	 * @author kalung
+	 *
+	 */
 	public static class tsk3entry {
 		private final SimpleStringProperty year;
 		private final SimpleStringProperty rank;
 		private final SimpleStringProperty occu;
 		private final SimpleStringProperty pcnt;
 
+		/**
+		 * just a simple construction,data in,data assigned
+		 * 
+		 * @param year the year to be initialized
+		 * @param rank the rank to be initialized
+		 * @param occu the occu to be initialized
+		 * @param pcnt the pcnt to be initialized
+		 */
 		tsk3entry(String year, String rank, String occu, String pcnt) {
 			this.year = new SimpleStringProperty(year);
 			this.rank = new SimpleStringProperty(rank);
@@ -1137,24 +1223,48 @@ public class Controller {
 			this.pcnt = new SimpleStringProperty(pcnt);
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return the year
+		 */
 		public String getYear() {
 			return this.year.get();
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return the rank
+		 */
 		public String getRank() {
 			return this.rank.get();
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return the occu
+		 */
 		public String getOccu() {
 			return this.occu.get();
 		}
 
+		/**
+		 * Member access function for PropertyValueFactory to grab
+		 * 
+		 * @return the pcnt
+		 */
 		public String getPcnt() {
 			return this.pcnt.get();
 		}
 
 	}
-
+	/**
+	 * This function will generate a table showing the popularity of a name over a period
+	 * the result will be shown in a popup alert
+	 * it will return alert if input name is not found
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void tsk3table() {
@@ -1251,9 +1361,20 @@ public class Controller {
 
 	@FXML
 	private TextField tsk4yobt;
-  
+
 	private boolean Play = true;
 
+	/**
+	 * this function will generate the names for babies error alert will be raised
+	 * if the input is invalid
+	 * 
+	 * if algorithm is T4X1 the name prediction will be shown on a information alarm
+	 * 
+	 * if algorithm is T4X2 the name with the highest match rate will be shown on an
+	 * information alert an extra alert will popup showing the story behind with a
+	 * table and hyperlink and a webpage will be adhere to the story showing the
+	 * reference with a table / showing the rest of the prediction
+	 */
 	@FXML
 	void task_four_getresult() {
 		///////////////////////////////////////////////////////////////////////
@@ -1302,20 +1423,7 @@ public class Controller {
 			return;
 		}
 
-		if(tsk4yobt.getText().length()>4 || tsk4yobi.getText().length()>4){
-			Alert alert = new Alert(AlertType.ERROR);
-			Toolkit.getDefaultToolkit().beep();
-			alert.setTitle("Error Dialog");
-			alert.setHeaderText("Invalid Input");
-			alert.setContentText("Please input year 1880 - 2019");
-			alert.showAndWait();
-			return;			
-		}
-		
-		int dadYOB = Integer.parseInt(tsk4yobi.getText());
-		int MomYOB = Integer.parseInt(tsk4yobt.getText());
-		
-		if((dadYOB <0 || dadYOB < 1880 || dadYOB > 2019) ) {
+		if (tsk4yobt.getText().length() > 4 || tsk4yobi.getText().length() > 4) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
@@ -1325,7 +1433,20 @@ public class Controller {
 			return;
 		}
 
-		if( (MomYOB <0 || MomYOB < 1880 || MomYOB > 2019) ) {
+		int dadYOB = Integer.parseInt(tsk4yobi.getText());
+		int MomYOB = Integer.parseInt(tsk4yobt.getText());
+
+		if ((dadYOB < 0 || dadYOB < 1880 || dadYOB > 2019)) {
+			Alert alert = new Alert(AlertType.ERROR);
+			Toolkit.getDefaultToolkit().beep();
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("Invalid Input");
+			alert.setContentText("Please input year 1880 - 2019");
+			alert.showAndWait();
+			return;
+		}
+
+		if ((MomYOB < 0 || MomYOB < 1880 || MomYOB > 2019)) {
 			Alert alert = new Alert(AlertType.ERROR);
 			Toolkit.getDefaultToolkit().beep();
 			alert.setTitle("Error Dialog");
@@ -1374,152 +1495,170 @@ public class Controller {
 		// Execution below T4X2
 		/////////////////////////////////////////////////////////////////
 
-		if(algorType.equals("T4X2")) {
-			int Byear = (MomYOB + dadYOB) / 2;// we believe Father and Mother are equally important, so we take average of the year.
-		    HashMap<Character, Boolean> checkNam = new HashMap<Character, Boolean>();
+		if (algorType.equals("T4X2")) {
+			int Byear = (MomYOB + dadYOB) / 2;// we believe Father and Mother are equally important, so we take average
+												// of the year.
+			HashMap<Character, Boolean> checkNam = new HashMap<Character, Boolean>();
 			// we take the feature of parents , ~ since child always inherits parent where
-		    String dadName = Character.toUpperCase(tsk4namei.getText().charAt(0)) + tsk4namei.getText().substring(1).toLowerCase();
-		    String momName = Character.toUpperCase(tsk4namet.getText().charAt(0)) + tsk4namet.getText().substring(1).toLowerCase();
-		    Random rand = new Random(momName.length() + dadName.length()); //use  mom and dad's name as seed
-		    // take min length,which is the total number of element will be put in hashmap from name String.
-		    int pos = Math.min(dadName.length(), momName.length());
+			String dadName = Character.toUpperCase(tsk4namei.getText().charAt(0))
+					+ tsk4namei.getText().substring(1).toLowerCase();
+			String momName = Character.toUpperCase(tsk4namet.getText().charAt(0))
+					+ tsk4namet.getText().substring(1).toLowerCase();
+			Random rand = new Random(momName.length() + dadName.length()); // use mom and dad's name as seed
+			// take min length,which is the total number of element will be put in hashmap
+			// from name String.
+			int pos = Math.min(dadName.length(), momName.length());
 
-			
-		    for(int i = 0; i < pos; i++) {
-			    int random = rand.nextInt(pos);
-			    int Grand = rand.nextInt(2);
-			    if(Grand == 1) {
-			    	if(!checkNam.containsKey(dadName.charAt(random)))
-			    		checkNam.put(dadName.charAt(random),true);
-			    }
-			    else {
-			    	if(!checkNam.containsKey(momName.charAt(random)))
-			    		checkNam.put(momName.charAt(random),true);
-			    }
-		    
-		    }
-		    
-		    //////////////////////////////////////
-		    ////////////// Get Year
-		    int RankNum = Math.max(dadName.length(), momName.length());
-		    ///////////////////////////////////////
-		    ////////////////// Create List for reporting and sorting
-		    ArrayList <Pair<String,Float>> felist = new ArrayList <Pair<String, Float>>();
-		    ArrayList <Pair<String,Float>> malist = new ArrayList <Pair<String, Float>>();
-		    String oReport = "";
-		    /////////////////////////////////////
-		    float fscore_final = 0;
-		    float mscore_final = 0;
-		    //////////////////////////////////////
-		    ///////////////////////Calculating...
-		    /////////////////////////////////////
-		    for (int i = 1; i <= RankNum; i++) {
-		    	String MName = AnalyzeNames.getName(Byear, i, "M");
-		    	String FName = AnalyzeNames.getName(Byear, i, "F");
-		    	int Mscore = 0;
-		    	int Fscore = 0;
-		    	
-		    	for(int j = 0; j < MName.length(); j++) {
-		    		if(checkNam.containsKey(MName.charAt(j))) {
-		    			Mscore ++; // score increment matches parent's name.
-		    		}
-		    	}
-		    	for(int j = 0; j < FName.length(); j++) {
-		    		if(checkNam.containsKey(FName.charAt(j))) {
-		    			Fscore ++; // score increment matches parent's name.
-		    		}
-		    	}
-		    	
-		    	mscore_final = (float) Mscore / MName.length();
-		    	fscore_final = (float) Fscore / FName.length();
-		    	if(!(FName.equals(momName)|| FName.equals(dadName))) {
-		    		
-		    		felist.add(new Pair<String,Float>(FName, fscore_final));
-		    	}
-		    	if(!(MName.equals(momName)|| MName.equals(dadName))) {
-		    		malist.add(new Pair<String, Float>(MName, mscore_final));
-		    	}
-		    	
-		    }
-		    ///////////////////////////////////////////////////////////
-		    /////////////////////////////Finish Calculation
-		  //////////////////////////////////////////////////////////////
-		    
-		   /////////////////////////////////////////////////////////////////////////////
-		   ////////////////////////////////////// Sorting the list
-		   ////////////////////////////////////////////////////////////////////////////
-		    felist.sort(new Comparator<Pair<String, Float>>() {
-		        @Override
-		        public int compare(Pair<String, Float> o1, Pair<String, Float> o2) {
-		            if (o1.getValue() > o2.getValue()) {
-		                return -1;
-		            } else if (o1.getValue().equals(o2.getValue())) {
-		                return 0; // You can change this to make it then look at the
-		                          //words alphabetical order
+			for (int i = 0; i < pos; i++) {
+				int random = rand.nextInt(pos);
+				int Grand = rand.nextInt(2);
+				if (Grand == 1) {
+					if (!checkNam.containsKey(dadName.charAt(random)))
+						checkNam.put(dadName.charAt(random), true);
+				} else {
+					if (!checkNam.containsKey(momName.charAt(random)))
+						checkNam.put(momName.charAt(random), true);
+				}
 
-		            } else {
-		                return 1;
-		            }
-		        }
-		    });
-		    malist.sort(new Comparator<Pair<String, Float>>() {
-		        @Override
-		        public int compare(Pair<String, Float> o1, Pair<String, Float> o2) {
-		            if (o1.getValue() > o2.getValue()) {
-		                return -1;
-		            } else if (o1.getValue().equals(o2.getValue())) {
-		                return 0; // You can change this to make it then look at the
-		                          //words alphabetical order
+			}
 
-		            } else {
-		                return 1;
-		            }
-		        }
-		    });
-		    //////////////////////////////////////////////////////////////////////
-		    //////////////////////////////// Finish sorting
-		   //////////////////////////////////////////////////////////////////////////
-		   /////////////////////////////////////////////// Reporting
-		    ///////////////////////////////////////////////////////////////////
-		    String oCom = "";
-		    for(Pair<String,Float> list : felist) {
-		    	oReport += String.format("The Recommended Name is : %s (female) with score %f", list.getKey(), list.getValue()*100f);
-		    	oReport +="%\n";
-		    }
-		    oReport +="##############################################################################################\n";
-		    for(Pair<String,Float> list : malist) {
-		    	oReport += String.format("The Recommended Name is : %s (male) with score %f", list.getKey(), list.getValue()*100f);
-		    	oReport += "%\n";
-		    }
-			for(Character list : checkNam.keySet()) {
+			//////////////////////////////////////
+			////////////// Get Year
+			int RankNum = Math.max(dadName.length(), momName.length());
+			///////////////////////////////////////
+			////////////////// Create List for reporting and sorting
+			ArrayList<Pair<String, Float>> felist = new ArrayList<Pair<String, Float>>();
+			ArrayList<Pair<String, Float>> malist = new ArrayList<Pair<String, Float>>();
+			String oReport = "";
+			/////////////////////////////////////
+			float fscore_final = 0;
+			float mscore_final = 0;
+			//////////////////////////////////////
+			/////////////////////// Calculating...
+			/////////////////////////////////////
+			for (int i = 1; i <= RankNum; i++) {
+				String MName = AnalyzeNames.getName(Byear, i, "M");
+				String FName = AnalyzeNames.getName(Byear, i, "F");
+				int Mscore = 0;
+				int Fscore = 0;
+
+				for (int j = 0; j < MName.length(); j++) {
+					if (checkNam.containsKey(MName.charAt(j))) {
+						Mscore++; // score increment matches parent's name.
+					}
+				}
+				for (int j = 0; j < FName.length(); j++) {
+					if (checkNam.containsKey(FName.charAt(j))) {
+						Fscore++; // score increment matches parent's name.
+					}
+				}
+
+				mscore_final = (float) Mscore / MName.length();
+				fscore_final = (float) Fscore / FName.length();
+				if (!(FName.equals(momName) || FName.equals(dadName))) {
+
+					felist.add(new Pair<String, Float>(FName, fscore_final));
+				}
+				if (!(MName.equals(momName) || MName.equals(dadName))) {
+					malist.add(new Pair<String, Float>(MName, mscore_final));
+				}
+
+			}
+			///////////////////////////////////////////////////////////
+			///////////////////////////// Finish Calculation
+			//////////////////////////////////////////////////////////////
+
+			/////////////////////////////////////////////////////////////////////////////
+			////////////////////////////////////// Sorting the list
+			////////////////////////////////////////////////////////////////////////////
+			felist.sort(new Comparator<Pair<String, Float>>() {
+				@Override
+				public int compare(Pair<String, Float> o1, Pair<String, Float> o2) {
+					if (o1.getValue() > o2.getValue()) {
+						return -1;
+					} else if (o1.getValue().equals(o2.getValue())) {
+						return 0; // You can change this to make it then look at the
+									// words alphabetical order
+
+					} else {
+						return 1;
+					}
+				}
+			});
+			malist.sort(new Comparator<Pair<String, Float>>() {
+				@Override
+				public int compare(Pair<String, Float> o1, Pair<String, Float> o2) {
+					if (o1.getValue() > o2.getValue()) {
+						return -1;
+					} else if (o1.getValue().equals(o2.getValue())) {
+						return 0; // You can change this to make it then look at the
+									// words alphabetical order
+
+					} else {
+						return 1;
+					}
+				}
+			});
+			//////////////////////////////////////////////////////////////////////
+			//////////////////////////////// Finish sorting
+			//////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////// Reporting
+			///////////////////////////////////////////////////////////////////
+			String oCom = "";
+			for (Pair<String, Float> list : felist) {
+				oReport += String.format("The Recommended Name is : %s (female) with score %f", list.getKey(),
+						list.getValue() * 100f);
+				oReport += "%\n";
+			}
+			oReport += "##############################################################################################\n";
+			for (Pair<String, Float> list : malist) {
+				oReport += String.format("The Recommended Name is : %s (male) with score %f", list.getKey(),
+						list.getValue() * 100f);
+				oReport += "%\n";
+			}
+			for (Character list : checkNam.keySet()) {
 				oCom += list;
 			}
-		    String oExplain = String.format("######Recommended Name chosen from year %d######\n",Byear);
-		    oExplain += String.format("######English character selected from parents' Name : ---- \"%s\"######\n",oCom);
-		    oExplain += String.format("##################Seed of the random number : %d ########################\n",dadName.length()+momName.length());
-		    oExplain += String.format("######We will select the top %d popular Name from the dataset######\n",pos);
-		    oExplain += String.format("Year is computed by (Dad's Yob + Mom's Yob) / 2\n");
-		    oExplain += String.format("Top %d popular name will be selected from list, Top N is decided by min length of parents'name\n",pos);
-		    oExplain += String.format("English Character(%s) are randomly selected from either Mom or Dad randomly\n",oCom);
-		    oExplain += String.format("Seed of Random number is the sum of name's length of both dad and mom\n",pos);
-		    oExplain += String.format("Total number of selected character (%s) is decided by min length of parent's Name(may be shorter due to repetition)\n",oCom);
-		    oExplain += String.format("point will be added by one if Name from selected range of dataset match any one of the (%s)\n",oCom);
-		    oExplain += String.format("Score is calculated using formular : matched element( %s ) / length of database Name\n",oCom);
+			String oExplain = String.format("######Recommended Name chosen from year %d######\n", Byear);
+			oExplain += String.format("######English character selected from parents' Name : ---- \"%s\"######\n",
+					oCom);
+			oExplain += String.format("##################Seed of the random number : %d ########################\n",
+					dadName.length() + momName.length());
+			oExplain += String.format("######We will select the top %d popular Name from the dataset######\n", pos);
+			oExplain += String.format("Year is computed by (Dad's Yob + Mom's Yob) / 2\n");
+			oExplain += String.format(
+					"Top %d popular name will be selected from list, Top N is decided by min length of parents'name\n",
+					pos);
+			oExplain += String.format("English Character(%s) are randomly selected from either Mom or Dad randomly\n",
+					oCom);
+			oExplain += String.format("Seed of Random number is the sum of name's length of both dad and mom\n", pos);
+			oExplain += String.format(
+					"Total number of selected character (%s) is decided by min length of parent's Name(may be shorter due to repetition)\n",
+					oCom);
+			oExplain += String.format(
+					"point will be added by one if Name from selected range of dataset match any one of the (%s)\n",
+					oCom);
+			oExplain += String.format(
+					"Score is calculated using formular : matched element( %s ) / length of database Name\n", oCom);
 
-		    /////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////
 			//////////////////////// Report all the rank
 			/////////////////////////////////////////////////////////////////////
 			/////////////////////////// Report the max rank
-			String oResult = String.format("Name : %s (female) with score %.2f", felist.get(0).getKey(),felist.get(0).getValue()*100f);
-			oResult +="%";
-			oResult += String.format("\n Name : %s (male) with score %.2f", malist.get(0).getKey(),malist.get(0).getValue()*100f);
-			oResult +="%\n";
+			String oResult = String.format("Name : %s (female) with score %.2f", felist.get(0).getKey(),
+					felist.get(0).getValue() * 100f);
+			oResult += "%";
+			oResult += String.format("\n Name : %s (male) with score %.2f", malist.get(0).getKey(),
+					malist.get(0).getValue() * 100f);
+			oResult += "%\n";
 			//////////////////////////////////////
 			///////////////////////////////////////////////////////////////////
 
 			String oStory = "It is believed that newborn baby needs a popular name to avoid seperateness or isolation\n";
-			oStory += String.format("Also in real life (biology) baby will inherit Component/feacures from parents, which is randomly assigned\n");
-			oStory += String.format("So we randomly assigned the Name character from either dad or mom, making it similar to real life\n");
+			oStory += String.format(
+					"Also in real life (biology) baby will inherit Component/feacures from parents, which is randomly assigned\n");
+			oStory += String.format(
+					"So we randomly assigned the Name character from either dad or mom, making it similar to real life\n");
 			oStory += String.format("Name with the shorter length will be easier for children to write or spell\n");
 			oStory += String.format("As a result, we select based on these factors\n");
 			oStory += String.format("-English character of parent's name will be randomly selected\n");
@@ -1527,8 +1666,8 @@ public class Controller {
 			oStory += String.format("-Since recommended name's length is in denominator, shorter will score higher\n");
 			oStory += String.format("-Since Matched English character is in numerator, larger will score higher\n");
 			oStory += String.format("if all Scores are the same or 0, the most popular name will be recommened");
-			
-		    textAreaConsole.setText(oReport);
+
+			textAreaConsole.setText(oReport);
 			GridPane exp = new GridPane();
 			TextArea textArea = new TextArea(oExplain);
 			exp.add(textArea, 0, 0);
@@ -1546,9 +1685,9 @@ public class Controller {
 			imageView.setFitWidth(48);
 			stage.getIcons().add(image);
 			alert.setGraphic(imageView);
-			////////////////////////////////Image shown
+			//////////////////////////////// Image shown
 			//////////////////////////////////////////
-			//////////////////////////////Sound effect
+			////////////////////////////// Sound effect
 			Media sound = new Media(new File("whistle.mp3").toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
@@ -1572,107 +1711,58 @@ public class Controller {
 			////////////////////////////////////////
 			////////////////////////// Html time~~~
 			///////////////////////////////////////
-			oReport = " <style>\r\n"
-					+ "table, th, td {\r\n"
-					+ "  border: 1px solid black;\r\n"
-					+ "  border-collapse: collapse;\r\n"
-					+ "}\r\n"
-					+ "th, td {\r\n"
-					+ "  padding: 5px;\r\n"
-					+ "  text-align: left;\r\n"
-					+ "}\r\n"
-					+ "</style>"
-					+ "<table style=\"width:100%\">\r\n"
-					+ "  <caption>Recommendation list</caption>"
-					+ "   <th>Name</th>\r\n"
-					+ "    <th>Gender</th>"
-					+ "	   <th>Occurence</th>"
-					+ "     <th>Score</th>";
-		    for(Pair<String,Float> list : felist) {
-		    	int Occurs = AnalyzeNames.getNumber(Byear,"F",AnalyzeNames.getRank(Byear,list.getKey(), "F"));
-		    	oReport += String.format("<tr><th>%s</th><th>Female</th><th>%d</th><th> %f", list.getKey(),Occurs, list.getValue()*100f);
-		    	oReport +="%\n</th></tr>";
-		    }
-		    for(Pair<String,Float> list : malist) {
-		    	int Occurs = AnalyzeNames.getNumber(Byear,"M",AnalyzeNames.getRank(Byear,list.getKey(), "M"));
-		    	oReport += String.format("<tr><th>%s</th><th>Male</th><th>%d</th><th> %f", list.getKey(),Occurs, list.getValue()*100f);
-		    	oReport +="%\n</th></tr>";
-		    }
-		    oReport += "</table>";
+			oReport = " <style>\r\n" + "table, th, td {\r\n" + "  border: 1px solid black;\r\n"
+					+ "  border-collapse: collapse;\r\n" + "}\r\n" + "th, td {\r\n" + "  padding: 5px;\r\n"
+					+ "  text-align: left;\r\n" + "}\r\n" + "</style>" + "<table style=\"width:100%\">\r\n"
+					+ "  <caption>Recommendation list</caption>" + "   <th>Name</th>\r\n" + "    <th>Gender</th>"
+					+ "	   <th>Occurence</th>" + "     <th>Score</th>";
+			for (Pair<String, Float> list : felist) {
+				int Occurs = AnalyzeNames.getNumber(Byear, "F", AnalyzeNames.getRank(Byear, list.getKey(), "F"));
+				oReport += String.format("<tr><th>%s</th><th>Female</th><th>%d</th><th> %f", list.getKey(), Occurs,
+						list.getValue() * 100f);
+				oReport += "%\n</th></tr>";
+			}
+			for (Pair<String, Float> list : malist) {
+				int Occurs = AnalyzeNames.getNumber(Byear, "M", AnalyzeNames.getRank(Byear, list.getKey(), "M"));
+				oReport += String.format("<tr><th>%s</th><th>Male</th><th>%d</th><th> %f", list.getKey(), Occurs,
+						list.getValue() * 100f);
+				oReport += "%\n</th></tr>";
+			}
+			oReport += "</table>";
 
-		    String oLink ="<br><a href=\"https://www.huffingtonpost.ca/2016/03/28/unique-baby-names_n_9562904.html\">"
-		    		+ "WhY we recommended popular name??!</a></br>";
-		    oLink +="<br><a href=\"https://www.youtube.com/watch?v=LBnEnqusjZQ\">"
-		    		+ "WhY we want SHORTER name??(video)</a></br>";
-		    oLink +="<br><a href=\"https://www.verywellfamily.com/baby-names-4014180#family-traditions\">"
-		    		+ "WhY we want Child name contain Parent name's Character??</a></br>";		    
-            WebView webView = new WebView();
-            String htmlcontent = "<html>\r\n"
-            		+ "<head>\r\n"
-            		+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n"
-            		+ "<style>\r\n"
-            		+ "body {\r\n"
-            		+ "  font-family: Arial, Helvetica, sans-serif;\r\n"
-            		+ "  font-size: 20px;\r\n"
-            		+ "}\r\n"
-            		+ "\r\n" 
-            		+ "#myBtn {\r\n"
-            		+ "  display: none;\r\n"
-            		+ "  position: fixed;\r\n"
-            		+ "  bottom: 20px;\r\n"
-            		+ "  right: 30px;\r\n"
-            		+ "  z-index: 99;\r\n"
-            		+ "  font-size: 18px;\r\n"
-            		+ "  border: none;\r\n"
-            		+ "  outline: none;\r\n"
-            		+ "  background-color: red;\r\n"
-            		+ "  color: white;\r\n"
-            		+ "  cursor: pointer;\r\n"
-            		+ "  padding: 15px;\r\n"
-            		+ "  border-radius: 4px;\r\n"
-            		+ "}\r\n"
-            		+ "\r\n"
-            		+ "#myBtn:hover {\r\n"
-            		+ "  background-color: #555;\r\n"
-            		+ "}\r\n"
-            		+ "</style>\r\n"
-            		+ "</head>\r\n"
-            		+ "<body>\r\n"
-            		+ "\r\n"
-            		+ "<button onclick=\"topFunction()\" id=\"myBtn\" title=\"Go to top\">Top</button>\r\n"
-            		+ "\r\n"
-            		+ "<div style=\"background-color:black;color:white;padding:30px\">The reference website</div>\r\n"
-            		+ "<div style=\"background-color:lightgrey;padding:30px 30px 2500px\">"
-            		+ oLink
-            		+ oReport
-            		+ "  <strong></strong>.</div>\r\n"
-            		+ "\r\n"		
-            		+ "<script>\r\n"
-            		+ "//Get the button\r\n"
-            		+ "var mybutton = document.getElementById(\"myBtn\");\r\n"
-            		+ "\r\n"
-            		+ "// When the user scrolls down 20px from the top of the document, show the button\r\n"
-            		+ "window.onscroll = function() {scrollFunction()};\r\n"
-            		+ "\r\n"
-            		+ "function scrollFunction() {\r\n"
-            		+ "  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {\r\n"
-            		+ "    mybutton.style.display = \"block\";\r\n"
-            		+ "  } else {\r\n"
-            		+ "    mybutton.style.display = \"none\";\r\n"
-            		+ "  }\r\n"
-            		+ "}\r\n"
-            		+ "\r\n"
-            		+ "// When the user clicks on the button, scroll to the top of the document\r\n"
-            		+ "function topFunction() {\r\n"
-            		+ "  document.body.scrollTop = 0;\r\n"
-            		+ "  document.documentElement.scrollTop = 0;\r\n"
-            		+ "}\r\n"
-            		+ "</script>\r\n"
-            		+ "\r\n"
-            		+ "</body>\r\n"
-            		+ "</html>";
-            webView.getEngine().loadContent(htmlcontent);
-            webView.setMaxHeight(400);
+			String oLink = "<br><a href=\"https://www.huffingtonpost.ca/2016/03/28/unique-baby-names_n_9562904.html\">"
+					+ "WhY we recommended popular name??!</a></br>";
+			oLink += "<br><a href=\"https://www.youtube.com/watch?v=LBnEnqusjZQ\">"
+					+ "WhY we want SHORTER name??(video)</a></br>";
+			oLink += "<br><a href=\"https://www.verywellfamily.com/baby-names-4014180#family-traditions\">"
+					+ "WhY we want Child name contain Parent name's Character??</a></br>";
+			WebView webView = new WebView();
+			String htmlcontent = "<html>\r\n" + "<head>\r\n"
+					+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + "<style>\r\n"
+					+ "body {\r\n" + "  font-family: Arial, Helvetica, sans-serif;\r\n" + "  font-size: 20px;\r\n"
+					+ "}\r\n" + "\r\n" + "#myBtn {\r\n" + "  display: none;\r\n" + "  position: fixed;\r\n"
+					+ "  bottom: 20px;\r\n" + "  right: 30px;\r\n" + "  z-index: 99;\r\n" + "  font-size: 18px;\r\n"
+					+ "  border: none;\r\n" + "  outline: none;\r\n" + "  background-color: red;\r\n"
+					+ "  color: white;\r\n" + "  cursor: pointer;\r\n" + "  padding: 15px;\r\n"
+					+ "  border-radius: 4px;\r\n" + "}\r\n" + "\r\n" + "#myBtn:hover {\r\n"
+					+ "  background-color: #555;\r\n" + "}\r\n" + "</style>\r\n" + "</head>\r\n" + "<body>\r\n" + "\r\n"
+					+ "<button onclick=\"topFunction()\" id=\"myBtn\" title=\"Go to top\">Top</button>\r\n" + "\r\n"
+					+ "<div style=\"background-color:black;color:white;padding:30px\">The reference website</div>\r\n"
+					+ "<div style=\"background-color:lightgrey;padding:30px 30px 2500px\">" + oLink + oReport
+					+ "  <strong></strong>.</div>\r\n" + "\r\n" + "<script>\r\n" + "//Get the button\r\n"
+					+ "var mybutton = document.getElementById(\"myBtn\");\r\n" + "\r\n"
+					+ "// When the user scrolls down 20px from the top of the document, show the button\r\n"
+					+ "window.onscroll = function() {scrollFunction()};\r\n" + "\r\n"
+					+ "function scrollFunction() {\r\n"
+					+ "  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {\r\n"
+					+ "    mybutton.style.display = \"block\";\r\n" + "  } else {\r\n"
+					+ "    mybutton.style.display = \"none\";\r\n" + "  }\r\n" + "}\r\n" + "\r\n"
+					+ "// When the user clicks on the button, scroll to the top of the document\r\n"
+					+ "function topFunction() {\r\n" + "  document.body.scrollTop = 0;\r\n"
+					+ "  document.documentElement.scrollTop = 0;\r\n" + "}\r\n" + "</script>\r\n" + "\r\n"
+					+ "</body>\r\n" + "</html>";
+			webView.getEngine().loadContent(htmlcontent);
+			webView.setMaxHeight(400);
 			exp = new GridPane();
 			exp.add(webView, 0, 0);
 			/////////////////////////////////
@@ -1681,8 +1771,8 @@ public class Controller {
 			sound = new Media(new File("babysound.wav").toURI().toString());
 			mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
-            alert.getDialogPane().setExpandableContent(exp);
-            alert.showAndWait();
+			alert.getDialogPane().setExpandableContent(exp);
+			alert.showAndWait();
 /////////////////////////////// Close properly
 			webView.getEngine().loadContent(htmlcontent);
 			exp = new GridPane();
@@ -1695,6 +1785,17 @@ public class Controller {
 
 	}
 
+	/**
+	 * 
+	 * This is the safeguard function for task 4 every action in the input for task4
+	 * will call this function the button to get result will be lock until the input
+	 * field is filled it will only check if the input has filled so even if the
+	 * data is invalid the button will unlock
+	 * 
+	 * there is also a progress bar to indicate user the completeness the progress
+	 * status in text will also be shown on the console area allowing the user to
+	 * know what input is missing
+	 */
 	@FXML
 	void tsk4check() {
 		float status = 0;
@@ -1710,8 +1811,7 @@ public class Controller {
 		if (!(selected_algor == null) && selected_algor.getText().equals("T4X1")) {
 			title += "#####################You are Now selecting Algorithm T4X1 #####################\n";
 
-		} 
-		else if (!(selected_algor == null)) {
+		} else if (!(selected_algor == null)) {
 			title += "#####################You are Now selecting Algorithm T4X2 #####################\n";
 		}
 
@@ -1719,38 +1819,33 @@ public class Controller {
 			counter++;
 			T4X1timer++;
 
-		}
-		else {
+		} else {
 			oreport += String.format("Please enter Mom's Year of Born\n");
 		}
 
 		if (!(dadYOB == null) && !dadYOB.isBlank()) {
 			counter++;
 			T4X1timer++;
-		} 
-		else {
+		} else {
 			oreport += String.format("Please enter Dad's Year of Born\n");
 		}
 
 		if (!(dadName == null) && !dadName.isBlank()) {
 			counter++;
-		} 
-		else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
+		} else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
 			oreport += String.format("Please enter Dad's Name\n");
 		}
 
 		if (!(momName == null) && !momName.isBlank()) {
 			counter++;
-		} 
-		else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
+		} else if (!(selected_algor == null) && selected_algor.getText().equals("T4X2")) {
 			oreport += String.format("Please enter Mom's Name\n");
 		}
 
 		if (!(selected_algor == null)) {
 			counter++;
 			T4X1timer++;
-		} 
-		else {
+		} else {
 			oreport += String.format("Please Select the Algorithm(T4X1 or T4X2)\n");
 		}
 
@@ -1768,11 +1863,11 @@ public class Controller {
 
 		if (status == 1.0) {
 			textAreaConsole.setText("Done! Click result button !");
-			if(Play) {
-			Media sound = new Media(new File("Unlock.mp3").toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
-			Play = false;
+			if (Play) {
+				Media sound = new Media(new File("Unlock.mp3").toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();
+				Play = false;
 			}
 			tsk4ans.setDisable(false);
 		} else {
@@ -1812,11 +1907,21 @@ public class Controller {
 	private ToggleGroup tsk5_gender_choice;
 
 	@FXML
+	/**
+	 * This is the function used to generate names for compatible pairs Some input
+	 * checking shall be done here
+	 * 
+	 */
 	void task_five_getresult() {
 
 	}
 
 	@FXML
+	/**
+	 * 
+	 * This is the safeguard function for task 5 every action in the input will call
+	 * this function
+	 */
 	void tsk5check() {
 
 	}
@@ -1852,7 +1957,7 @@ public class Controller {
 	@FXML
 	private Button tsk6ans;
 	@FXML
-	
+
 	private RadioButton tsk6tif;
 	@FXML
 	private RadioButton tsk6tim;
@@ -1872,6 +1977,16 @@ public class Controller {
 	@FXML
 	private ToggleButton T6X2;
 
+	/**
+	 * This function will calculate and show the score of capability of pairs it
+	 * will start off by doing a input validation and the function will return if
+	 * input is invalid and an alert will prompt the user the input has error
+	 * 
+	 * If the data is valid, the score will be calculated and show on an
+	 * alert(type:information) If the algorithm is T6X2, the explanation will adhere
+	 * to the bottom to the alert
+	 * 
+	 */
 	@FXML
 	void task_six_getresult() {
 		RadioButton selected_gender_i = (RadioButton) tsk6_gender_i.getSelectedToggle();
@@ -1890,7 +2005,7 @@ public class Controller {
 			isvalid = false;
 			output += "Error this should be blocked by tsk6check\n";
 
-		} else if ((!NumberUtils.isCreatable(yobs))||(yobs.length()>4)) {// if isn't number
+		} else if ((!NumberUtils.isCreatable(yobs)) || (yobs.length() > 4)) {// if isn't number
 			isvalid = false;
 			output += "Please input a valid digit\n";
 
@@ -1993,16 +2108,17 @@ public class Controller {
 		alert.getDialogPane().setExpandableContent(exp);
 		alert.showAndWait();
 	}
-	@FXML
+
 	/**
-	 * This is the safeguard function for task 6
-	 * the button to get result will be lock until the input field is filled
+	 * This is the safeguard function for task 6 every action in the input for task6
+	 * will call this function the button to get result will be lock until the input
+	 * field is filled it will only check if the input has filled so even if the
+	 * data is invalid the button will unlock
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 * there is also a progress bar to indicate user the completeness the progress
+	 * status will also be shown on the console area
 	 */
+	@FXML
 	void tsk6check() {
 		float status = 0;
 		int counter = 0;
