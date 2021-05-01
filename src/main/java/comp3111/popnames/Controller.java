@@ -1582,9 +1582,9 @@ public class Controller {
 		    String oLink ="<br><a href=\"https://www.huffingtonpost.ca/2016/03/28/unique-baby-names_n_9562904.html\">"
 		    		+ "WhY we recommended popular name??!</a></br>";
 		    oLink +="<br><a href=\"https://www.youtube.com/watch?v=LBnEnqusjZQ\">"
-		    		+ "WhY we want shorter name??(video)</a></br>";
+		    		+ "WhY we want SHORTER name??(video)</a></br>";
 		    oLink +="<br><a href=\"https://www.verywellfamily.com/baby-names-4014180#family-traditions\">"
-		    		+ "WhY we want child name contain Parent name's Character??</a></br>";		    
+		    		+ "WhY we want Child name contain Parent name's Character??</a></br>";		    
             WebView webView = new WebView();
             String htmlcontent = "<html>\r\n"
             		+ "<head>\r\n"
@@ -1624,7 +1624,7 @@ public class Controller {
             		+ "<div style=\"background-color:lightgrey;padding:30px 30px 2500px\">"
             		+ oLink
             		+ oReport
-            		+ "  <strong>Thank you</strong>.</div>\r\n"
+            		+ "  <strong></strong>.</div>\r\n"
             		+ "\r\n"		
             		+ "<script>\r\n"
             		+ "//Get the button\r\n"
