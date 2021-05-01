@@ -6,7 +6,7 @@ import edu.duke.*;
  * This package handles all query related to the birth dataset
  * <B>WARNING all func here will assume the input is valid</B> 
  * 
- * @author klluiaf
+ * @author kalung
  *
  */
 public class AnalyzeNames {
