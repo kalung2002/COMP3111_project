@@ -201,7 +201,7 @@
                                           <Insets top="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <TextArea prefHeight="106.0" prefWidth="538.0" text="Task #4: Recommendation on Names for Newborn Babies (application)&#10;&#10;Develop and implement an online service using empirical data to help make informed decisions on naming their newborn babies.&#10;" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                                    <TextArea prefHeight="106.0" prefWidth="538.0" text="Task #4: Recommendation on Names for Newborn Babies (application)&#10;&#10;Input the information below to get you own recommendation for your upcoming baby!&#10;We use state of the art algorithm to get the name that best fit your children!!!" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
                                     <ToggleButton fx:id="T4X2" minWidth="216.0" mnemonicParsing="false" onAction="#tsk4check" onKeyPressed="#tsk4check" onKeyReleased="#tsk4check" onMouseClicked="#tsk4check" onMouseEntered="#tsk4check" onMouseExited="#tsk4check" onMousePressed="#tsk4check" onMouseReleased="#tsk4check" text="T4X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets />
@@ -362,7 +362,7 @@
                                           <Insets top="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <TextArea prefHeight="105.0" prefWidth="450.0" text="Task #6: Prediction on Scores for Compatible Pairs (application)&#10;&#10;Develop and implement an online service using empirical data to help make informed decisions on predicting scores for compatible pairs.&#10;" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                                    <TextArea prefHeight="105.0" prefWidth="450.0" text="Task #6: Prediction on Scores for Compatible Pairs (application)&#10;&#10;Wanna know if you are in sync with your partner?&#10;Wanna know your upcoming target is your best match?&#10;Input the information below to get our system calculate the score for you!" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
                                        <GridPane.margin>
                                           <Insets bottom="5.0" />
                                        </GridPane.margin>
