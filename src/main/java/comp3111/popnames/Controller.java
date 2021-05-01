@@ -56,6 +56,14 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.scene.layout.Region;
+import javafx.scene.web.WebView;
+import javafx.scene.web.WebHistory;
+import javafx.collections.ListChangeListener;
+import javafx.scene.web.WebEngine;
+
+//import javafx.scene.control.ButtonBar;
+//import javafx.scene.control.ButtonType;
+//import java.util.Optional;
 public class Controller {
 	@FXML
 	private RowConstraints GRID0;
@@ -1483,7 +1491,7 @@ public class Controller {
 		    oExplain += String.format("Top %d popular name will be selected from list, Top N is decided by min length of parents'name\n",pos);
 		    oExplain += String.format("English Character(%s) are randomly selected from either Mom or Dad randomly\n",oCom);
 		    oExplain += String.format("Seed of Random number is the sum of name's length of both dad and mom\n",pos);
-		    oExplain += String.format("Total number of selected character (%s) is decided by min length of parent's Name\n",oCom);
+		    oExplain += String.format("Total number of selected character (%s) is decided by min length of parent's Name(may be shorter due to repetition)\n",oCom);
 		    oExplain += String.format("point will be added by one if Name from selected range of dataset match any one of the (%s)\n",oCom);
 		    oExplain += String.format("Score is calculated using formular : matched element( %s ) / length of database Name\n",oCom);
 
@@ -1513,8 +1521,10 @@ public class Controller {
 			GridPane exp = new GridPane();
 			TextArea textArea = new TextArea(oExplain);
 			exp.add(textArea, 0, 0);
-			
-			Alert alert = getAlert("Recommended Name");
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Recommended Name");
+			alert.setHeaderText("New Born Baby");
 			alert.setContentText(oResult);
 			alert.getDialogPane().setExpandableContent(exp);
 			////////////////////////////////////////////////////////////////////
@@ -1532,8 +1542,11 @@ public class Controller {
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
 			/////////////////////////////////////////////
-			
+			//////////////////////////////// set image icon
+			//////////////////////////////////////////////
 			alert.showAndWait();
+			////////////////////////////////////////////
+			/////////////////////////////// Next
 			alert.setContentText(oStory);
 			alert.setTitle("The Story behind: ");
 			alert.setResizable(true);
@@ -1545,12 +1558,121 @@ public class Controller {
 			stage.getIcons().clear();
 			stage.getIcons().add(image);
 			alert.setGraphic(imageView);
-			alert.getDialogPane().setExpandableContent(null);
+			////////////////////////////////////////
+			////////////////////////// Html time~~~
+			///////////////////////////////////////
+			oReport = " <style>\r\n"
+					+ "table, th, td {\r\n"
+					+ "  border: 1px solid black;\r\n"
+					+ "  border-collapse: collapse;\r\n"
+					+ "}\r\n"
+					+ "th, td {\r\n"
+					+ "  padding: 5px;\r\n"
+					+ "  text-align: left;\r\n"
+					+ "}\r\n"
+					+ "</style>"
+					+ "<table style=\"width:100%\">\r\n"
+					+ "  <caption>Recommendation list</caption>"
+					+ "   <th>Name</th>\r\n"
+					+ "    <th>Gender</th>"
+					+ "	   <th>Occurence</th>"
+					+ "     <th>Score</th>";
+		    for(Pair<String,Float> list : felist) {
+		    	int Occurs = AnalyzeNames.getNumber(Byear,"F",AnalyzeNames.getRank(Byear,list.getKey(), "F"));
+		    	oReport += String.format("<tr><th>%s</th><th>Female</th><th>%d</th><th> %f", list.getKey(),Occurs, list.getValue()*100f);
+		    	oReport +="%\n</th></tr>";
+		    }
+		    for(Pair<String,Float> list : malist) {
+		    	int Occurs = AnalyzeNames.getNumber(Byear,"M",AnalyzeNames.getRank(Byear,list.getKey(), "M"));
+		    	oReport += String.format("<tr><th>%s</th><th>Male</th><th>%d</th><th> %f", list.getKey(),Occurs, list.getValue()*100f);
+		    	oReport +="%\n</th></tr>";
+		    }
+		    oReport += "</table>";
+
+		    String oLink ="<br><a href=\"https://www.huffingtonpost.ca/2016/03/28/unique-baby-names_n_9562904.html\">"
+		    		+ "WhY we recommended popular name??!</a></br>";
+		    oLink +="<br><a href=\"https://www.youtube.com/watch?v=LBnEnqusjZQ\">"
+		    		+ "WhY we want shorter name??( -point 8)</a></br>";
+		    oLink +="<br><a href=\"https://www.verywellfamily.com/baby-names-4014180#family-traditions\">"
+		    		+ "WhY we want child name contain Parent name's Character??</a></br>";		    
+            WebView webView = new WebView();
+            webView.getEngine().loadContent("<html>\r\n"
+            		+ "<head>\r\n"
+            		+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n"
+            		+ "<style>\r\n"
+            		+ "body {\r\n"
+            		+ "  font-family: Arial, Helvetica, sans-serif;\r\n"
+            		+ "  font-size: 20px;\r\n"
+            		+ "}\r\n"
+            		+ "\r\n" 
+            		+ "#myBtn {\r\n"
+            		+ "  display: none;\r\n"
+            		+ "  position: fixed;\r\n"
+            		+ "  bottom: 20px;\r\n"
+            		+ "  right: 30px;\r\n"
+            		+ "  z-index: 99;\r\n"
+            		+ "  font-size: 18px;\r\n"
+            		+ "  border: none;\r\n"
+            		+ "  outline: none;\r\n"
+            		+ "  background-color: red;\r\n"
+            		+ "  color: white;\r\n"
+            		+ "  cursor: pointer;\r\n"
+            		+ "  padding: 15px;\r\n"
+            		+ "  border-radius: 4px;\r\n"
+            		+ "}\r\n"
+            		+ "\r\n"
+            		+ "#myBtn:hover {\r\n"
+            		+ "  background-color: #555;\r\n"
+            		+ "}\r\n"
+            		+ "</style>\r\n"
+            		+ "</head>\r\n"
+            		+ "<body>\r\n"
+            		+ "\r\n"
+            		+ "<button onclick=\"topFunction()\" id=\"myBtn\" title=\"Go to top\">Top</button>\r\n"
+            		+ "\r\n"
+            		+ "<div style=\"background-color:black;color:white;padding:30px\">The reference website</div>\r\n"
+            		+ "<div style=\"background-color:lightgrey;padding:30px 30px 2500px\">"
+            		+ oLink
+            		+ oReport
+            		+ "  <strong>Thank you</strong>.</div>\r\n"
+            		+ "\r\n"		
+            		+ "<script>\r\n"
+            		+ "//Get the button\r\n"
+            		+ "var mybutton = document.getElementById(\"myBtn\");\r\n"
+            		+ "\r\n"
+            		+ "// When the user scrolls down 20px from the top of the document, show the button\r\n"
+            		+ "window.onscroll = function() {scrollFunction()};\r\n"
+            		+ "\r\n"
+            		+ "function scrollFunction() {\r\n"
+            		+ "  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {\r\n"
+            		+ "    mybutton.style.display = \"block\";\r\n"
+            		+ "  } else {\r\n"
+            		+ "    mybutton.style.display = \"none\";\r\n"
+            		+ "  }\r\n"
+            		+ "}\r\n"
+            		+ "\r\n"
+            		+ "// When the user clicks on the button, scroll to the top of the document\r\n"
+            		+ "function topFunction() {\r\n"
+            		+ "  document.body.scrollTop = 0;\r\n"
+            		+ "  document.documentElement.scrollTop = 0;\r\n"
+            		+ "}\r\n"
+            		+ "</script>\r\n"
+            		+ "\r\n"
+            		+ "</body>\r\n"
+            		+ "</html>"
+            		);
+            webView.setMaxHeight(400);
+			exp = new GridPane();
+			exp.add(webView, 0, 0);
+				
+			/////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////// HTML adding
+			/////////////////////////////////////////////////////////////////////////////
+            alert.getDialogPane().setExpandableContent(exp);
 			sound = new Media(new File("babysound.wav").toURI().toString());
 			mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
 			alert.showAndWait();
-			
 			// we do not want children have the exact name as parent.
 		}
 
@@ -1641,49 +1763,7 @@ public class Controller {
 			tsk4ans.setDisable(true);
 		}
 	}
-	public static class People {
 
-		private final SimpleStringProperty name;
-		private final SimpleStringProperty occurr;
-		private final SimpleStringProperty percent;
-		private final SimpleStringProperty score;
-		private People(String fName, String Gender, String Number, String n) {
-			this.name = new SimpleStringProperty(fName);
-			this.occurr = new SimpleStringProperty(Gender);
-			this.percent = new SimpleStringProperty(Number);
-			this.score = new SimpleStringProperty(n);
-		}
-
-		public String getName() {
-			return name.get();
-		}
-
-		public void setName(String fName) {
-			name.set(fName);
-		}
-
-		public String getOccurr() {
-			return occurr.get();
-		}
-
-		public void setOccurr(String fName) {
-			occurr.set(fName);
-		}
-
-		public String getPercent() {
-			return percent.get();
-		}
-
-		public void setPercent(String fName) {
-			percent.set(fName);
-		}
-		public String getScore() {
-			return score.get();
-		}
-		public void setScore(String n) {
-			 score.set(n);
-		}
-	}
 //
 	/**
 	 * Task five To be triggered get result button Anything related to tsk5 will
