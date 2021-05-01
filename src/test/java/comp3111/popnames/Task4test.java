@@ -47,12 +47,16 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		MomYoB.setText("2000");
 		DadYOB.setText("2015");		
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
+		sleep(100);
+		clickOn("#task4yobi");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -61,12 +65,14 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		MomYoB.setText("19991");
 		DadYOB.setText("20151");		
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -89,12 +95,14 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		MomYoB.setText("2019");
 		DadYOB.setText("2020");		
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -117,12 +125,14 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		MomYoB.setText("-*#@@$#");
 		DadYOB.setText("1880");		
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -131,6 +141,7 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		MomYoB.setText("1880");
 		DadYOB.setText("!#!@!$!@!@#");		
@@ -145,12 +156,14 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		MomYoB.setText("1880");
 		DadYOB.setText("01999");		
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -160,11 +173,13 @@ public class Task4test extends ApplicationTest {
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
 		clickOn("#tabApp1");
+		sleep(100);
 		MomYoB.setText("01880");
 		DadYOB.setText("1999");		
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -179,6 +194,7 @@ public class Task4test extends ApplicationTest {
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -193,6 +209,7 @@ public class Task4test extends ApplicationTest {
 		MomName.setText("SDSDDS");
 		DadName.setText("SSSS");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 
 	}
@@ -213,6 +230,7 @@ public class Task4test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabApp1");
 		Algorbtn.setSelected(true);
 		clickOn("#tsk4ans");
@@ -224,6 +242,7 @@ public class Task4test extends ApplicationTest {
 //    	assertFalse(name.equals("Paul"));
 		clickOn("#tabApp1");
 		Algorbtn = (ToggleButton)s.lookup("#T4X2");
+		sleep(100);
 		Algorbtn.setSelected(true);
 		clickOn("#tsk4ans");
 	}
@@ -234,11 +253,13 @@ public class Task4test extends ApplicationTest {
 //    	assertFalse(name.equals("Paul"));
 		clickOn("#tabApp1");
 		Algorbtn = (ToggleButton)s.lookup("#T4X2");
+		sleep(100);
 		MomYoB.setText("1999");
 		DadYOB.setText("2000");		
 		MomName.setText("Kenneth");
 		DadName.setText("Desmond");
 		Algorbtn.setSelected(true);
+		sleep(100);
 		clickOn("#tsk4ans");
 	}
 }

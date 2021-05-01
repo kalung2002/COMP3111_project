@@ -396,9 +396,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("-10");
 		year.setText("2000");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -406,9 +408,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("010");
 		year.setText("2000");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -416,9 +420,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1111111");
 		year.setText("2000");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -426,9 +432,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("2020");
 		year.setText("2000");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -436,6 +444,7 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("1879");
 		year.setText("2000");
@@ -446,9 +455,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("1879");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -456,9 +467,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("1888");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -466,9 +479,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("01880");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
@@ -476,9 +491,11 @@ public class Task1test extends ApplicationTest {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("we**`1");
+		sleep(100);
 		clickOn("#buttonSummary");
 	}
 	@Test
