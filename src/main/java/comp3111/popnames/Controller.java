@@ -61,9 +61,12 @@ import javafx.scene.web.WebView;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
 import javafx.stage.Window;
+import java.awt.*;
+
 /**
- * public class containing function to be used by the javafx
- * and also all the referenced item from ui.fxml
+ * public class containing function to be used by the javafx and also all the
+ * referenced item from ui.fxml
+ * 
  * @author kalung
  *
  */
@@ -297,10 +300,7 @@ public class Controller {
 	}
 
 	/**
-	 * Task One To be triggered get result button
-	 * 
-	 * @throws IOException
-	 * 
+	 * Anything related to tsk1 will code here
 	 */
 
 	@FXML
@@ -319,8 +319,9 @@ public class Controller {
 
 	// generate Summary
 	/**
-	 * This function generate a bar chart showing the most n popular name in a new scene
-	 * it will return alert if input is invalid
+	 * This function generate a bar chart showing the most n popular name in a new
+	 * scene it will return alert if input is invalid
+	 * 
 	 * @throws IOException
 	 */
 	@FXML
@@ -446,11 +447,12 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
-	@FXML
+
 	/**
-	 * This function generate a Pie chart showing the most n popular name in a new scene
-	 * it will return alert if input is invalid
+	 * This function generate a Pie chart showing the most n popular name in a new
+	 * scene it will return alert if input is invalid
 	 */
+	@FXML
 	void Generate_PieChart() {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
@@ -573,11 +575,13 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
-	@FXML
+
+	
 	/**
 	 * This function generate a Table showing the most n popular name in a new scene
 	 * it will return alert if input is invalid
 	 */
+	@FXML
 	void Generate_Table() {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
@@ -752,9 +756,10 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
+
 	/**
-	 * This function generate a summary showing the most n popular name on the console
-	 * it will return alert if input is invalid
+	 * This function generate a summary showing the most n popular name on the
+	 * console it will return alert if input is invalid
 	 */
 	@FXML
 	void Generate_Summary() {
@@ -906,8 +911,7 @@ public class Controller {
 	}
 
 	/**
-	 * Task three To be triggered by get result button or Anything related to tsk3
-	 * will code here
+	 * Anything related to tsk3 will code here
 	 * 
 	 */
 	@FXML
@@ -928,11 +932,12 @@ public class Controller {
 	private TextField tsk3name;
 	@FXML
 	private TextField tsk3gender;
+
 	/**
-	 * This function is to safeguard the input for task3
-	 * all the button in task 3 is lock until the data is input fits the format
-	 * there will be text showing on the console showing user what has gone wrong /
-	 * (e.g. end-year is smaller than start-year)
+	 * This function is to safeguard the input for task3 all the button in task 3 is
+	 * lock until the data is input fits the format there will be text showing on
+	 * the console showing user what has gone wrong / (e.g. end-year is smaller than
+	 * start-year)
 	 */
 	@FXML
 	void tsk3in() {
@@ -1026,10 +1031,11 @@ public class Controller {
 			textAreaConsole.setText(output);
 		}
 	}
+
 	/**
-	 * This function will generate a bar chart showing the popularity of a name over a period
-	 * the result will be shown in a popup alert
-	 * it will return alert if input name is not found
+	 * This function will generate a bar chart showing the popularity of a name over
+	 * a period the result will be shown in a popup alert it will return alert if
+	 * input name is not found
 	 */
 	@FXML
 	void tsk3brcht() {// generate and popup barchart
@@ -1086,10 +1092,11 @@ public class Controller {
 		alert.showAndWait();
 
 	}
+
 	/**
-	 * This function will generate a line chart showing the popularity of a name over a period
-	 * the result will be shown in a popup alert
-	 * it will return alert if input is invalid
+	 * This function will generate a line chart showing the popularity of a name
+	 * over a period the result will be shown in a popup alert it will return alert
+	 * if input is invalid
 	 */
 	@FXML
 	void tsk3lncht() {
@@ -1146,10 +1153,11 @@ public class Controller {
 		alert.showAndWait();
 
 	}
+
 	/**
-	 * This function will generate a summary showing the popularity of a name over a period
-	 * the result will be shown in a popup alert
-	 * it will return alert if input name is not found
+	 * This function will generate a summary showing the popularity of a name over a
+	 * period the result will be shown in a popup alert it will return alert if
+	 * input name is not found
 	 */
 	@FXML
 	void tsk3summary() {
@@ -1261,10 +1269,11 @@ public class Controller {
 		}
 
 	}
+
 	/**
-	 * This function will generate a table showing the popularity of a name over a period
-	 * the result will be shown in a popup alert
-	 * it will return alert if input name is not found
+	 * This function will generate a table showing the popularity of a name over a
+	 * period the result will be shown in a popup alert it will return alert if
+	 * input name is not found
 	 */
 	@SuppressWarnings("unchecked")
 	@FXML
@@ -1907,22 +1916,24 @@ public class Controller {
 	@FXML
 	private ToggleGroup tsk5_gender_choice;
 
-	@FXML
+	
 	/**
 	 * This is the function used to generate names for compatible pairs Some input
 	 * checking shall be done here
 	 * 
 	 */
+	@FXML
 	void task_five_getresult() {
 
 	}
 
-	@FXML
+	
 	/**
 	 * 
 	 * This is the safeguard function for task 5 every action in the input will call
 	 * this function
 	 */
+	@FXML
 	void tsk5check() {
 
 	}
@@ -2082,8 +2093,9 @@ public class Controller {
 			if (namei.length() != namet.length()) {
 				score = 0.0f;
 				explain += "name is not in equal length\n";
+			} else {
+				explain += "name is in equal length\n";
 			}
-			explain += "name is in equal length\n";
 		} else {
 			int diff = Math.abs(namei.length() - namet.length());
 			if (diff != 0) {
@@ -2096,6 +2108,9 @@ public class Controller {
 			if (diffrank != 0) {
 				score *= (1 - Math.sqrt((double) diffrank / AnalyzeNames.tsk6csv_num_entry(yob)));
 				explain += "Name with similar rarity may have higher chance to get along with each other\n";
+			}
+			if (score == 1) {
+				explain += "You may entered the same name twice for the same gender\nor just so happened you two are prefect match!\n";
 			}
 		}
 		// done calculation
