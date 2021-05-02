@@ -295,8 +295,18 @@ public class Task1test extends ApplicationTest {
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("2010");
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
+	
+	@Test
+	public void test_getSummary2() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		clickOn("#tabReport1");
+		clickOn("#Task1Summarybutton");
+	}
+	
 	@Test
 	public void test_Table() {
 //    	AnalyzeNames a = new AnalyzeNames();
@@ -389,7 +399,7 @@ public class Task1test extends ApplicationTest {
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("2-2");
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid1() {
@@ -401,7 +411,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("-10");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid2() {
@@ -413,7 +423,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("010");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid3() {
@@ -425,7 +435,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("1111111");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid4() {
@@ -437,7 +447,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("2020");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid5() {
@@ -448,7 +458,7 @@ public class Task1test extends ApplicationTest {
 		clickOn("#tabReport1");
 		topN.setText("1879");
 		year.setText("2000");
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid6() {
@@ -460,19 +470,20 @@ public class Task1test extends ApplicationTest {
 		topN.setText("10");
 		year.setText("1879");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid7() {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		
 		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("1888");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid8() {
@@ -484,7 +495,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("10");
 		year.setText("01880");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid9() {
@@ -496,7 +507,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("10");
 		year.setText("we**`1");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_PiechartInvalid() {

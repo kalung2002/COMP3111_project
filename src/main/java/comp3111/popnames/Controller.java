@@ -325,7 +325,6 @@ public class Controller {
 	 */
 	@FXML
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-
 	void Generate_BarChart() throws IOException {
 
 		boolean name_isNum = Text1_name.getText().chars().allMatch(c -> c >= 48 && c <= 57);
@@ -447,6 +446,7 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
+	@FXML
 	/**
 	 * This function generate a Pie chart showing the most n popular name in a new scene
 	 * it will return alert if input is invalid
@@ -573,6 +573,7 @@ public class Controller {
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
+	@FXML
 	/**
 	 * This function generate a Table showing the most n popular name in a new scene
 	 * it will return alert if input is invalid
