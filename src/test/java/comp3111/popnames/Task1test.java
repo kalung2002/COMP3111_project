@@ -295,8 +295,18 @@ public class Task1test extends ApplicationTest {
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("2010");
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
+	
+	@Test
+	public void test_getSummary2() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		clickOn("#tabReport1");
+		clickOn("#Task1Summarybutton");
+	}
+	
 	@Test
 	public void test_Table() {
 //    	AnalyzeNames a = new AnalyzeNames();
@@ -389,7 +399,7 @@ public class Task1test extends ApplicationTest {
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("2-2");
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid1() {
@@ -401,7 +411,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("-10");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid2() {
@@ -413,7 +423,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("010");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid3() {
@@ -425,7 +435,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("1111111");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid4() {
@@ -437,7 +447,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("2020");
 		year.setText("2000");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid5() {
@@ -448,7 +458,7 @@ public class Task1test extends ApplicationTest {
 		clickOn("#tabReport1");
 		topN.setText("1879");
 		year.setText("2000");
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid6() {
@@ -460,19 +470,20 @@ public class Task1test extends ApplicationTest {
 		topN.setText("10");
 		year.setText("1879");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid7() {
 //    	AnalyzeNames a = new AnalyzeNames();
 //    	String name = a.getName(2019, 2192, "F");
 //    	assertFalse(name.equals("Paul"));
+		
 		sleep(100);
 		clickOn("#tabReport1");
 		topN.setText("10");
 		year.setText("1888");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid8() {
@@ -484,7 +495,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("10");
 		year.setText("01880");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_getSummaryInvalid9() {
@@ -496,7 +507,7 @@ public class Task1test extends ApplicationTest {
 		topN.setText("10");
 		year.setText("we**`1");
 		sleep(100);
-		clickOn("#buttonSummary");
+		clickOn("#Task1Summarybutton");
 	}
 	@Test
 	public void test_PiechartInvalid() {
@@ -586,5 +597,269 @@ public class Task1test extends ApplicationTest {
 		topN.setText("1999");
 		year.setText("``````");
 		clickOn("#Task1PieButton");
+	}
+	@Test
+	public void test_summary_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("");
+		clickOn("#Task1PieButton");
+		sleep(100);
+		clickOn("#Task1Summarybutton");
+		sleep(100);
+		clickOn("#Task1TableButton");
+		sleep(100);
+		clickOn("#Task1BarButton");
+	}
+	@Test
+	public void test_Table_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Pie_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("");
+		sleep(100);
+		clickOn("#Task1PieButton");
+
+	}
+	@Test
+	public void test_Bar_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("");
+		sleep(100);
+		clickOn("#Task1BarButton");
+
+	}
+	@Test
+	public void test_Bar1_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("");
+		sleep(100);
+		clickOn("#Task1BarButton");
+
+	}
+	@Test
+	public void test_Bar2_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("1");
+		sleep(100);
+		clickOn("#Task1BarButton");
+
+	}
+	@Test
+	public void test_Bar3_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("999999999");
+		year.setText("1");
+		sleep(100);
+		clickOn("#Task1BarButton");
+
+	}
+	@Test
+	public void test_Bar4_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("99999999");
+		sleep(100);
+		clickOn("#Task1BarButton");
+
+	}
+	@Test
+	public void test_Bar5_normal() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("2018");
+		sleep(100);
+		clickOn("#Task1BarButton");
+
+	}
+	@Test
+	public void test_Table1_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Table2_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("2019");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Table3_overf() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("12019");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Table4_overf() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("12019");
+		year.setText("1");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Table5_overf() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("*****");
+		year.setText("2019");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Table6_overf() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("2019***");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Table7_out() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("11");
+		year.setText("2019");
+		sleep(100);
+		clickOn("#Task1TableButton");
+
+	}
+	@Test
+	public void test_Pie1_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("");
+		year.setText("2019");
+		sleep(100);
+		clickOn("#Task1PieButton");
+
+	}
+	@Test
+	public void test_Pie2_empty() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("2019");
+		year.setText("");
+		sleep(100);
+		clickOn("#Task1PieButton");
+
+	}
+	@Test
+	public void test_Pie3_overflow() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1");
+		year.setText("1111111111111");
+		sleep(100);
+		clickOn("#Task1PieButton");
+
+	}
+	@Test
+	public void test_Pie4_overflow() {
+//    	AnalyzeNames a = new AnalyzeNames();
+//    	String name = a.getName(2019, 2192, "F");
+//    	assertFalse(name.equals("Paul"));
+		sleep(100);
+		clickOn("#tabReport1");
+		topN.setText("1111111111111");
+		year.setText("2019");
+		sleep(100);
+		clickOn("#Task1PieButton");
+
 	}
 }
