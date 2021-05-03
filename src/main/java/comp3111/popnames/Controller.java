@@ -48,9 +48,11 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.awt.Toolkit;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import javafx.util.Pair;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import javafx.scene.web.WebView;
 
@@ -1109,7 +1111,47 @@ public class Controller {
 		
 		@FXML
 		void task2PieChart() {
+			int starting_year = Integer.parseInt(task2Startyear.getText());
+			int ending_year = Integer.parseInt(task2Endyear.getText());
+			int Kth_value = Integer.parseInt(task2Kth.getText());
+			String Gender = task2Gender.getText();
 			
+			String gender_report = "";
+			String gender2_report = "";
+			if(Gender.equals("M")) {
+				gender_report = "boys";
+				gender2_report = "male";
+			}
+			else if (Gender.equals("F")) {
+				gender_report = "girls";
+				gender2_report = "female";
+			}
+			
+			ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList();
+			String[] name = AnalyzeNames.get_MostFreqName_array(starting_year, ending_year, Gender, Kth_value);
+			System.out.println(Arrays.toString(name));
+			name = new HashSet<String>(Arrays.asList(name)).toArray(new String[0]);
+			System.out.println(Arrays.toString(name));
+			int[] occurrence = new int[name.length];
+			for (int i = 0; i < name.length; i++) {
+				 System.out.println(name[i]);
+				 occurrence[i] = AnalyzeNames.get_name_Occurrence(starting_year, ending_year, Gender, Kth_value, name[i]);
+			}
+			for (int i = 0; i < name.length; i++) {
+				pieChartData1
+						.add(new PieChart.Data(name[i], occurrence[i]));
+			}
+			final PieChart chart = new PieChart(pieChartData1);
+			chart.setTitle(Integer.toString(Kth_value) + "-th popular " + gender2_report + " names over the period from " + Integer.toString(starting_year) + " to " + Integer.toString(ending_year));
+			chart.setLayoutX(500);
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(chart, 0, 0);
+
+			Alert alert = getAlert("bar chart");
+
+			alert.getDialogPane().setContent(expContent);
+			alert.showAndWait();
 	
 	
 	
