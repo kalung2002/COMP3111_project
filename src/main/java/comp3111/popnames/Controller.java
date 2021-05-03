@@ -932,39 +932,51 @@ public class Controller {
 			String ending_year = task2Endyear.getText();
 			String Kth_value = task2Kth.getText();
 			String Gender = task2Gender.getText();
+			boolean valid = false;
 			
 			//check input is empty or not
-			if(starting_year.isBlank() == false || ending_year.isBlank() == false || Kth_value.isBlank() == false || Gender.isBlank() == false) {
+			if(starting_year.isBlank() == true || ending_year.isBlank() == true || Kth_value.isBlank() == true || Gender.isBlank() == true) {
+				valid = false;
 				console_text += "One or more information is missing. Please input valid information in those blanks.\n";
 			}
 			
 			//check whether the entered year is a number
 			if(NumberUtils.isParsable(starting_year) == false || NumberUtils.isParsable(ending_year) == false) {
+				valid = false;
 				console_text += "Year inputted is not a number. Please input a valid year.\n";
 			}
 			else if
 			//check whether starting year/ ending year is within the range.
 			(Integer.parseInt(starting_year) < 1880 || Integer.parseInt(starting_year) > 2019 || Integer.parseInt(ending_year) < 1880 || Integer.parseInt(ending_year) > 2019) {
+				valid = false;
 				console_text += "Please input a valid year. The range of year should be within 1880 - 2019.\n";
 			}
 			else if
 			//check whether ending year is larger than or equal to starting year
 			(Integer.parseInt(ending_year) < Integer.parseInt(starting_year)) {
+				valid = false;
 				console_text += "Please input a valid year. The ending year should be larger than or equal to starting year.\n";
 			}
 			
 			if(NumberUtils.isParsable(Kth_value) == false) {
+				valid = false;
 				console_text += "K-th popular name entered is not a integer. Please input a valid value.\n";
 			}
 			else if(Integer.parseInt(Kth_value) < 1 || Integer.parseInt(Kth_value) > 1000) {
+				valid = false;
 				console_text += "Please input a valid K-th value. The range of the K-th value should be within 1 - 1000.\n";
 			}
 			
 			if(Gender != "M" || Gender != "F") {
+				valid = false;
 				console_text += "Please input a valid gender. The gender should be 'M' or 'F'.";
 			}
 			
-			textAreaConsole.setText(console_text);
+			if(!valid) {
+				textAreaConsole.setText(console_text);
+			}
+			
+			
 			
 			
 		}
@@ -2503,7 +2515,7 @@ public class Controller {
 			if (progress_bar == 1.0) {
 				start = true;
 			}
-			if (start) {
+			if (progress_bar == 1.0) {
 				textAreaConsole.setText("Information fill in success.\nClick the button to get the score and see what we have predicted for you.");
 				tsk5ans.setDisable(false);
 			} 
