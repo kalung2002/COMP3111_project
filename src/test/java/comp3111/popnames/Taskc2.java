@@ -18,11 +18,8 @@ public class Taskc2 extends ApplicationTest {
 	private TextArea t;
 
 	private Button task2btnSummary;
-
 	private Button task2btnTable;
-
 	private Button task2btnBar;
-
 	private Button task2btnPie;
 
 	private TextField task2Startyear;
