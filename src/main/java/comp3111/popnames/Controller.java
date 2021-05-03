@@ -296,7 +296,6 @@ public class Controller {
 	/**
 	 * Anything related to tsk1 will code here
 	 */
-
 	@FXML
 	private TextField Text1_year;// for task 1
 	@FXML
@@ -415,7 +414,7 @@ public class Controller {
 		// Generate BarChart
 		Stage stage;
 		stage = new Stage();
-		stage.setTitle("Bar Chart Sample");
+		stage.setTitle("Top " + Text1_name.getText() + " Names in " + Text1_year.getText());
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -925,6 +924,11 @@ public class Controller {
 		@FXML
 		private TextField task2Gender;
 		
+		/**
+		 * This is the input guard for task two
+		 * any invalid input will be blocked here
+		 * and a console message will appear to tell user sth is wrong
+		 */
 		@FXML
 		void task2input() {
 			String console_text = "";

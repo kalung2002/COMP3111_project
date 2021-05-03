@@ -5,6 +5,7 @@ plugins {
 	id 'jacoco'
 }
 
+
 repositories {
     mavenCentral()
 }
@@ -17,6 +18,12 @@ task debug(type:JavaExec) {
    classpath = sourceSets.main.runtimeClasspath
 } 
 
+task myJavadocs(type: Javadoc) {
+    source = sourceSets.main.allJava
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+    classpath = configurations.compile
+    destinationDir = file("./doc/")
+  }
 dependencies {
 	//java metro theme
 	compile 'org.jfxtras:jmetro:11.6.14'
