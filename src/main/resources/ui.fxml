@@ -103,9 +103,40 @@
                   <content>
                         <AnchorPane>
                            <children>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="722.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="312.0" prefWidth="722.0">
                                  <children>
-                                    <TextArea layoutX="109.0" layoutY="33.0" prefHeight="102.0" prefWidth="383.0" text="Task #2: K-th Popular Names (data reporting)&#10;&#10;Generate a report in response to the queries on the K-th popular names over a given period.&#10;" wrapText="true" />
+                                    <TextArea fx:id="task2Info" layoutX="40.0" layoutY="14.0" prefHeight="102.0" prefWidth="642.0" text="Finding K-th Popular Names :&#10;Please input the required information below to query the K-th popular names over a given period. &#10;Click the buttons below to get the report !&#10;&#10;" wrapText="true">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextArea>
+                                    <TextField fx:id="task2Startyear" layoutX="229.0" layoutY="127.0" prefHeight="23.0" prefWidth="132.0" promptText="year(1880-2019)" />
+                                    <Label layoutX="40.0" layoutY="131.0" text="Period of interest (starting year)" />
+                                    <Label layoutX="40.0" layoutY="164.0" text="Period of interest (ending year)" />
+                                    <TextField fx:id="task2Endyear" layoutX="229.0" layoutY="160.0" prefHeight="23.0" prefWidth="133.0" promptText="year(1880-2019)" />
+                                    <Label layoutX="400.0" layoutY="131.0" text="K-th popular names" />
+                                    <Label layoutX="440.0" layoutY="164.0" text="Gender" />
+                                    <TextField fx:id="task2Kth" layoutX="533.0" layoutY="127.0" prefHeight="23.0" prefWidth="106.0" promptText="number(1-1000)" />
+                                    <TextField fx:id="task2Gender" layoutX="533.0" layoutY="160.0" prefHeight="23.0" prefWidth="108.0" promptText="M/F" />
+                                    <Button fx:id="task2btnSummary" layoutX="68.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Summary" prefHeight="45.0" prefWidth="124.0" text="Summary">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="task2btnTable" layoutX="218.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Table" prefHeight="45.0" prefWidth="124.0" text="Table">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="task2btnBar" layoutX="362.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2BarChart" prefHeight="45.0" prefWidth="124.0" text="Bar Chart">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="task2btnPie" layoutX="512.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2PieChart" prefHeight="45.0" prefWidth="124.0" text="Pie Chart">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                            </children>
