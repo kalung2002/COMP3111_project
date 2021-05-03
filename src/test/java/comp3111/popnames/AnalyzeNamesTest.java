@@ -89,5 +89,6 @@ public class AnalyzeNamesTest {
     	AnalyzeNames a = new AnalyzeNames();
     	assertEquals(a.getName(2000, 50000000, "F").charAt(0),'i');
     }
+   
 
 }

@@ -2267,7 +2267,7 @@ public class Controller {
 	@FXML
 	void task_five_getresult() {
 		RadioButton gender_selected_i = (RadioButton) tsk5_gender_i.getSelectedToggle();
-		RadioButton gender_choice_selected = (RadioButton) tsk5_gender_choice.getSelectedToggle();
+		ToggleButton gender_choice_selected = (ToggleButton) tsk5_gender_choice.getSelectedToggle();
 
 		ToggleButton youth_selected = (ToggleButton) tsk5_youth.getSelectedToggle();
 		ToggleButton algor_selected = (ToggleButton) tsk5_algor.getSelectedToggle();
@@ -2466,12 +2466,12 @@ public class Controller {
 	 */
 	@FXML
 	void tsk5check() {
-		while(true) {
+		
 			float progress_bar = 0;
 			int progress_counter = 0;
 	
 			RadioButton gender_selected_i = (RadioButton) tsk5_gender_i.getSelectedToggle();
-			RadioButton gender_choice_selected = (RadioButton) tsk5_gender_choice.getSelectedToggle();
+			ToggleButton gender_choice_selected = (ToggleButton) tsk5_gender_choice.getSelectedToggle();
 	
 			ToggleButton youth_selected = (ToggleButton) tsk5_youth.getSelectedToggle();
 			ToggleButton algor_selected = (ToggleButton) tsk5_algor.getSelectedToggle();
@@ -2515,7 +2515,7 @@ public class Controller {
 				textAreaConsole.setText("Missing/invlaid information. Please check all your input.");
 				tsk5ans.setDisable(true);
 			}
-		}
+		
 	}
 	
 	//
