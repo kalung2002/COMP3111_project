@@ -296,7 +296,6 @@ public class Controller {
 	/**
 	 * Anything related to tsk1 will code here
 	 */
-
 	@FXML
 	private TextField Text1_year;// for task 1
 	@FXML
@@ -415,7 +414,7 @@ public class Controller {
 		// Generate BarChart
 		Stage stage;
 		stage = new Stage();
-		stage.setTitle("Bar Chart Sample");
+		stage.setTitle("Top " + Text1_name.getText() + " Names in " + Text1_year.getText());
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -925,6 +924,11 @@ public class Controller {
 		@FXML
 		private TextField task2Gender;
 		
+		/**
+		 * This is the input guard for task two
+		 * any invalid input will be blocked here
+		 * and a console message will appear to tell user sth is wrong
+		 */
 		@FXML
 		void task2input() {
 			String console_text = "";
@@ -2275,7 +2279,7 @@ public class Controller {
 	@FXML
 	void task_five_getresult() {
 		RadioButton gender_selected_i = (RadioButton) tsk5_gender_i.getSelectedToggle();
-		RadioButton gender_choice_selected = (RadioButton) tsk5_gender_choice.getSelectedToggle();
+		ToggleButton gender_choice_selected = (ToggleButton) tsk5_gender_choice.getSelectedToggle();
 
 		ToggleButton youth_selected = (ToggleButton) tsk5_youth.getSelectedToggle();
 		ToggleButton algor_selected = (ToggleButton) tsk5_algor.getSelectedToggle();
@@ -2474,12 +2478,12 @@ public class Controller {
 	 */
 	@FXML
 	void tsk5check() {
-		while(true) {
+		
 			float progress_bar = 0;
 			int progress_counter = 0;
 	
 			RadioButton gender_selected_i = (RadioButton) tsk5_gender_i.getSelectedToggle();
-			RadioButton gender_choice_selected = (RadioButton) tsk5_gender_choice.getSelectedToggle();
+			ToggleButton gender_choice_selected = (ToggleButton) tsk5_gender_choice.getSelectedToggle();
 	
 			ToggleButton youth_selected = (ToggleButton) tsk5_youth.getSelectedToggle();
 			ToggleButton algor_selected = (ToggleButton) tsk5_algor.getSelectedToggle();
@@ -2507,7 +2511,7 @@ public class Controller {
 				progress_counter = progress_counter + 1;
 			}
 	
-			progress_bar = progress_counter / 7.0f;
+			progress_bar = progress_counter / 6.0f;
 			String progress_num = String.format("%02.2f", progress_bar * 100.0f);
 			textAreaConsole.setText("Progress: " + progress_num + "%");
 			tsk5progress.setProgress(progress_bar);
@@ -2523,7 +2527,7 @@ public class Controller {
 				textAreaConsole.setText("Missing/invlaid information. Please check all your input.");
 				tsk5ans.setDisable(true);
 			}
-		}
+		
 	}
 	
 	//
