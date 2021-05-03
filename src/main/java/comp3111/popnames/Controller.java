@@ -2231,6 +2231,32 @@ public class Controller {
 
 	@FXML
 	private ToggleGroup tsk5_gender_choice;
+	
+	@FXML
+	private ToggleButton choice_youngsoul;
+	
+	@FXML
+	private ToggleButton choice_oldsoul;
+	
+	@FXML
+	private ToggleButton choice_malesoul;
+	
+	@FXML
+	private ToggleButton choice_femalesoul;
+	
+	@FXML
+	private ToggleButton T5X1;
+	
+	@FXML
+	private ToggleButton T5X2;
+	
+	@FXML
+	private RadioButton choice_female;
+	
+	@FXML
+	private RadioButton choice_male;
+	
+	
 
 	
 	/**
@@ -2240,7 +2266,196 @@ public class Controller {
 	 */
 	@FXML
 	void task_five_getresult() {
+		RadioButton gender_selected_i = (RadioButton) tsk5_gender_i.getSelectedToggle();
+		RadioButton gender_choice_selected = (RadioButton) tsk5_gender_choice.getSelectedToggle();
 
+		ToggleButton youth_selected = (ToggleButton) tsk5_youth.getSelectedToggle();
+		ToggleButton algor_selected = (ToggleButton) tsk5_algor.getSelectedToggle();
+
+		String namei = tsk5namei.getText();
+		String yobs = tsk5yob.getText();
+		
+		boolean valid = true;
+		String console_text = "";
+		
+		if (Integer.parseInt(yobs) < 1880 || Integer.parseInt(yobs) > 2019) {
+			valid = false;
+			console_text += "Please input a year within range(1880-2019)\n";
+		}
+	
+		
+		int yob = Integer.parseInt(yobs);
+		String youth = gender_choice_selected.getText();
+			
+		String genderi = gender_selected_i.getText();
+		String gender = "";
+		if (genderi.contains("female")) {
+			gender = "F";
+		} else {
+			gender = "M";
+		}
+		
+		String gendert = gender_choice_selected.getText();
+		String gender_target = "";
+		if (gendert.contains("female")) {
+			gender_target = "F";
+		} else {
+			gender_target = "M";
+		}
+		
+		String choice_algor = algor_selected.getText();
+		if(choice_algor.equals("T5X1")) {
+			String target_name = AnalyzeNames.getName(yob, 1, gender_target);
+			console_text += "Here is the result of name of suitable partner:\n";
+			console_text += "The best name is " + target_name + " for your most suitable partner.";
+			console_text += "You can see the chart of most popular name in these recent years.";
+			textAreaConsole.setText(console_text);
+			// show the bar chart
+			final CategoryAxis xAxis = new CategoryAxis();
+			xAxis.setLabel("Name");
+	
+			final NumberAxis yAxis = new NumberAxis();
+			yAxis.setLabel("Number of Occurrences");
+	
+			final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+			bc.setTitle("most popular name over the period from " + Integer.toString(yob-3) + " to " + Integer.toString(yob+3));
+	
+	
+			XYChart.Series<String, Number> dataseries1 = new XYChart.Series();
+			dataseries1.setName("Name");
+			String[] name = AnalyzeNames.get_MostFreqName_array(yob-3, yob+3, gender_target, 1);
+			name = new HashSet<String>(Arrays.asList(name)).toArray(new String[0]);
+			int[] occurrence = new int[name.length];
+			for (int i = 0; i < name.length; i++) {
+				 System.out.println(name[i]);
+				 occurrence[i] = AnalyzeNames.get_name_Occurrence(yob-3, yob+3 , gender_target, 1, name[i]);
+			}
+			System.out.println(Arrays.toString(occurrence));
+			for (int i = 0; i < name.length; i++) {
+				dataseries1.getData().add(
+						new XYChart.Data(name[i], occurrence[i]));
+			}
+	
+			bc.getData().add(dataseries1);
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(bc, 0, 0);
+			Alert alert = getAlert("bar chart");
+			alert.getDialogPane().setContent(expContent);
+			Media sound = new Media(new File("whistle.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			alert.showAndWait();
+		}
+		else {
+			// check the input name in what rank in the same years 
+			int rank = AnalyzeNames.getRank(yob, namei, gender);
+			String output = "";
+			// check 3 years older or younger popular names 
+			if(youth.contains("younger")) {
+				
+				if(rank != -1) {
+					output = AnalyzeNames.get_MostFreqName(yob-3, yob, gender_target, rank);
+					
+				}
+				else {
+					output = AnalyzeNames.get_MostFreqName(yob-3, yob, gender_target, 1);
+				}
+				
+			}
+			else {
+				if(rank != -1) {
+					output = AnalyzeNames.get_MostFreqName(yob, yob+3, gender_target, rank);
+				}
+				else {
+					output = AnalyzeNames.get_MostFreqName(yob, yob+3, gender_target, 1);
+				}
+			}
+			console_text += "Here is the result of name of suitable partner:\n";
+			console_text += "The best name is " + output + " for your most suitable partner.";
+			console_text += "We first calculate your rank for your name in your year of birth.\n";
+			console_text += "Your rank is " + Integer.toString(rank);
+			console_text += "Then we use your rank to help you find the same rank in the recent 3 years.\n";
+			console_text += "We believe that people at the same rank have some blessings and it is destiny.";
+			console_text += "You can see the chart of your rank popular name in these recent years.";
+			textAreaConsole.setText(console_text);
+			int rank_final = 0;
+			if(rank == -1) { 
+				rank_final = 1;
+			}
+			else {
+				rank_final = rank;
+			}
+			final CategoryAxis xAxis = new CategoryAxis();
+			xAxis.setLabel("Name");
+	
+			final NumberAxis yAxis = new NumberAxis();
+			yAxis.setLabel("Number of Occurrences");
+	
+			final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+			if (youth.contains("younger")) {
+				bc.setTitle("most popular name over the period from " + Integer.toString(yob) + " to " + Integer.toString(yob+3));
+				XYChart.Series<String, Number> dataseries1 = new XYChart.Series();
+				dataseries1.setName("Name");
+				String[] name = AnalyzeNames.get_MostFreqName_array(yob, yob+3, gender_target, rank_final);
+				name = new HashSet<String>(Arrays.asList(name)).toArray(new String[0]);
+				int[] occurrence = new int[name.length];
+				for (int i = 0; i < name.length; i++) {
+					 System.out.println(name[i]);
+					 occurrence[i] = AnalyzeNames.get_name_Occurrence(yob, yob+3, gender_target, rank_final, name[i]);
+				}
+				System.out.println(Arrays.toString(occurrence));
+				for (int i = 0; i < name.length; i++) {
+					dataseries1.getData().add(
+							new XYChart.Data(name[i], occurrence[i]));
+				}
+		
+				bc.getData().add(dataseries1);
+				GridPane expContent = new GridPane();
+				expContent.setMaxWidth(Double.MAX_VALUE);
+				expContent.add(bc, 0, 0);
+				Alert alert = getAlert("bar chart");
+				alert.getDialogPane().setContent(expContent);
+				Media sound = new Media(new File("whistle.mp3").toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();
+				alert.showAndWait();
+			}
+			else {
+				bc.setTitle("most popular name over the period from " + Integer.toString(yob-3) + " to " + Integer.toString(yob));
+				XYChart.Series<String, Number> dataseries1 = new XYChart.Series();
+				dataseries1.setName("Name");
+				String[] name = AnalyzeNames.get_MostFreqName_array(yob-3, yob, gender_target, rank_final);
+				name = new HashSet<String>(Arrays.asList(name)).toArray(new String[0]);
+				int[] occurrence = new int[name.length];
+				for (int i = 0; i < name.length; i++) {
+					 System.out.println(name[i]);
+					 occurrence[i] = AnalyzeNames.get_name_Occurrence(yob-3, yob , gender_target, rank_final, name[i]);
+				}
+				System.out.println(Arrays.toString(occurrence));
+				for (int i = 0; i < name.length; i++) {
+					dataseries1.getData().add(
+							new XYChart.Data(name[i], occurrence[i]));
+				}
+		
+				bc.getData().add(dataseries1);
+				GridPane expContent = new GridPane();
+				expContent.setMaxWidth(Double.MAX_VALUE);
+				expContent.add(bc, 0, 0);
+				Alert alert = getAlert("bar chart");
+				alert.getDialogPane().setContent(expContent);
+				Media sound = new Media(new File("whistle.mp3").toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();
+				alert.showAndWait();
+			}
+	
+		
+			
+			
+		}
+		
+		
 	}
 
 	
@@ -2251,8 +2466,58 @@ public class Controller {
 	 */
 	@FXML
 	void tsk5check() {
-
+		while(true) {
+			float progress_bar = 0;
+			int progress_counter = 0;
+	
+			RadioButton gender_selected_i = (RadioButton) tsk5_gender_i.getSelectedToggle();
+			RadioButton gender_choice_selected = (RadioButton) tsk5_gender_choice.getSelectedToggle();
+	
+			ToggleButton youth_selected = (ToggleButton) tsk5_youth.getSelectedToggle();
+			ToggleButton algor_selected = (ToggleButton) tsk5_algor.getSelectedToggle();
+	
+			String namei = tsk5namei.getText();
+			String yobs = tsk5yob.getText();
+	
+			if (yobs != null && yobs.isBlank() == false) {
+				progress_counter = progress_counter + 1;
+			}
+			if (namei != null && namei.isBlank() == false) {
+				progress_counter = progress_counter + 1;
+			}
+	
+			if (algor_selected != null) {
+				progress_counter = progress_counter + 1;
+			}
+			if (youth_selected != null) {
+				progress_counter = progress_counter + 1;
+			}
+			if (gender_selected_i != null) {
+				progress_counter = progress_counter + 1;
+			}
+			if (gender_choice_selected != null) {
+				progress_counter = progress_counter + 1;
+			}
+	
+			progress_bar = progress_counter / 7.0f;
+			String progress_num = String.format("%02.2f", progress_bar * 100.0f);
+			textAreaConsole.setText("Progress: " + progress_num + "%");
+			tsk5progress.setProgress(progress_bar);
+			boolean start = false;
+			if (progress_bar == 1.0) {
+				start = true;
+			}
+			if (start) {
+				textAreaConsole.setText("Information fill in success.\nClick the button to get the score and see what we have predicted for you.");
+				tsk5ans.setDisable(false);
+			} 
+			if(!start) {
+				textAreaConsole.setText("Missing/invlaid information. Please check all your input.");
+				tsk5ans.setDisable(true);
+			}
+		}
 	}
+	
 	//
 
 	/**

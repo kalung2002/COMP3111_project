@@ -109,6 +109,7 @@
                                        <font>
                                           <Font size="15.0" />
                                        </font></TextArea>
+
                                     <TextField fx:id="task2Startyear" layoutX="229.0" layoutY="127.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="132.0" promptText="year(1880-2019)" />
                                     <Label layoutX="40.0" layoutY="131.0" text="Period of interest (starting year)" />
                                     <Label layoutX="40.0" layoutY="164.0" text="Period of interest (ending year)" />
@@ -118,6 +119,7 @@
                                     <TextField fx:id="task2Kth" layoutX="533.0" layoutY="127.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="106.0" promptText="number(1-1000)" />
                                     <TextField fx:id="task2Gender" layoutX="533.0" layoutY="160.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="108.0" promptText="M/F" />
                                     <Button fx:id="task2btnSummary" layoutX="68.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Summary" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="45.0" prefWidth="124.0" text="Summary">
+
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -305,8 +307,8 @@
                                           <Insets top="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <TextArea prefHeight="115.0" prefWidth="509.0" text="Task #5: Prediction on Names for Compatible Pairs (application)&#10;&#10;Develop and implement an online service using empirical data to help make informed decisions on predicting names for compatible pairs&#10;" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                                    <ToggleButton mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" text="T5X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                    <TextArea prefHeight="115.0" prefWidth="509.0" text="Task #5: Prediction on Names for Compatible Pairs (application)&#10;&#10;Input the following information to let us help you calculate the score for your best soulmate 's name. &#10;" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                                    <ToggleButton fx:id="T5X2" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" text="T5X2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="70.0" />
                                        </GridPane.margin>
@@ -314,7 +316,7 @@
                                           <ToggleGroup fx:id="tsk5_algor" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" selected="true" text="T5X1" toggleGroup="$tsk5_algor" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                                    <ToggleButton fx:id="T5X1" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" selected="true" text="T5X1" toggleGroup="$tsk5_algor" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose algorithm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <ProgressBar fx:id="tsk5progress" prefHeight="20.0" prefWidth="400.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Progess" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="TOP">
@@ -322,15 +324,15 @@
                                           <Insets top="15.0" />
                                        </GridPane.margin>
                                     </Text>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" selected="true" text="I want a younger soulmate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <ToggleButton fx:id="choice_youngsoul" minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" selected="true" text="I want a younger soulmate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tsk5_youth" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" text="I want a older soulmate" toggleGroup="$tsk5_youth" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ToggleButton fx:id="choice_oldsoul" minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" text="I want a older soulmate" toggleGroup="$tsk5_youth" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please input your info" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please input your target's info" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    <RadioButton mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" text="I am male" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <RadioButton fx:id="choice_male" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMouseReleased="#tsk5check" text="I am male" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="20.0" />
                                        </GridPane.margin>
@@ -338,7 +340,7 @@
                                           <ToggleGroup fx:id="tsk5_gender_i" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMousePressed="#tsk5check" onMouseReleased="#tsk5check" text="I am female" toggleGroup="$tsk5_gender_i" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                    <RadioButton fx:id="choice_female" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMousePressed="#tsk5check" onMouseReleased="#tsk5check" text="I am female" toggleGroup="$tsk5_gender_i" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>
@@ -353,12 +355,12 @@
                                           <Insets left="5.0" right="5.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMousePressed="#tsk5check" onMouseReleased="#tsk5check" selected="true" text="I want a male soulmate" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                    <ToggleButton fx:id="choice_malesoul" minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMousePressed="#tsk5check" onMouseReleased="#tsk5check" selected="true" text="I want a male soulmate" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tsk5_gender_choice" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMousePressed="#tsk5check" onMouseReleased="#tsk5check" text="I want a female soulmate" toggleGroup="$tsk5_gender_choice" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <ToggleButton fx:id="choice_femalesoul" minWidth="216.0" mnemonicParsing="false" onAction="#tsk5check" onKeyPressed="#tsk5check" onKeyReleased="#tsk5check" onMouseClicked="#tsk5check" onMouseDragEntered="#tsk5check" onMouseDragExited="#tsk5check" onMouseEntered="#tsk5check" onMouseExited="#tsk5check" onMousePressed="#tsk5check" onMouseReleased="#tsk5check" text="I want a female soulmate" toggleGroup="$tsk5_gender_choice" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                            </children>
