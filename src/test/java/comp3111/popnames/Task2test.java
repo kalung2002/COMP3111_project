@@ -18,5 +18,6 @@ public class Task2test extends ApplicationTest {
 	private Scene s;
 	private TextArea t;
 	private ToggleButton btn;
+}
 
 	
