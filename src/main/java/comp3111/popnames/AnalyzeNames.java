@@ -328,6 +328,30 @@ public class AnalyzeNames {
 		else return 0;
 	}
 	
+	public static int get_name_Freq(int year, int year2, String gender, int rank, String Name) {
+		boolean found = false;
+		int freq_number = 0;
+		int currrank = 0;
+		for(int i = year; i <= year2; i++) {
+			for (CSVRecord rec : getFileParser(i)) {
+				if(rec.get(1).equals(gender)) {
+						if(rec.get(0).equals(Name)) {
+							if (rank == getRank(i, Name, gender)) {
+								found = true;
+								freq_number += 1;
+								//System.out.println(occurr_number);
+								break;
+							}
+						}
+				}
+			}
+		}
+		if(found) {
+			return freq_number;
+		}
+		else return 0;
+	}
+	
   
 	/**
 	 * Get the record for specific name for a year(for one gender)

@@ -1011,11 +1011,101 @@ public class Controller {
 					+ " to " + Integer.toString(ending_year) +".\n";
 			
 			textAreaConsole.setText(oReport);
+			Media sound = new Media(new File("whistle.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 		}
 		
+		public static class task2_table_data {
+			private final SimpleStringProperty name;
+			private final SimpleStringProperty freq;
+			private final SimpleStringProperty occurrences;
+			private final SimpleStringProperty percent;
+
+			task2_table_data(String name, String freq, String occurrences, String percent) {
+				this.name = new SimpleStringProperty(name);
+				this.freq = new SimpleStringProperty(freq);
+				this.occurrences = new SimpleStringProperty(occurrences);
+				this.percent = new SimpleStringProperty(percent);
+			}
+
+			public String getName() {
+				return this.name.get();
+			}
+
+			public String getFreq() {
+				return this.freq.get();
+			}
+
+			public String getOccurrences() {
+				return this.occurrences.get();
+			}
+
+			public String getPercent() {
+				return this.percent.get();
+			}
+
+		}
+		
+		@SuppressWarnings("unchecked")
 		@FXML
 		void task2Table() {
+			int starting_year = Integer.parseInt(task2Startyear.getText());
+			int ending_year = Integer.parseInt(task2Endyear.getText());
+			int Kth_value = Integer.parseInt(task2Kth.getText());
+			String Gender = task2Gender.getText();
 			
+			TableView<task2_table_data> table = new TableView<task2_table_data>();
+			final ObservableList<task2_table_data> data = FXCollections.observableArrayList();
+
+			String[] name = AnalyzeNames.get_MostFreqName_array(starting_year, ending_year, Gender, Kth_value);
+			//System.out.println(Arrays.toString(name));
+			name = new HashSet<String>(Arrays.asList(name)).toArray(new String[0]);
+			//System.out.println(Arrays.toString(name));
+			
+			int total_occur = 0;
+			for (int i = starting_year; i <= ending_year; i++) {
+				total_occur += AnalyzeNames.getNumber(i, Gender, Kth_value);
+			}
+			
+			for (int i = 0; i < name.length; i++) {
+				String name_individ = name[i];
+				//int freq_counter = AnalyzeNames.get_name_Freq(starting_year, ending_year, Gender, Kth_value, name_individ);
+				//String freq_string = Integer.toString(freq_counter);
+				String freq_string = String.valueOf(AnalyzeNames.get_name_Freq(starting_year, ending_year, Gender, Kth_value, name_individ));
+				int occurrences_counter = AnalyzeNames.get_name_Occurrence(starting_year, ending_year, Gender, Kth_value, name_individ);
+				String occurrences = Integer.toString(occurrences_counter);
+				float percent_float = (float) occurrences_counter / total_occur;
+				//System.out.println(percent_float);
+				//String percent_string = Float.toString(percent_float * 100.0f) + "%";
+				String percent_string = String.valueOf(Float.toString(percent_float * 100.0f) + "%");
+				data.add(new task2_table_data(name_individ, freq_string, occurrences, percent_string));
+			}
+			table.setEditable(true);
+			
+			TableColumn<task2_table_data, String> Col_Name = new TableColumn<task2_table_data, String>("Name");
+			TableColumn<task2_table_data, String> Col_Freq = new TableColumn<task2_table_data, String>("Frequency");
+			TableColumn<task2_table_data, String> Col_Occurrences = new TableColumn<task2_table_data, String>("Occurrences");
+			TableColumn<task2_table_data, String> Col_Percent = new TableColumn<task2_table_data, String>("Percentage");
+
+			Col_Name.setCellValueFactory(new PropertyValueFactory<task2_table_data, String>("Name"));
+			Col_Freq.setCellValueFactory(new PropertyValueFactory<task2_table_data, String>("Freq"));
+			Col_Occurrences.setCellValueFactory(new PropertyValueFactory<task2_table_data, String>("Occurrences"));
+			Col_Percent.setCellValueFactory(new PropertyValueFactory<task2_table_data, String>("Percent"));
+
+			table.setItems(data);
+			table.getColumns().addAll(Col_Name, Col_Freq, Col_Occurrences, Col_Percent);
+			
+			GridPane expContent = new GridPane();
+			final Label label = new Label("Data table");
+			label.setFont(new Font("Arial", 20));
+			final VBox databox = new VBox();
+			databox.getChildren().addAll(label, table);
+			expContent.add(databox, 0, 0);
+
+			Alert alert = getAlert("Table");
+			alert.getDialogPane().setContent(expContent);
+			alert.showAndWait();
 		}
 		
 		@FXML
@@ -1043,11 +1133,6 @@ public class Controller {
 			final NumberAxis yAxis = new NumberAxis();
 			yAxis.setLabel("Number of Occurrences");
 	
-	
-	
-	
-	
-	
 			final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
 			bc.setTitle(Integer.toString(Kth_value) + "-th popular " + gender2_report + " names over the period from " + Integer.toString(starting_year) + " to " + Integer.toString(ending_year));
 	
@@ -1056,9 +1141,9 @@ public class Controller {
 			dataseries1.setName("Name");
 			int counter = ending_year - starting_year;
 			String[] name = AnalyzeNames.get_MostFreqName_array(starting_year, ending_year, Gender, Kth_value);
-			System.out.println(Arrays.toString(name));
+			//System.out.println(Arrays.toString(name));
 			name = new HashSet<String>(Arrays.asList(name)).toArray(new String[0]);
-			System.out.println(Arrays.toString(name));
+			//System.out.println(Arrays.toString(name));
 			int[] occurrence = new int[name.length];
 			for (int i = 0; i < name.length; i++) {
 				 System.out.println(name[i]);
@@ -1079,33 +1164,14 @@ public class Controller {
 			}
 	
 			bc.getData().add(dataseries1);
-	
-	
-	
-	
-	
-	
-	
-	
 			GridPane expContent = new GridPane();
 			expContent.setMaxWidth(Double.MAX_VALUE);
 			expContent.add(bc, 0, 0);
-	
-	
-	
-	
-	
-	
 			Alert alert = getAlert("bar chart");
-	
-	
-	
-	
-	
-	
-	
-	
 			alert.getDialogPane().setContent(expContent);
+			Media sound = new Media(new File("whistle.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			alert.showAndWait();
 		}
 		
@@ -1149,18 +1215,11 @@ public class Controller {
 			expContent.add(chart, 0, 0);
 
 			Alert alert = getAlert("bar chart");
-
 			alert.getDialogPane().setContent(expContent);
+			Media sound = new Media(new File("whistle.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			alert.showAndWait();
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 		}
 	/**
