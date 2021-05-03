@@ -2499,7 +2499,7 @@ public class Controller {
 				progress_counter = progress_counter + 1;
 			}
 	
-			progress_bar = progress_counter / 7.0f;
+			progress_bar = progress_counter / 6.0f;
 			String progress_num = String.format("%02.2f", progress_bar * 100.0f);
 			textAreaConsole.setText("Progress: " + progress_num + "%");
 			tsk5progress.setProgress(progress_bar);
