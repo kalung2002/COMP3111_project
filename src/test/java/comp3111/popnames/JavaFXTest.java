@@ -42,10 +42,10 @@ public class JavaFXTest extends ApplicationTest {
 	public void testButtonRankTrue() {	
 		//clickOn("#tabTaskZero");
 		clickOn("#buttonRankM");
-		//sleep(1000);
+		sleep(100);
 		String s1 = t.getText();
 		clickOn("#buttonRankM");
-		//sleep(1000);
+		sleep(100);
 		String s2 = t.getText();
 		assertTrue(s1.equals(s2));
 	}
@@ -55,10 +55,10 @@ public class JavaFXTest extends ApplicationTest {
 	public void testButtonRankFalse() {	
 		//clickOn("#tabTaskZero");
 		clickOn("#buttonRankM");
-		//sleep(1000);
+		sleep(100);
 		String s1 = t.getText();
 		clickOn("#buttonRankF");
-		//sleep(1000);
+		sleep(100);
 		String s2 = t.getText();
 		assertFalse(s1.equals(s2));
 	}

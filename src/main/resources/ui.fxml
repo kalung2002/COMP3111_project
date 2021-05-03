@@ -109,30 +109,30 @@
                                        <font>
                                           <Font size="15.0" />
                                        </font></TextArea>
-                                    <TextField fx:id="task2Startyear" layoutX="229.0" layoutY="127.0" prefHeight="23.0" prefWidth="132.0" promptText="year(1880-2019)" />
+                                    <TextField fx:id="task2Startyear" layoutX="229.0" layoutY="127.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="132.0" promptText="year(1880-2019)" />
                                     <Label layoutX="40.0" layoutY="131.0" text="Period of interest (starting year)" />
                                     <Label layoutX="40.0" layoutY="164.0" text="Period of interest (ending year)" />
-                                    <TextField fx:id="task2Endyear" layoutX="229.0" layoutY="160.0" prefHeight="23.0" prefWidth="133.0" promptText="year(1880-2019)" />
+                                    <TextField fx:id="task2Endyear" layoutX="229.0" layoutY="160.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="133.0" promptText="year(1880-2019)" />
                                     <Label layoutX="400.0" layoutY="131.0" text="K-th popular names" />
                                     <Label layoutX="440.0" layoutY="164.0" text="Gender" />
-                                    <TextField fx:id="task2Kth" layoutX="533.0" layoutY="127.0" prefHeight="23.0" prefWidth="106.0" promptText="number(1-1000)" />
-                                    <TextField fx:id="task2Gender" layoutX="533.0" layoutY="160.0" prefHeight="23.0" prefWidth="108.0" promptText="M/F" />
-                                    <Button fx:id="task2btnSummary" layoutX="68.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Summary" prefHeight="45.0" prefWidth="124.0" text="Summary">
+                                    <TextField fx:id="task2Kth" layoutX="533.0" layoutY="127.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="106.0" promptText="number(1-1000)" />
+                                    <TextField fx:id="task2Gender" layoutX="533.0" layoutY="160.0" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="23.0" prefWidth="108.0" promptText="M/F" />
+                                    <Button fx:id="task2btnSummary" layoutX="68.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Summary" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="45.0" prefWidth="124.0" text="Summary">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="task2btnTable" layoutX="218.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Table" prefHeight="45.0" prefWidth="124.0" text="Table">
+                                    <Button fx:id="task2btnTable" layoutX="218.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2Table" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="45.0" prefWidth="124.0" text="Table">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="task2btnBar" layoutX="362.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2BarChart" prefHeight="45.0" prefWidth="124.0" text="Bar Chart">
+                                    <Button fx:id="task2btnBar" layoutX="362.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2BarChart" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="45.0" prefWidth="124.0" text="Bar Chart">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="task2btnPie" layoutX="512.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2PieChart" prefHeight="45.0" prefWidth="124.0" text="Pie Chart">
+                                    <Button fx:id="task2btnPie" layoutX="512.0" layoutY="213.0" mnemonicParsing="false" onAction="#task2PieChart" onKeyPressed="#task2input" onKeyReleased="#task2input" onKeyTyped="#task2input" onMouseClicked="#task2input" onMouseDragEntered="#task2input" onMouseDragExited="#task2input" onMouseEntered="#task2input" onMouseExited="#task2input" onMousePressed="#task2input" onMouseReleased="#task2input" prefHeight="45.0" prefWidth="124.0" text="Pie Chart">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
