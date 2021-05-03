@@ -389,7 +389,7 @@ public class Controller {
 		// Generate BarChart
 		Stage stage;
 		stage = new Stage();
-		stage.setTitle("Bar Chart Sample");
+		stage.setTitle("Top " + Text1_name.getText() + " Names in " + Text1_year.getText());
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
