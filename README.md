@@ -33,13 +33,17 @@
 - [x] Task 1 
 - [ ] Task 2
 - [x] Task 3
-- [ ] Task 4
+- [x] Task 4
 - [ ] Task 5
-- [ ] Task 6
-- [ ] Documentation with JavaDoc
+- [x] Task 6
+- [x] Documentation with JavaDoc
 - [x] Unit test
 - [x] jaco report
-- [ ] meeting doc
-- [ ] burndown-chart
-- [ ] screen shot 
-- [ ] 
+- [x] meeting doc
+- [x] burndown-chart
+- [x] screen shot 
+ ### The supplementray note, including test, branch coverage reports and screen shot
+- look at the file of the latest "sorry for late_comp3111_Update_supply_note.pdf" (ignore the previous pdf)
+- https://github.com/kalung2002/COMP3111_project/blob/master/sorry%20for%20late_comp3111_Update_supply_note.pdf (whole notes report)
+- sorry for the late submission again, reason is in emails.
+
