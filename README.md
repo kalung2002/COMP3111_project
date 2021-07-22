@@ -24,6 +24,12 @@
  - responsible for task 2 and task 5
 ```
 ***
+### Environment Setup:
+```
+- OS : Windows (Since there are windows jar)
+- IDE : eclipse version :
+- UI : Scene builder (a plugin)
+```
 ### Task todo before 30/March
 - [x] Readme.md and team repository
 - [x] class diagram (in team)
