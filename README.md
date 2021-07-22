@@ -48,8 +48,7 @@
 - [x] meeting doc
 - [x] burndown-chart
 - [x] screen shot 
- ### The supplementray note, including test, branch coverage reports and screen shot
+ ### User Guide :
 - look at the file of the latest "sorry for late_comp3111_Update_supply_note.pdf" (ignore the previous pdf)
 - https://github.com/kalung2002/COMP3111_project/blob/master/sorry%20for%20late_comp3111_Update_supply_note.pdf (whole notes report)
-- sorry for the late submission again, reason is in emails.
 
